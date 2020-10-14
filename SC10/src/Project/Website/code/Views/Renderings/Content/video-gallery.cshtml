@@ -1,0 +1,140 @@
+@using Newtonsoft.Json
+@using System.Text.RegularExpressions;
+
+@if (Html.Sitecore().Field("PageVids").ToString().Length >= 1)
+{
+  List<string> availableTags = new List<string>();  //all tags for all vides
+  <br clear="all" />
+  <section class="gallery-block cards-gallery" id="ChartwellVideoGallery" style="width: 100%; clear: both">
+    <div class="container">
+      <div class="row photoGallery">
+        @foreach (var item in (dynamic)JsonConvert.DeserializeObject(Regex.Replace(@Html.Sitecore().Field("PageVids").ToString(), "<.*?>", String.Empty)))
+        {
+          string classnames = ""; //classnames to apply to this current video container
+          string tags = ""; //tags for this current video
+
+          if (item.tags != null)
+          {
+            foreach (string tag in item.tags)
+            {
+              classnames += " " + tag.Replace(" ", "-").Replace("&", "and").ToLower();
+              tags += tag + ", ";
+              if (!(availableTags.Contains(tag)))
+              {
+                availableTags.Add(tag);
+              }
+            }
+            if (tags.Length >= 2)
+            {
+              tags = tags.Substring(0, tags.Length - 2);
+            }
+
+          }
+
+          <div class="col-md-6 col-lg-4 videoItem @classnames" data-toggle="modal" data-src="https://www.youtube.com/embed/@item.id" data-target="#videoModal">
+            <div class="card border-0 transform-on-hover">
+              <div class="card-hero-img" style="background-image: url('https://i.ytimg.com/vi/@item.id/hqdefault.jpg');">
+                <!--<img src="https://i.ytimg.com/vi/@item.id/hqdefault.jpg" style="width: 100%; height: auto"/>-->
+                <!--<iframe style="position: absolute; top: 0" width="100%" height="100%" src="https://www.youtube.com/embed/@item.id" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                <i class="fab fa-youtube"></i>
+              </div>
+              <div class="card-body">
+                <h6><a href="#">@item.heading</a></h6>
+                <p class="text-muted card-text">@item.desc</p>
+                @if (tags.Length > 0)
+                {
+                  <span class="small"><strong class="uppercase">@Sitecore.Globalization.Translate.Text("Tags"):</strong> @tags</span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div id="chips">
+        @if (availableTags.Count > 0)
+        {
+          <strong class="uppercase">@Sitecore.Globalization.Translate.Text("FilterBy"):</strong>
+          foreach (var tag in availableTags)
+          {
+            <div class="chip selected">@tag</div>
+          }
+          <div class="chip reset hide" id="chipResetBtn">@Sitecore.Globalization.Translate.Text("Clear")</div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" tabindex="-1" role="dialog" id="videoModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="" id="gtmGenericVideo" allowscriptaccess="always" allow="autoplay"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" id="previous-button" aria-label="Previous" class="baguetteBox-button"><svg width="44" height="60"><polyline points="30 10 10 30 30 50" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="butt" fill="none" stroke-linejoin="round"></polyline></svg></button>
+    <button type="button" id="next-button" aria-label="Next" class="baguetteBox-button"><svg width="44" height="60"><polyline points="14 10 34 30 14 50" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="butt" fill="none" stroke-linejoin="round"></polyline></svg></button>
+    <button type="button" id="close-button" aria-label="Close" class="baguetteBox-button" data-dismiss="modal"><svg width="30" height="30"><g stroke="rgb(160,160,160)" stroke-width="4"><line x1="5" y1="5" x2="25" y2="25"></line><line x1="5" y1="25" x2="25" y2="5"></line></g></svg></button>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      $("#ChartwellVideoGallery").insertAfter("#gallery");
+      $("#chips").insertAfter("#gallery");
+
+      var hideClasses = []; //anything put in here will end up hidden
+
+      //first determine if there are pre-selections i.e. tags in query params.
+      //then we add all tags to hideclasses except for those in the query params
+      var searchParams = new URLSearchParams(window.location.search).getAll("tags");
+      if (searchParams && searchParams.length > 0) {
+        $("#chips .chip:not(#chipResetBtn)").each(function (index) {
+          showHideVid($(this));
+        });
+        searchParams.forEach(tag => {
+          tag = tag.replace(/-/g, " ").replace("and", "&").toLowerCase();
+          console.log("original tag:"+tag);
+          //need to find the chip with the text of the tag
+          //select that chip
+          //the showHide it
+          showHideVid($("#chips .chip").filter(function () {
+            return $(this).text().toLowerCase() == tag;
+          }));
+        });
+      }
+
+      $(".chip").on("click", function () {
+        showHideVid($(this));
+      });
+
+      function showHideVid(chip) {
+        var className = chip.text().trim().replace(/ /g, "-").replace(/&/g, "and").toLowerCase();
+        $(".videoItem").removeClass("hide");
+        if (chip.hasClass("selected")) {
+          //add the classname to the hideClasses array if it is not already in the array because we are unselecting it
+          if (!(hideClasses.includes(className))) {
+            hideClasses.push(className);
+          }
+        } else {
+          //remove the classname from the hideClasses array because it is being reselected
+          if (hideClasses.includes(className)) {
+            var indx = hideClasses.findIndex(cls => cls == className);
+            hideClasses.splice(indx, 1);
+          }
+        }
+        if (chip.prop("id") == "chipResetBtn") {
+          hideClasses = [];
+          $(".chip").addClass("selected");
+        }
+        hideClasses.length > 0 ? $("#chipResetBtn").removeClass("hide") : $("#chipResetBtn").addClass("hide");
+        hideClasses.forEach(c => $("."+c).addClass("hide"));
+        chip.toggleClass("selected");
+      }
+    });
+
+  </script>
+}

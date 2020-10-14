@@ -1,0 +1,18 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+
+@{
+  var homePageLinkUrl = Request.Url.Scheme + "://" + Request.Url.Host + "/" + Model.Item.Language.Name;
+  var imageSource = Model.Item.Language.Name == "en" ? "/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color.svg" : "/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color-fr.svg";
+}
+<header id="navBar" class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+  <a href="@homePageLinkUrl" id="logoLink" class="navbar-brand mr-0 mr-md-3 mr-lg-4">
+    <img id="chartwellLogo" src=@imageSource alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+  </a>
+  <div class="mr-0" id="tagline">
+    <span>@Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")</span>
+  </div>
+  @Html.Sitecore().Field("TopNav")
+</header>
+

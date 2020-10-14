@@ -1,0 +1,36 @@
+﻿@using Sitecore.Mvc
+
+@{
+  var homePageLinkUrl = Request.Url.Scheme + "://" + Request.Url.Host + "/" + Model.Item.Language.Name;
+  var imageSource = Model.Item.Language.Name == "en" ? "/Assets/Images/Layout/chart-logo-2014.png" : "/Assets/Images/Layout/chart-logo-2014-fr.png";
+  var careersLink = Model.Item.Language.Name == "en" ? "https://careersatchartwell.com/explore" : "https://careersatchartwell.com/fr/explorez";
+  var investorsLink = Model.Item.Language.Name == "en" ? "https://investors.chartwell.com/company-profile/" :
+                                                         "https://investors.chartwell.com/French/Profil-de-la-socit/";
+}
+
+<div class="container-fluid hidden-print" id="globalHeaderNavContainer">
+  <div class="d-flex flex-row align-items-center">
+
+      <a href="@homePageLinkUrl" class="logoEn">
+        <img src=@imageSource alt="Chartwell Logo" />
+      </a>
+
+
+      <nav class="navbar navbar-expand-md navbar-inverse" id="globalHeaderNav">
+        <div class="container-fluid">
+          @*Brand and toggle get grouped for better mobile display*@
+          <div class="navbar-header">
+            @Html.Sitecore().Placeholder("Page.Header.Center")
+          </div>
+          <div class="collapse navbar-collapse d-flex flex-row align-items-center @Sitecore.Context.Language">
+            @Html.Sitecore().Placeholder("Page.TopNav")
+          </div>
+          @Html.Sitecore().Placeholder("Page.Header.Center")
+        </div>
+      </nav>
+
+
+  </div>
+</div>
+
+

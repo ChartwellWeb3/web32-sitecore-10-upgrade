@@ -1,0 +1,132 @@
+﻿@import "_variables.scss";
+
+/* Search Bar ----------------------------------------------------------------------------- */
+#SearchForm {
+  border-bottom: 1px solid rgba($chartwellPrimary, 0.2);
+  border-top: 1px solid rgba($chartwellPrimary, 0.2);
+  padding: $standardUnit*.8 0;
+  background: $chartwellPrimary;
+  color: white;
+
+  .tt-menu.tt-open {
+    z-index: 99999 !important;
+  }
+
+  #ChartwellSearch {
+    padding: 0.65rem;
+    border-radius: 100%;
+  }
+
+  #searchLabel p {
+    font-size: $rootfontSizeRem * 1.15;
+    line-height: 1;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+  }
+
+  .form-group, .input-group {
+    margin: 0;
+    width: 100%;
+
+    input {
+      width: 100%;
+      color: black;
+      font-size: $rootfontSizeRem;
+      transition: all ease 1s;
+
+      &::-webkit-input-placeholder, &:-ms-input-placeholder, &::-moz-placeholder, &:-moz-placeholder {
+        color: #666;
+        opacity: 1;
+        font-size: $rootfontSizeRem;
+      }
+
+      &.activeSearchField {
+      }
+
+      &.inactiveSearchField {
+        background-color: $chartwellPrimary;
+        border: 1px solid $chartwellLightPrimary;
+        color: $chartwellLightPrimary;
+
+        &::placeholder {
+          color: $chartwellLightPrimary;
+        }
+      }
+    }
+  }
+
+  .input-group {
+    margin-left: 0;
+  }
+
+  .input-group-btn input {
+    color: black;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+
+  .btn {
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: $sm-BP) {
+    .residenceSearchformColumn {
+      padding-left: 0;
+      padding-right: $standardUnit;
+
+      &:last-child {
+        padding-right: 0;
+        width: auto;
+      }
+
+      .form-group {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: $lg-BP) {
+    p {
+      padding-left: $standardUnit*6;
+    }
+  }
+
+  @media screen and (max-width: $xs-sm-BP) {
+    p {
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: $xs-sm-BP) {
+    #ChartwellSearch {
+      height: 34px;
+    }
+
+    .btn-label {
+      display: none;
+    }
+
+    p {
+      line-height: $standardUnit*3.5;
+    }
+  }
+}
+
+// search results
+.chartwell-card {
+  box-shadow: $standardBoxShadow;
+  border: 0;
+
+  &:hover {
+    box-shadow: $standardBoxShadowDark;
+  }
+}
+
+#nearbyResidences {
+  background-color: #fcfcfc;
+  color: black;
+  border-top: 1px solid $lightGray;
+  border-bottom: 1px solid $lightGray;
+}

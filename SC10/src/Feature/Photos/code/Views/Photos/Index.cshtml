@@ -1,0 +1,65 @@
+﻿@model List<Chartwell.Foundation.Models.PhotoGalleryModel>
+@using Sitecore.Mvc.Analytics.Extensions
+@using Sitecore.Resources.Media
+
+@Html.Sitecore().VisitorIdentification()
+
+
+
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Data
+
+
+<div id="PropertyDetailsContainer" class="d-sm-flex flex-sm-row">
+
+  <div id="PropertyNavigationContainerMobile" class="align-items-sm-stretch">@Html.Sitecore().Placeholder("Property.NavigationMobile")</div>
+
+  <div id="PropertyDetails">
+    <div id="PropertyHeader" style="text-align: center">
+      @Html.Sitecore().Placeholder("Property.ResidenceImageheader")
+      <h1 class="resName PropertyName">@Html.Sitecore().Field("Property Name", @Model[0].InnerItem)</h1>
+      <address class="PropertyAddress">
+        <span class="fas fa-map-marker-alt color-primary"></span> @Model[0].PropertyFormattedAddress
+      </address>
+    </div>
+    <div id="PropertyNavTop"><!-- do not delete. Used to calculate offset --></div>
+    <div id="PropertyNavigationContainer" class="sticky-top">@Html.Sitecore().Placeholder("Property.Navigation")</div>
+
+    <div class="d-flex propertyLayout" id="mainBlock">
+      <div class="row" id="mainRow">
+        <div class="col-sm-12 col-md-5 col-lg-8 tabletFullWidth">
+          <section class="section gallery-block grid-gallery">
+
+            @*<h2 class="font-weight-bolder mt-0 pt-3 pb-3 mb-2 border-bottom text-center lead">@Html.Sitecore().Field("Property Tag Line", @Model[0].InnerItem)</h2>*@
+
+            <div class="container">
+              <div class="row photoGallery">
+                @foreach (var image in Model)
+                {
+                  <div class="col-md-6 col-lg-4 item scale-on-hover">
+                    <a href=@HashingUtils.ProtectAssetUrl(@image.HashedUrl) data-caption="">
+                      <img src=@HashingUtils.ProtectAssetUrl(@image.HashedUrl)>
+                      <span class="description">
+                        <span class="description-heading"></span>
+                        <span class="description-body"></span>
+                      </span>
+                    </a>
+                  </div>
+                }
+              </div>
+            </div>
+
+          </section>
+
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 rightContainer deviceAbsoluteHide">
+          @Html.Sitecore().Placeholder("Grid.Right")
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

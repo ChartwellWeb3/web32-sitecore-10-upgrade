@@ -1,0 +1,11 @@
+﻿@foreach (var langu in @Model.SortedDictionary)
+{
+  if (@langu.Key == "French")
+  {
+    <a id="lnkFrench" class="langOption fr" href="@langu.Value" aria-label="Français">fr</a>
+  }
+  else
+  {
+    <a id="lnkEnglish" class="langOption en" href="@langu.Value" aria-label="English">en</a>
+  }
+}

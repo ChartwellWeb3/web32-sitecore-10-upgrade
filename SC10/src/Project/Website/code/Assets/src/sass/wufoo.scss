@@ -1,0 +1,164 @@
+.embed form {margin: 10px 14px 0 14px !important;}
+
+
+h2.leftFormProp {display:none;}
+
+.wufoo h2 {line-height:1.4em; text-align: center; }
+.wufoo h2 span {color: #ffcc00; }
+form span.req {
+    color: white !important;
+    font-size: 120%;
+}
+
+.wufoo legend#title11 {color:rgb(0, 51, 102);}
+
+
+.wufoo textarea {border-radius: 4px;}
+.wufoo li#fo20li10 {width:80% !important;}
+.wufoo li#fo20li6 span.symbol {margin-left:13px;}
+
+.contactWidget {margin-top:-20px;}
+
+.wufoo #fo20licaptcha label {margin-left:15px;}
+.wufoo #recaptcha_widget_div {width:90%; margin-left:15px;}
+.wufoo #title11 {color:White !important;}
+.wufoo #fo23licaptcha label, .wufoo #fo23licaptcha .g-recaptcha {padding-left: 15px;}
+textarea.textarea {
+  min-width: 95% !important;
+  width: 95% !important;}
+
+.wufoo #recaptcha_widget_div table {background:#81a7cd;}
+.wufoo .recaptchatable .recaptcha_image_cell {width:210px !important; background-color:#81a7cd;}
+.wufoo .recaptchatable #recaptcha_image {width:220px !important; border:none !important;}
+.wufoo .recaptchatable .recaptcha_image_cell center {text-align:left; float:left;}
+.wufoo img#recaptcha_challenge_image {width:220px !important;}
+.wufoo input#recaptcha_response_field{width:210px !important;}
+.wufoo img#recaptcha_logo, .wufoo span#recaptcha_privacy {display:none;}
+.wufoo #recaptcha_table tbody tr td:nth-child(2), .wufoo #recaptcha_table tbody tr td:last-child {padding-left:0px !important;}
+.wufoo .formTitle h2 {color:White;}
+
+form.wufoo {
+  background-image: none;
+  background: #0072bb;
+  border-radius: 6px;
+  font-family: "Roboto", arial, sans-serif;
+  font-size: 15px;
+  padding: 20px 15px;
+  margin: 5px;
+
+  .info {
+    h2 {
+      font-size: 175% !important;
+      font-weight: bold;
+    }
+  }
+
+  .section {
+    h4 {
+      font-size: 140% !important;
+      font-weight: bold;
+    }
+  }
+
+  li {
+    width: 90%;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    &.buttons input#saveForm {
+      height: auto;
+      background-color: #fcb415;
+      font-weight: bold;
+      color: black;
+      padding: 10px 20px;
+      display: block;
+      line-height: 1;
+      font-family: arial;
+      font-size: 17px !important;
+      text-transform: uppercase;
+      width: auto;
+      margin: auto;
+      border: 0;
+    }
+
+    &.error {
+      background-color: transparent !important;
+      .desc {
+        color: white !important;
+      }
+
+      &.phone {
+        span {
+          label {
+            display: none;
+          }
+        }
+      }
+
+      input {
+        border: 1px solid red !important;
+      }
+
+      p.error {
+        margin: 3px 0 0 0 !important;
+        padding: 10px !important;
+        line-height: 10px !important;
+        font-weight: bold;
+        font-size: 13px;
+        color: white !important;
+        clear: both;
+        background-color: #d50000;
+        padding: .5rem .75rem;
+        border-radius: 4px;
+        width: calc(100% - 20px);
+        display: block;
+        position: relative;
+        box-shadow: 0.1rem 0.1rem 0.5rem rgba(0,0,0,0.5);
+        text-shadow: 0.1rem 0.1rem 0.5rem rgba(0,0,0,0.5);
+        position: relative;
+
+        &:after {
+          display: block;
+          content: "";
+          width: 0;
+          height: 0;
+          border-left: .5rem solid transparent;
+          border-right: .5rem solid transparent;
+          border-bottom: .5rem solid #d50000;
+          position: absolute;
+          top: -.5rem;
+        }
+      }
+    }
+
+    &#errorLi {
+      margin: 15px;
+      background: #f9e0e0 !important;
+      border: 1px solid red;
+      text-align: center;
+      border-radius: 4px;
+
+      #errorMsg b {
+        padding: 2px 8px;
+        background-color: #d50000 !important;
+        color: white !important;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  input {
+    display: block;
+    width: calc(100% - 4px);
+    height: 16px;
+    padding: 6px 2px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+

@@ -1,0 +1,74 @@
+﻿@model Chartwell.Foundation.Models.AmenitiesModel
+
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Extensions
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Data
+@using Sitecore.Mvc.Analytics.Extensions
+
+@Html.Sitecore().VisitorIdentification()
+
+@{
+  var itemid = @Model.PropertyGuid;
+}
+
+<div id="PropertyDetailsContainer" class="d-sm-flex flex-sm-row">
+
+  <div id="PropertyNavigationContainerMobile" class="align-items-sm-stretch">@Html.Sitecore().Placeholder("Property.NavigationMobile")</div>
+
+  <div id="PropertyDetails">
+    <div id="PropertyHeader" style="text-align: center">
+      @Html.Sitecore().Placeholder("Property.ResidenceImageheader")
+      <h1 class="resName PropertyName">@Model.PropertyName</h1>
+      <address class="PropertyAddress">
+        <span class="fas fa-map-marker-alt color-primary"></span> @Model.PropertyFormattedAddress
+      </address>
+    </div>
+    <div id="PropertyNavTop"><!-- do not delete. Used to calculate offset --></div>
+    <div id="PropertyNavigationContainer" class="sticky-top">@Html.Sitecore().Placeholder("Property.Navigation")</div>
+
+
+    <div class="d-flex propertyLayout" id="mainBlock">
+      <div class="row" id="mainRow">
+        <div class="col-sm-12 col-md-5 col-lg-8 tabletFullWidth">
+          <section class="section">
+            <h2 class="font-weight-bolder mt-3 pt-3 pb-3 mb-2 border-bottom text-center lead">@Model.PropertyTagLine</h2>
+            <h2 class="text-center">@Model.AmenitiesTitle</h2>
+
+
+
+            <!-- Photo Section Start -->
+            @if (!String.IsNullOrEmpty(Convert.ToString(@Html.Sitecore().Field("Amenities Photo", @Model.InnerItem))))
+            {
+              <div class="pull-right hidden-sm hidden-xs inline-img-right paragraphMedia">
+                @Html.Sitecore().Field("Amenities Photo", @Model.InnerItem, new { @class = "large-image", @mw = "800" })
+              </div>
+            }
+            else
+            {
+              <div class="pull-right hidden-sm hidden-xs inline-img-right paragraphMedia">
+                @Html.Sitecore().Field("Thumbnail Image", @Model.TemplateItem, new { @class = "large-image", @mw = "800" })
+              </div>
+            }
+
+            <p>@Model.AmenitiesDescription</p>
+            <!-- Photo Section End -->
+            <ul class="treeList">
+              @using (Html.EditFrame(@itemid.ToString(), "Chartwell Amenities", null, null, null, null))
+              {
+                foreach (Sitecore.Data.Items.Item listItem in @Model.AmenitiesItem)
+                {
+
+                  <li> @listItem.Fields["Amenity Name"]</li>
+                }
+              }
+            </ul>
+          </section>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 rightContainer deviceAbsoluteHide">
+          @Html.Sitecore().Placeholder("Grid.Right")
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

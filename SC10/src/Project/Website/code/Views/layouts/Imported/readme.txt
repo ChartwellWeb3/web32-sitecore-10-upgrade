@@ -1,0 +1,1 @@
+EXM stores imported HTML templates in this folder

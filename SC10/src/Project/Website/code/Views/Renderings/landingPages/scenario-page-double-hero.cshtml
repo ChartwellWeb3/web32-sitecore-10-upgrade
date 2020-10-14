@@ -1,0 +1,88 @@
+﻿@{
+  var homePageLinkUrl = Request.Url.Scheme + "://" + Request.Url.Host + "/" + Model.Item.Language.Name;
+  var imageSource = Model.Item.Language.Name == "en" ? "/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color.svg" : "/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color-fr.svg";
+}
+
+@Html.Sitecore().Field("css")
+  <div id="navBar">
+    <a href="@homePageLinkUrl" id="logoLink">
+      <img id="chartwellLogo" src=@imageSource alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+    </a>
+
+    @*@if (Model.Item.Language.Name == "en")
+    {
+      <a href="http://www.chartwell.com" id="logoLink">
+        <img id="chartwellLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+      </a>
+    }
+    else
+    {
+      <a href="http://www.chartwell.com/fr/" id="logoLink">
+        <img id="chartwellLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color-fr.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+      </a>
+    }*@
+    <div class="right">
+      <a class="emphasis" id="navBarCTA" href="@Html.Sitecore().Field("Navbar Link")">@Html.Sitecore().Field("Navbar Link Text")</a>
+      <a class="phonenumber" id="navBarPhone" href="tel:1-855-461-0685"><span>1-855-461-0685</span></a>
+      <a id="navBarContact" onclick="toggleContactForm()">@Sitecore.Globalization.Translate.Text("ContactUsButtonText")</a>
+    </div>
+  </div>
+<div id="slidesContainer" class="overflow">
+  <div id="heroArea" class="double @Html.Sitecore().Field("Hero Area Background")">
+    <div class="row">
+      <div class="column col-6 col-md-6 col-sm-12">
+        <h1>@Html.Sitecore().Field("Hero Area Title")</h1>
+        <iframe style="width: 95%;" src="@Html.Sitecore().Field("Hero Area Video")?rel=0&iv_load_policy=3&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="readMore" id="ReadMore1">
+          @Html.Sitecore().Field("Hero Area Text")
+          <a class="readMoreLink" onclick="$('#ReadMore1').toggleClass('readMore'); if ($('#ReadMore1 .readMoreLink')[0].innerText == '@Sitecore.Globalization.Translate.Text("ReadMore")') { $('#ReadMore1 .readMoreLink')[0].innerText = '@Sitecore.Globalization.Translate.Text("ReadLess")' } else { $('#ReadMore1 .readMoreLink')[0].innerText = '@Sitecore.Globalization.Translate.Text("ReadMore")' }">@Sitecore.Globalization.Translate.Text("ReadMore")</a>
+        </div>
+
+
+
+      </div>
+      <div class="column col-6 col-md-6 col-sm-12" id="second-column-hero">
+        <h1>@Html.Sitecore().Field("Hero Area 2 Title")</h1>
+
+        <iframe style="width: 95%;" src="@Html.Sitecore().Field("Hero Area 2 Video")?rel=0&iv_load_policy=3&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="readMore" id="ReadMore2">
+          @Html.Sitecore().Field("Hero Area 2 Text")
+          <a class="readMoreLink" onclick="$('#ReadMore2').toggleClass('readMore'); if ($('#ReadMore2 .readMoreLink')[0].innerText == '@Sitecore.Globalization.Translate.Text("ReadMore")') { $('#ReadMore2 .readMoreLink')[0].innerText = '@Sitecore.Globalization.Translate.Text("ReadLess")' } else { $('#ReadMore2 .readMoreLink')[0].innerText = '@Sitecore.Globalization.Translate.Text("ReadMore")' }">@Sitecore.Globalization.Translate.Text("ReadMore")</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="bottomSlide" class="slide">
+    <div class="row autoHeight">
+      <div class="column col-6">
+
+      </div>
+      <div class="column col-6">
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+  <div id="footerSlide" class="slide">
+    <h2 id="tagline">
+      <a href="@homePageLinkUrl">
+        <img class="taglineLogo" src=@imageSource alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+      </a>
+
+      @*@if (Model.Item.Language.Name == "en")
+    {
+      <a href="http://www.chartwell.com"><img class="taglineLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" /></a>
+    }
+    else
+    {
+      <a href="http://www.chartwell.com/fr"><img class="taglineLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color-fr.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" /></a>
+    }*@
+      <span>@Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")</span>
+    </h2>
+  </div>
+</div>
+
+<script src="~/Assets/js/landingpages/scenarioslandingpage.js"></script>

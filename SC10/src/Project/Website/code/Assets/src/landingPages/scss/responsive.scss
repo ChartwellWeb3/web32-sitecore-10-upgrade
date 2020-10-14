@@ -1,0 +1,487 @@
+﻿body {
+  font-family: $defaultFont;
+  font-size: 1.1rem;
+  padding: 0;
+  margin: 0;
+  color: black;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#headerBackground {
+  background-color: rgba($primaryColor,1);
+  background-image: url("/Assets/Images/B2P/chart-low-poly-banner.jpg");
+  background-size: cover;
+  height: 250px;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.noSidePadding {
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: -20px;
+}
+.signUpForm {
+  background-color: white;
+  background-image: url("/Assets/Images/B2P/chart-low-poly.jpg");
+  background-size: cover;
+  background-position: top left;
+  background-attachment:fixed;
+
+  #SignupFormAndContent.container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0.5rem 2rem 2.5rem rgba(black, 0.15);
+
+    .contentSide {
+      padding: 30px;
+      background-color: rgba($primaryColor,0.7);
+      color: white;
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+      text-shadow: 2px 2px 1px rgba(black, 0.5);
+
+      @media screen and (max-device-width: $xs-bp) {
+        border-bottom-left-radius: 0px;
+        border-top-left-radius: 0px;
+      }
+
+      h1 {
+        color: white;
+      }
+    }
+
+    .formSide {
+      padding: 30px;
+      background-color: white;
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+
+      @media screen and (max-device-width: $xs-bp) {
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+      }
+    }
+  }
+}
+
+.form-control {
+  box-sizing: border-box;
+}
+
+a {
+  color: $primaryColor;
+
+  &:hover {
+    color: $secondaryColor;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headingFont;
+}
+
+.display-2 {
+  font-weight: bold;
+  font-size: 4.5rem;
+  line-height: 1.05;
+  margin-bottom: 2rem;
+  letter-spacing: -0.225rem;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.fullhide {
+  opacity: 0;
+  display: none !important;
+}
+
+
+.footNote {
+  opacity: 0.75;
+  color: #666;
+}
+
+.centered {
+  text-align: center;
+  justify-content: center;
+}
+
+#navBar {
+  padding: 1vh 2.5%;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  background-color: white;
+  width: 100%;
+  text-align: left;
+  border-radius: 0;
+  box-shadow: 2px 2px 3px rgba(black, 0.1);
+
+  @media screen and (max-device-width: $sm-bp) {
+    padding: 1vh 2.5vw;
+  }
+
+  @media screen and (max-device-width: $xs-bp) {
+    padding: 0.75vh 2.5vw;
+    position: relative;
+  }
+
+  a#topNavLogoLink {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+  }
+
+  a#logoLink {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+
+    img {
+      min-height: 40px;
+    }
+  }
+
+  #chartwellLogo {
+    height: 5vh;
+    width: auto;
+    z-index: 1;
+    float: left;
+  }
+
+  #tagline {
+    color: $secondaryColor;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+  }
+}
+
+a.navTextLink {
+  font-weight: bold;
+  margin-right: 2rem;
+}
+
+.btn.btn-primary {
+  background-image: none;
+  background-color: $primaryColor;
+  box-shadow: 2px 2px 3px rgba(black, 0.1);
+  font-size: 1.25rem;
+  line-height: 1.1;
+  white-space: normal;
+  text-shadow: 2px 2px 3px rgba(black, 0.1);
+  padding: .75rem; 
+
+  &:hover {
+    background-color: darken($primaryColor, 10%);
+  }
+}
+
+#SectionsContainer {
+  .section {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding: 5vh 10vw;
+    justify-content: center;
+    box-shadow: 2px 2px 3px rgba(black, 0.1);
+
+    .textBlockImage {
+      height: 10rem;
+      display: inline-block;
+    }
+
+    &.plumBkg {
+      background-color: rgba($secondaryColor,0.125);
+    }
+
+    &.greenBkg {
+      background-color: rgba($chartwellGreen,0.2);
+    }
+
+    &.blueBkg {
+      background-color: rgba($primaryColor,1);
+    }
+
+
+    .buttonContainer {
+      padding: 1vw 1vh;
+
+      .btn {
+        width: 100%;
+        position: relative;
+        padding-right: 3.5rem;
+        text-align: left;
+
+        .fa, .fas {
+          position: absolute;
+          right: 1rem;
+          font-size: 2rem;
+          top: 50%;
+          margin-top: -1rem;
+        }
+      }
+    }
+
+
+    img.personality-circle-photo {
+      width: 100%;
+      border-radius: 100%;
+      box-shadow: 2px 2px 3px rgba(black, 0.1);
+      max-width: 300px;
+      margin: auto;
+      display: block;
+    }
+
+    ul.doodleList {
+      list-style-type: none;
+
+      li {
+        list-style-type: none;
+        background-image: url("/Assets/Images/landingPages/icons/checkmark-doodle.png");
+        background-size: 40px;
+        background-repeat: no-repeat;
+        padding-left: 5rem;
+        min-height: 65px;
+      }
+    }
+
+    .text-CTA {
+      color: #fc0;
+      margin: 3rem auto;
+    }
+
+    #GeneralContactForm {
+      h2 {
+        color: white;
+      }
+    }
+
+
+    #chartwellContactForm {
+      font-size: 1.15rem;
+
+      .form-group .form-control, #GeneralContactSubmit.btn {
+        font-size: 1.1rem;
+        padding: 0.75rem;
+      }
+
+      legend {
+        border-bottom: 0;
+
+        label {
+          color: white;
+        }
+      }
+
+      .radio {
+        padding: 0 2rem;
+      }
+    }
+
+    .stat {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      cite {
+        display: flex;
+        width: 80%;
+        background-color: $secondaryColor;
+        color: white;
+        border-radius: 100%;
+        padding-top: 80%;
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+
+        em {
+          position: absolute;
+          font-size: 160px;
+          top: 50%;
+          margin-top: -80px;
+          line-height: 1;
+          text-align: center;
+          width: 100%;
+          font-family: 'Tulpen One', sans-serif;
+          font-style: normal;
+
+          span {
+            font-size: 60px;
+          }
+        }
+      }
+    }
+  }
+
+  #MainSection {
+  }
+}
+
+#chartwellContactForm #GeneralContactMsg {
+  margin: auto;
+  width: 50%;
+  justify-content: center;
+}
+
+//Media Queries 
+@media screen and (min-width: 768px){
+  #navBar {
+    &.navbar .navbar-nav {
+      & > li.nav-item {
+        float: none;
+        display: inline-flex;
+      }
+    }
+  }
+}
+@media screen and (max-width: $md-bp){
+  .navbar .navbar-nav {
+    width: auto;
+    border-top: none;
+    position: relative;
+    margin: unset;
+  }
+
+  .navbar-brand {
+    height: auto;
+  }
+
+  #SectionsContainer {
+    .section {
+      padding: 5vh 0;
+
+      img.personality-circle-photo {
+        max-width: 200px;
+        margin: 2rem auto;
+      }
+
+      .textBlockImage {
+        height: 5rem;
+      }
+
+    }
+  }
+
+  .display-2 {
+    font-size: 3.5rem;
+  }
+
+  #chartwellContactForm #GeneralContactMsg {
+    width: 90%;
+  }
+
+}
+
+@media screen and (max-width: $sm-bp) {
+  #SectionsContainer {
+    .section {
+      img.personality-circle-photo {
+        max-width: 150px;
+        margin: 1rem auto;
+      }
+
+      .textBlockImage {
+        height: 3rem;
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  a.readMoreLink {
+    display: none;
+  }
+
+  .ui-widget-header .ui-icon {
+    background-image: url(https://code.jquery.com/ui/1.12.1/themes/base/images/ui-icons_444444_256x240.png);
+  }
+
+  #ui-datepicker-div {
+    font-size: 14px;
+  }
+
+
+
+  #generalContactFormContainer {
+    box-sizing: border-box;
+    width: 45%;
+    max-width: 575px;
+    position: absolute;
+    top: 71px;
+    right: 0px;
+    z-index: 9999;
+    background-color: #0072bb;
+    transition: height linear 0.5s;
+    padding: 0 15px;
+    border-radius: 8px;
+    z-index: 9998;
+
+    #GeneralContactForm {
+      box-sizing: border-box;
+
+      .btn-warning {
+        background-image: -webkit-linear-gradient(top, #f0ad4e 0, #eb9316 100%);
+        background-image: -o-linear-gradient(top, #f0ad4e 0, #eb9316 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#f0ad4e), to(#eb9316));
+        background-image: linear-gradient(to bottom, #f0ad4e 0, #eb9316 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e', endColorstr='#ffeb9316', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        background-repeat: repeat-x;
+        color: black;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 0;
+        text-align: center;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        border: 1px solid #e38d13;
+        white-space: nowrap;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    }
+
+    &.fullhide {
+      height: 0;
+      transition: height linear 0.5s;
+    }
+
+    .row {
+      .col-xs-6, .col-xs-5 {
+        width: 49%;
+        display: inline-block;
+      }
+    }
+  }

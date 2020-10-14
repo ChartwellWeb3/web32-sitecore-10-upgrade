@@ -1,0 +1,1250 @@
+﻿<style>
+  .nav_button {
+    font-size: 24px;
+    cursor: hand;
+  }
+
+  .invisibleLine {
+    display: none;
+  }
+
+  #income, #equity, #housing_expenses, #home_maintenance, #food_expenses, #entertainmentSection, #transportation, #result {
+    z-index: 6;
+    display: none;
+    border: 1px solid #DEDEDE;
+    text-align: center !important;
+  }
+
+    #income h2, #equity, #housing_expenses h2, #home_maintenance h2, #food_expenses h2, #entertainmentSection h2, #transportation h2, #result h2 {
+      margin-top: 0;
+    }
+
+  #income {
+    display: block;
+  }
+
+  .btn-nav {
+    float: left;
+    text-align: center !important;
+    vertical-align: middle;
+    height: 75px;
+    padding: 4px 6px 4px 6px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+    .btn-nav:hover {
+      background-color: #B3C2D1;
+      text-align: center !important;
+      color: white;
+    }
+
+    .btn-nav:visited {
+      background-color: #B3C2D1;
+      text-align: center !important;
+    }
+
+    .btn-nav:first-child {
+      margin-left: 0;
+    }
+
+    .btn-nav:last-child {
+      margin-right: 0;
+    }
+
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px;
+    font-size: 12px;
+    line-height: 1.42;
+    border-radius: 15px;
+    background-color: #0072bb;
+  }
+
+  .highlight {
+    background-color: #EEE;
+  }
+
+  .resultHighlight {
+    /*background: rgba(244, 176, 219, 1);*/
+    background-color: #EEE;
+    color: #333;
+    font-size: 14px;
+  }
+
+  .resultHighlight2 {
+    /*background: rgba(244, 176, 219, 1);*/
+    background-color: #dedede;
+    color: #333;
+    font-size: 14px;
+  }
+
+  .informationBox {
+    display: none;
+    z-index: 7;
+    left: 20px;
+    top: 20px;
+    padding: 20px 20px 20px 20px;
+    position: absolute;
+    background-color: white;
+    border: 3px solid #DFE6EC;
+    box-shadow: 5px 5px 5px #888888;
+    color: black;
+  }
+
+  .closeBtn {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0580ff;
+    float: right;
+    cursor: hand;
+  }
+
+  .activity {
+    left: 20px;
+    top: -200px;
+  }
+
+  .tipTitle {
+    font-weight: bold;
+    font-size: 14px !important;
+    /*font-family:Arial, Helvetica, sans-serif;*/
+  }
+
+  .infoButton {
+    cursor: pointer;
+    color: #666;
+    font: 8px;
+  }
+
+  .format {
+    padding: 5px;
+  }
+
+  .titleBar {
+    color: #0073BC;
+    font-weight: bold;
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+    .titleBar p {
+      padding-bottom: 0px;
+    }
+
+  .inputPadding {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .tipText {
+    font-style: italic;
+    color: #666;
+  }
+
+  #printTitle {
+    display: none;
+  }
+
+  .page-break {
+    display: none;
+  }
+
+  .capitalize {
+    text-transform: uppercase;
+  }
+</style>
+
+
+
+
+<div class="staticPage">
+  <div id="container" style="padding: 20px; width:100%;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <h1 id="titleOnline">Planificateur de coûts</h1>
+          <hr class="featurette-divider">
+          <div id="printTitle" class="text-center">
+            <h1>Votre Sommaire des revenus et dépenses Mensuelles</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row nav">
+      <div class="col-md-12">
+
+
+        <div class="btn-nav" id="btn-income" onclick="gotoIncome()" style="background-color: rgb(179, 194, 209); color: white;"><span class="fas fa-money-bill-alt" id="btn-income" style="font-size: 18px; color: #5a710d;"></span><br>Vos revenus <br>mensuels</div>
+
+        <div class="btn-nav" id="btn-homeEquity" onclick="gotoHomeEquity()"><span class="fas fa-home" id="btn-homeEquity" style="font-size: 18px; color: #0580ff;"></span><br>Actif <br>immobilier</div>
+
+        <div class="btn-nav" id="btn-expense" onclick="gotoHousingExpenses()"><span class="fas fa-clipboard-list" id="btn-expense" style="font-size: 18px; color: #226866;"></span><br>Dépenses <br>hébergement</div>
+
+        <div class="btn-nav" id="btn-maintainence" onclick="gotoMaintainence()"><span class="fas fa-tools" id="btn-maintainence" style="font-size: 18px; color: #414550;"></span><br>Entretien et <br> réparations</div>
+
+        <div class="btn-nav" id="btn-food" onclick="gotoFood()"><span class="fas fa-utensils" id="btn-food" style="font-size: 18px; color: #c3ad00;"></span><br>Alimentation et <br>divertissement</div>
+
+        <div class="btn-nav" id="btn-transportation" onclick="gotoTransportation()"><span class="fas fa-car" id="btn-transportation" style="font-size: 18px; color: black;"></span><br />Transport</div>
+
+        <div class="btn-nav" id="btn-results" onclick="gotoResult()"><span class="fas fa-poll" id="btn-results" style="font-size: 18px; color: #a34300;"></span><br>Résultats</div>
+
+      </div>
+    </div>
+    <div class="col-md-12">
+      <hr class="featurette-divider invisibleLine">
+      <div id="income" class="row" style="padding: 20px; width:100%;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <h2>Vos revenus mensuels</h2>
+              <hr class="featurette-divider">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row titleBar">
+              <div class="col-md-12 text-left">
+                <p>PRESTATIONS GOUVERNEMENTALES</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 text-left">
+                <p>RPC/RRQ (Régime de rentes du Canada/Québec)</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="pensionError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="pension" onchange="addPension()" tabindex="3">
+              </div>
+            </div>
+            <div class="row highlight">
+              <div class="col-md-8 text-left">
+                <p>Sécurité de la vieillesse (SV)</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="oasError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="oas" onchange="addOas()" tabindex="4">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 text-left">
+                <p>Supplément de revenu garanti (SRG)</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="gisError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="gis" onchange="addGis()" tabindex="5">
+              </div>
+            </div>
+            <div class="row highlight">
+              <div class="col-md-8 text-left">
+                <p>
+                  Prestations au départ à la retraite, prestations d’invalidité et autres prestations gouvernementales
+                  &nbsp;<span onclick="infoPostRetirement()" class="infoButton" id="tooltips_benefits"><span class="fas fa-info-circle"></span>&nbsp;<span class="tipText">Cliquez ici pour plus amples renseignements</span></span>
+                </p>
+                <div id="information" class="informationBox">
+                  <div class="closeBtn" onclick="closeBox()"><span class="fas fa-times-circle text-right"></span>&nbsp;FERMER</div>
+                  <h4 class="tipTitle">Prestations de retraite</h4>
+                  <p>Si vous continuez à travailler alors que vous recevez des prestations du RPC, vos cotisations seront affectées à vos prestations postérieures au départ à la retraite, ce qui aura pour effet d’augmenter votre revenu de retraite.</p>
+                </div>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="benefitsOtherError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="benefitsOther" onchange="addBenefitsOther()" tabindex="6">
+              </div>
+            </div>
+            <br>
+            <div class="row titleBar">
+              <div class="col-md-12 text-left">
+                <p class="capitalize">Fonds issus de votre épargne-retraite</p>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-md-8 text-left">
+                <p>Régime enregistré d’épargne-retraite (REER)</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="rrspError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="RRSP" onchange="addRRSP()" tabindex="7">
+              </div>
+            </div>
+            <div class="row highlight">
+              <div class="col-md-8 text-left">
+                <p>Fonds enregistré de revenu de retraite (FERR)</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="rrifError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="RRIF" onchange="addRRIF()" tabindex="8">
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-md-8 text-left">
+                <p>Fonds de revenu viager (FRV) et Fonds de revenu de retraite immobilisé (FRRI)</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="lrifError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="LRIF" onchange="addLRIF()" tabindex="9">
+              </div>
+            </div>
+            <div class="row highlight">
+              <div class="col-md-8 text-left">
+                <p>Dividendes, intérêts, gains en capital issus de vos placements et autres rentes</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="investmentError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="investment" onchange="addInvestment()" tabindex="10">
+              </div>
+            </div>
+            <br>
+            <div class="row ">
+              <div class="col-md-8 text-left titleBar">
+                <p class="capitalize">Revenu de retraite d'entreprise</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="companyPensionError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="companyPension" onchange="addCompanyPension()" tabindex="11">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-8 text-left titleBar">
+                <p class="capitalize">Revenu d'emploi</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="employmentError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="employment" onchange="addEmployment()" tabindex="12">
+              </div>
+            </div>
+            <br>
+            <div class="row titleBar">
+              <div class="col-md-8 text-left">
+                <p class="capitalize">Autres sources de revenus</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 text-left">
+                <p>Revenu locatif</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="rentalError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="rental" onchange="addRental()" tabindex="13">
+              </div>
+            </div>
+            <div class="row highlight">
+              <div class="col-md-8 text-left">
+                <p>Autres (pension alimentaire, revenu issu d'un fonds de fiducie, redevances)</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                <span id="otherIncome2Error" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="otherIncome" onchange="addOtherIncome()" tabindex="14">
+              </div>
+            </div>
+            <div class="row resultHighlight">
+              <div class="col-md-8 text-left">
+                <p><strong>Estimation du revenu total</strong></p>
+              </div>
+              <div class="col-md-4 text-left">
+                <span id="total"></span><br>
+              </div>
+            </div>
+            <div class="row d-flex flex-row align-items-center justify-content-end mt-2">
+              <div id="nextIncome" onclick="gotoHome()">
+                <div class="nav_button" tabindex="15"><span class="fas fa-chevron-circle-right" style="color: #0072bb;"></span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="featurette-divider invisibleLine">
+    <div class="page-break"></div>
+    <div id="equity" class="row">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h2>Actif immobilier</h2>
+            <hr class="featurette-divider">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" style="padding: 20px; width:100%;">
+        <div class="row">
+          <div class="col-md-12">
+            <span id="cashProceedsError" style="display: none; color: red;">
+              <p>Le produit net en espèces reflète une valeur negative. Veuillez vérifier et ajuster les données que vous avez saisies pour la valeur approximative de votre propriété, l'hypothèque, les frais juridiques, la commission de l'agent immobilier et les frais de déménagement.</p>
+            </span>
+          </div>
+        </div>
+        <div class="row highlight">
+          <div class="col-md-8 text-left">
+            <p>Vendrez-vous votre domicile?</p>
+          </div>
+          <div class="col-md-4 text-left">
+            &nbsp;&nbsp;&nbsp;<select id="home_sell" onchange="sellHome()" tabindex="16">
+              <option value="no" id="defaultSell">Veuillez choisir</option>
+              <option value="yes" id="yesSell">Oui</option>
+              <option value="no" id="noSell">Non</option>
+            </select>
+          </div>
+        </div>
+        <div id="saleIncome" style="display: none;">
+          <div class="row">
+            <div class="col-md-8 text-left">
+              <p>Valeur estimative de votre domicile</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="homeError1" style="display: none; color: red;">
+                <p>*Please enter a number between 25,000 and 25,000,000</p>
+              </span><input class="form-control" placeholder="$" type="text" id="homeValue" onchange="updateHomeValue()" tabindex="17">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p>Moins : Solde du prêt hypothécaire</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="mortgageError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="mortgage" onchange="updateMortgage()" tabindex="18">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 text-left">
+              <p>Moins : Frais juridiques et débours</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="legalError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="legal" onchange="updateLegal()" tabindex="19">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p>Moins : Commission du courtier immobilier</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="commissionError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="commission" onchange="updateCommission()" tabindex="20">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 text-left">
+              <p>Moins : Frais de déménagement et autres</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="movingCostsError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="movingCosts" onchange="updateMovingCosts()" tabindex="21">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p><strong>Valeur nette estimée de l'actif</strong></p>
+            </div>
+            <div class="col-md-4 text-left"><strong></strong></div>
+          </div>
+          <div id="rateOfReturn" style="display: none;">
+            <div class="row">
+              <div class="col-md-8 text-left">
+                <p>Taux de rendement estimé des placements</p>
+              </div>
+              <div class="col-md-4 text-left inputPadding">
+                &nbsp;&nbsp;&nbsp;<select id="rate" onchange="updateRateOfReturn()" tabindex="22">
+                  <option value="0" id="defaultDisplay">Veuillez choisir</option>
+                  <option value="0.015" id="1.5percent">1.5%</option>
+                  <option value="0.02" id="2.0percent">2.0%</option>
+                  <option value="0.025" id="2.5percent">2.5%</option>
+                  <option value="0.03" id="3.0percent">3.0%</option>
+                  <option value="0.035" id="3.5percent">3.5%</option>
+                  <option value="0.04" id="4.0percent">4.0%</option>
+                  <option value="ownRate" id="ownRateSelect">Votre propre taux ci-dessous</option>
+                </select>
+              </div>
+            </div>
+            <div id="own" style="display: none;">
+              <div class="row highlight">
+                <div class="col-md-8 text-left">
+                  <p>Entrez votre propre estimation du taux de rendement</p>
+                </div>
+                <div class="col-md-4 text-left inputPadding">
+                  <span id="rateError" style="display: none; color: red;">
+                    <p>Please enter a numeric number!</p>
+                  </span>&nbsp;&nbsp;<input type="text" onchange="getOwnRate()" id="ownRate" tabindex="23">%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row resultHighlight">
+          <div class="col-md-8 text-left">
+            <p><strong>Revenu mensuel additionnel estimé issu de la vente du domicile</strong></p>
+          </div>
+          <div class="col-md-4 text-left"><span id="homeIncome"></span></div>
+        </div>
+        <br>
+        <div class="row resultHighlight">
+          <div class="col-md-8 text-left">
+            <p><strong>Revenu total mensuel estimé (Revenu total + Revenu de placement issu de la vente du domicile)</strong></p>
+          </div>
+          <div class="col-md-4 text-left"><span id="totalIncome"></span></div>
+        </div>
+        <div class="row d-flex flex-row align-items-center justify-content-end mt-2">
+          <div id="preEquity" class="nav_button" onclick="preEquity()" tabindex="25"><span class="fas fa-chevron-circle-left" style="color: #0072bb;"></span></div>
+          <div id="nextEquity" class="nav_button ml-2" onclick="nextEquity()" tabindex="24"><span class="fas fa-chevron-circle-right" style="color: #0072bb;"></span></div>
+        </div>
+
+
+      </div>
+    </div>
+    <hr class="featurette-divider invisibleLine">
+    <div class="page-break"></div>
+    <div id="housing_expenses" class="row" style="padding: 20px; width:100%;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h2>Dépenses mensuelles liées à l'hébergement</h2>
+            <hr class="featurette-divider">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="padding: 20px; width:100%;">
+          <div class="row highlight">
+            <div class="col-md-6 text-left">
+              <p>Hypothèque</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="mortgageCostError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="mortgageCost" onchange="updateMortgageCost()" tabindex="26">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <p>Loyer</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="rentError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="rent" onchange="updateRent()" tabindex="27">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-6 text-left">
+              <p>Frais de copropriété</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="condoError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="condo" onchange="updateCondo()" tabindex="28">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <p>Impôts fonciers</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="propertyTaxesError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="propertyTaxes" onchange="updatePropertyTaxes()" tabindex="29">
+            </div>
+          </div>
+          <br>
+          <div class="row titleBar">
+            <div class="col-md-12">
+              <p class="capitalize">Services publics</p>
+              <p><span onclick="infoUtilities()" class="infoButton" id="tooltips_utilities"><span class="fas fa-info-circle"></span>&nbsp;<span class="tipText">Cliquez ici pour plus amples renseignements</span></span></p>
+            </div>
+          </div>
+          <div class="row highlight">
+            <div id="utilities" class="informationBox">
+              <div onclick="closeUtilities()" class="closeBtn"><span class="fas fa-times-circle"></span>&nbsp;FERMER</div>
+              <h4 class="tipTitle">Services publics</h4>
+              <p>Dans la grande majorité de nos établissements, les services publics sont inclus à la tarification de base.</p>
+            </div>
+            <div class="col-md-6 text-left">
+              <p>Gaz/mazout</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="gasError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="utilitiesGas" onchange="updateUtilitiesGas()" tabindex="30">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <p>Électricité</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="electricityError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="utilitiesElectricity" onchange="updateUtilitiesElectricity()" tabindex="31">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-6 text-left">
+              <p>Eau et autres services publics</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="otherUtlitiesError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="otherUtilities" onchange="updateOtherUtilities()" tabindex="32">
+            </div>
+          </div>
+          <br>
+          <div class="row titleBar">
+            <div class="col-md-12">
+              <p class="capitalize">Assurance habitation</p>
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-6 text-left">
+              <p>À combien estimez-vous votre prime mensuelle d’assurance habitation?</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="premiumError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="premium" onchange="updatePremium()" tabindex="33">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <p>
+                Moins : Assurance locataire<br>
+                <span onclick="infoTenant()" class="infoButton" id="tooltips_tenantInsurance"><span class="fas fa-info-circle"></span>&nbsp;<span class="tipText">Cliquez ici pour plus amples renseignements</span></span>
+              </p>
+              <div class="informationBox" id="tenantInsurancemyTemp" style="top: -200px;">
+                <div onclick="closeBoxTenant()" class="closeBtn"><span class="fas fa-times-circle"></span>&nbsp;FERMER</div>
+                <h4 class="tipTitle">Assurance locataire</h4>
+                <p>L’assurance locataire est exigée dans le bail. Cette assurance vous protège contre toute perte de vos biens personnels causée par un incendie, la fumée, l’eau, le vandalisme, le vol et de nombreux autres sinistres. La prime annuelle est de 120 $.</p>
+              </div>
+            </div>
+            <div class="col-md-6 text-left inputPadding">$&nbsp;<span id="tenantInsurance">(10)</span></div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-6 text-left">
+              <p><strong>Économie estimée en matière d’assurance habitation</strong></p>
+            </div>
+            <div class="col-md-6 text-left"><span id="insuranceExpense">(10)</span></div>
+          </div>
+          <br>
+          <div class="row resultHighlight">
+            <div class="col-md-6 text-left">
+              <p><strong>Économie estimée à l'égard des dépenses liées au domicile</strong></p>
+            </div>
+            <div class="col-md-6 text-left"><span id="housingExpense">(10)</span></div>
+          </div>
+          <div class="row d-flex flex-row align-items-center justify-content-end mt-2">
+            <div id="preHousingExpenses" class="nav_button" onclick="preHousingExpenses();" tabindex="35"><span class="fas fa-chevron-circle-left" style="color: #0072bb;"></span></div>
+            <div id="nextHousingExpenses" onclick="nextHousingExpenses()" class="nav_button ml-2" tabindex="34"><span class="fas fa-chevron-circle-right" style="color: #0072bb;"></span></div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <hr class="featurette-divider invisibleLine">
+    <div class="page-break"></div>
+    <div id="home_maintenance" class="row" style="padding: 20px; width:100%;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h2>Entretien et réparations domiciliaires</h2>
+            <hr class="featurette-divider">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="padding: 20px; width:100%;">
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p>Entretien du terrain (tonte du gazon, désherbage, réensemencement, etc.)</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="lawnError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="lawnCare" onchange="updateLawnCare()" tabindex="36">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 text-left">
+              <p>Entretien paysager et jardinage (plantes, fleurs, étangs, taille des arbres, etc.)</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="landscapingError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="landscaping" onchange="updateLandscaping()" tabindex="37">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p>Déneigement</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="snowError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="snowRemoval" onchange="updateSnowRemoval()" tabindex="38">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 text-left">
+              <p>Frais associés au système de sécurité</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="securityError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="security" onchange="updateSecurity()" tabindex="39">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p>Nettoyage des fenêtres</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="windowError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="windowClean" onchange="updateWindowClean()" tabindex="40">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 text-left">
+              <p>Collecte des ordures</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="garbageCollectionError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="garbageCollection" onchange="updateGarbageCollection()" tabindex="41">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p>Toiture (remplacement des bardeaux, ramonage de la cheminée, etc.)</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="roofError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="roof" onchange="updateRoof()" tabindex="42">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 text-left">
+              <p>Appareil de chauffage (inspection, remplacement des filtres, nettoyage des conduits, etc.)</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="furnaceError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="furnace" onchange="updateFurnace()" tabindex="43">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p>Climatisation (inspection, nettoyage ou remplacement des filtres, des serpentins et des ailettes, etc.)</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="acError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="airConditioning" onchange="updateAirConditioning()" tabindex="44">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 text-left">
+              <p>Appareils électroménagers</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="appliancesError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="appliances" onchange="updateAppliances()" tabindex="45">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p>Réparations d’urgence (gel des tuyaux, refoulement d’égouts, etc.)</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="emergencyError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="emergencyRepairs" onchange="updateEmergencyRepairs()" tabindex="46">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 text-left">
+              <p>Autres frais d’entretien (nettoyage des gouttières et débords de toit, peinture et réparation de l’entrée,remplacement des piles des détecteurs de fumée, de monoxyde de carbone et de radon, remplacement des coupe-froid autour des portes et des fenêtres, calfeutrage des fondations pour combler les trous et les fissures, etc.)</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="otherMaintenanceError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="otherMaintenance" onchange="updateOtherMaintenance()" tabindex="47">
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-8 text-left">
+              <p>Autres</p>
+            </div>
+            <div class="col-md-4 text-left inputPadding">
+              <span id="otherCostsError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="otherCosts" onchange="updateOtherCosts()" tabindex="48">
+            </div>
+          </div>
+          <br>
+          <div class="row resultHighlight">
+            <div class="col-md-8 text-left">
+              <p><strong>Économie globale estimée à l'égard de l'entretien du domicile</strong></p>
+            </div>
+            <div class="col-md-4 text-left"><span id="housingMaintenance"></span></div>
+          </div>
+          <div class="row d-flex flex-row align-items-center justify-content-end mt-2">
+            <div id="preHomeMaintenance" class="nav_button" onclick="preHomeMaintenance()" tabindex="50"><span class="fas fa-chevron-circle-left" style="color: #0072bb;"></span></div>
+            <div id="nextHomeMaintenance" class="nav_button ml-2" onclick="nextHomeMaintenance()" tabindex="49"><span class="fas fa-chevron-circle-right" style="color: #0072bb;"></span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <hr class="featurette-divider invisibleLine">
+    <div class="page-break"></div>
+    <div id="food_expenses" class="row" style="padding: 20px; width:100%;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h2>Alimentation et divertissement</h2>
+            <hr class="featurette-divider">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="padding: 20px; width:100%;">
+          <div class="row titleBar">
+            <div class="col-md-12 text-left">
+              <p>ALIMENTATION</p>
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-6 text-left">
+              <p>En moyenne, combien dépensez-vous chaque mois pour la nourriture?</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="foodExpensesError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="foodExpense" onchange="updateFoodExpense()" tabindex="51">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <p>Chez Chartwell, nous offrons plusieurs options en matière de repas. Quel forfait de repas vous conviendrait-il?</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              &nbsp;&nbsp;&nbsp;<select id="mealChoice" onchange="updateMealChoice()" tabindex="52">
+                <option value="default" id="defaultChoiceDisplay">Veuillez choisir</option>
+                <option value="0" id="3-meals">3 repas par jour (déjeuner, dîner, souper)</option>
+                <option value="0.2" id="2-meals">2 repas par jour (dîner, souper)</option>
+                <option value="1" id="noMeals">Aucun repas</option>
+              </select>
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-6 text-left">
+              <p><strong>Montant que vous devrez toujours dépenser pour les repas qui ne seront pas compris dans votre forfait</strong></p>
+            </div>
+            <div class="col-md-6 text-left"><span id="otherMealCosts"></span></div>
+          </div>
+          <div class="row resultHighlight">
+            <div class="col-md-6 text-left">
+              <p>
+                <strong>Économie estimée sur les frais d’alimentation après l’achat d’un forfait de repas de Chartwell</strong><br>
+                <span onclick="infoFood()" class="infoButton" id="tooltips_food"><span class="fas fa-info-circle"></span>&nbsp;<span class="tipText">Cliquez ici pour plus amples renseignements</span></span>
+              </p>
+              <div id="food" class="informationBox">
+                <div onclick="closeFood()" class="closeBtn"><span class="fas fa-times-circle"></span>&nbsp;FERMER</div>
+                <h4 class="tipTitle">Économie estimée sur les frais de nourriture</h4>
+                <p>L’économie sur les frais de nourriture est basée sur le pourcentage du coût unitaire du déjeuner, du dîner et du souper chez Chartwell. Par exemple, en optant pour le forfait de trois repas par jour, vous économiserez environ 100 % de vos coûts d’alimentation; avec deux repas par jour, environ 80 % et sans repas par jour, 0 %.</p>
+              </div>
+            </div>
+            <div class="col-md-6 text-left"><span id="foodSaving"></span></div>
+          </div>
+          <br>
+          <div class="row titleBar">
+            <div class="col-md-12 text-left">
+              <p>DIVERTISSEMENT</p>
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-6 text-left">
+              <p>
+                Croyez-vous qu'en participant aux programmes que nous offrons, vous réaliserez des économies sur vos dépenses liées aux activités récréatives et sociales? Si c’est le cas, veuillez indiquer les économies prévues ici.<br>
+                <span class="infoButton" id="tooltips_activities" onclick="infoActivities()"><span class="fas fa-info-circle infoButton"></span>&nbsp;<span class="tipText">Cliquez ici pour plus amples renseignements</span></span>
+              </p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              <span id="entertainmentError" style="display: none; color: red;">
+                <p>Please enter a numeric number!</p>
+              </span><input class="form-control" placeholder="$" type="text" id="entertainment" onchange="updateEntertainment()" tabindex="53">
+            </div>
+          </div>
+
+
+          <div id="activities" class="informationBox text-left" style="width: 90%;">
+            <div class="closeBtn" onclick="closeActivities()"><span class="fas fa-times-circle"></span>&nbsp;FERMER</div>
+            <h4 class="tipTitle">Activités</h4>
+            <p class="description">
+              Les résidents qui aiment demeurer actifs sont toujours bien servis. Nous offrons un éventail d’activités et de programmes exclusifs en tenant compte de la diversité des champs d'intérêt et des capacités de nos résidents. Nos programmes visent à susciter l'engagement physique, social, intellectuel, émotionnel et spirituel chez nos résidents et comprennent une dimension vocationnelle. Ils ont lieu sur place et dans la communauté et peuvent comprendre des activités telles que celles qui sont énumérées ci-dessous.
+            </p>
+            <ul class="serif-table">
+              <li>Centre de conditionnement physique - Yoga, yoga du rire - Méditation - Zumba - Physiothérapie - Service de culte, prière, réflexion</li>
+              <li>Soirée cinéma et maïs soufflé - Club de lecture - Club de théâtre - Club de tricot</li>
+              <li>Jeux (bingo, billard, bridge, poker, Scrabble, jeux de questions-réponses, mots croisés)</li>
+              <li>Jeux extérieurs (quilles, fers, jeu de boules) - Jeux de Wii (Wii Fit, Guitar Hero, Quilles, Just Dance, etc.)</li>
+              <li>Activités sociales et sorties (vins et fromages, cinq à sept, casino, plage, parcs, centre commercial)</li>
+              <li>Arts et artisanat (collimage, peinture, dessin, esquisse, céramique, poterie)</li>
+              <li>Cours d’informatique (Google, messagerie électronique) - Thérapie par l’horticulture (jardinage)</li>
+              <li>Arrangement floral - Pâtisserie et cuisine - Travail du bois</li>
+            </ul>
+          </div>
+
+
+          <div class="row resultHighlight">
+            <div class="col-md-6 text-left">
+              <p><strong>Économies estimées sur les frais de subsistance (alimentation et divertissement)</strong></p>
+            </div>
+            <div class="col-md-6 text-left"><span id="livingExpense"></span></div>
+          </div>
+          <div class="row d-flex flex-row align-items-center justify-content-end mt-2">
+            <div id="preFoodExpenses" class="nav_button" onclick="preFood()" tabindex="55"><span class="fas fa-chevron-circle-left" style="color: #0072bb;"></span></div>
+            <div id="nextFoodExpenses" class="nav_button ml-2" onclick="nextFood()" tabindex="54"><span class="fas fa-chevron-circle-right" style="color: #0072bb;"></span></div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <hr class="featurette-divider invisibleLine">
+    <div class="page-break"></div>
+    <div id="transportation" class="row" style="padding: 20px; width:100%;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h2>Transport</h2>
+            <hr class="featurette-divider">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="padding: 20px; width:100%;">
+          <div class="row">
+            <div class="col-md-12">
+              <p class="description"><em><strong>Bon nombre de nos résidences offrent un service de navette qui vous conduira là où vous avez besoin d'aller. Imaginez pouvoir être en mesure de vous déplacer en ville sans vous soucier de conduire ou de trouver du stationnement.</strong></em></p>
+            </div>
+          </div>
+          <div class="row highlight">
+            <div class="col-md-6 text-left">
+              <p>Dans cette optique, envisageriez-vous de vendre votre véhicule?</p>
+            </div>
+            <div class="col-md-6 text-left inputPadding">
+              &nbsp;&nbsp;&nbsp;<select id="vehicleChoice" onchange="updateVehicleChoice()" tabindex="56">
+                <option value="default" id="defaultVechicleChoiceDisplay">Veuillez choisir</option>
+                <option value="yes" id="vechicleYes"> Oui</option>
+                <option value="no" id="vechicleNo">Non</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <div id="transportationItems" style="display: none;">
+            <div class="row">
+              <div class="col-md-6 text-left">
+                <p>Paiement du bail ou du prêt</p>
+              </div>
+              <div class="col-md-6 text-left inputPadding">
+                <span id="LeaseError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="loan" onchange="updateLoan()" tabindex="57">
+              </div>
+            </div>
+            <div class="row highlight">
+              <div class="col-md-6 text-left">
+                <p>Essence</p>
+              </div>
+              <div class="col-md-6 text-left inputPadding">
+                <span id="carGasError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="gas" onchange="updateGas()" tabindex="58">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 text-left">
+                <p>Assurance automobile</p>
+              </div>
+              <div class="col-md-6 text-left inputPadding">
+                <span id="carInsuranceError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="carInsurance" onchange="updateCarInsurance()" tabindex="59">
+              </div>
+            </div>
+            <div class="row highlight">
+              <div class="col-md-6 text-left">
+                <p>Entretien et inspection (vidange d’huile, pneus d'hiver, inspection des freins, etc.)</p>
+              </div>
+              <div class="col-md-6 text-left inputPadding">
+                <span id="carMaintenanceError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="carMaintenance" onchange="updateCarMaintenance()" tabindex="60">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 text-left">
+                <p>Renouvellement du permis de conduire et de l'immatriculation</p>
+              </div>
+              <div class="col-md-6 text-left inputPadding">
+                <span id="licenseError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="license" onchange="updateLicense()" tabindex="61">
+              </div>
+            </div>
+            <div class="row highlight">
+              <div class="col-md-6 text-left">
+                <p>Stationnement</p>
+              </div>
+              <div class="col-md-6 text-left inputPadding">
+                <span id="parkingError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="parking" onchange="updateParking()" tabindex="62">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 text-left">
+                <p>Lave-auto</p>
+              </div>
+              <div class="col-md-6 text-left inputPadding">
+                <span id="carWashError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="carWash" onchange="updateCarWash()" tabindex="63">
+              </div>
+            </div>
+            <div class="row highlight">
+              <div class="col-md-6 text-left">
+                <p>Réparations</p>
+              </div>
+              <div class="col-md-6 text-left inputPadding">
+                <span id="repairsError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="repairs" onchange="updateRepairs()" tabindex="64">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 text-left">
+                <p>Autres types de transport (taxi, transport en commun, etc.)</p>
+              </div>
+              <div class="col-md-6 text-left inputPadding">
+                <span id="transportationError" style="display: none; color: red;">
+                  <p>Please enter a numeric number!</p>
+                </span><input class="form-control" placeholder="$" type="text" id="otherTransportation" onchange="updateOtherTransportation()" tabindex="65">
+              </div>
+            </div>
+            <div class="row resultHighlight">
+              <div class="col-md-6 text-left">
+                <p><strong>Économies estimées sur le transport</strong></p>
+              </div>
+              <div class="col-md-6 text-left"><span id="transportationCost"></span></div>
+            </div>
+          </div>
+          <div class="row d-flex flex-row align-items-center justify-content-end mt-2">
+            <div id="preTransportation" class="nav_button" onclick="preTransportation()" tabindex="67"><span class="fas fa-chevron-circle-left" style="color: #0072bb;"></span></div>
+            <div id="nextTransportation" class="nav_button ml-2" onclick="nextTransportation()" tabindex="66"><span class="fas fa-chevron-circle-right" style="color: #0072bb;"></span></div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <hr class="featurette-divider invisibleLine">
+    <div class="page-break"></div>
+    <div id="result" class="row" style="padding: 20px; width:100%;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h2>Résultats!</h2>
+            <hr class="featurette-divider">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="padding: 20px; width:100%;">
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Merci d’avoir utilisé l’outil de planification budgétaire de Chartwell. Voici ce que nous avons constaté:</h3>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row resultHighlight">
+            <div class="col-md-8 text-left">
+              <p><strong>Revenu mensuel estimé avant la vente de la maison</strong></p>
+            </div>
+            <div class="col-md-4 text-left"><span id="monthlyIncome"></span></div>
+          </div>
+          <br>
+          <div class="row resultHighlight2">
+            <div class="col-md-8 text-left">
+              <p><strong>Revenu mensuel additionnel estimé issu de la vente de la maison</strong></p>
+            </div>
+            <div class="col-md-4 text-left"><span id="additionalIncome"></span></div>
+            <div class="col-md-4 text-left"><span id="additionalIncome"></span></div>
+          </div>
+          <br>
+          <div class="row resultHighlight">
+            <div class="col-md-8 text-left">
+              <p><strong>Valeur nette issue de la vente de la maison</strong></p>
+            </div>
+            <div class="col-md-4 text-left"><span id="cashFromHome"></span></div>
+          </div>
+          <br>
+          <div class="row resultHighlight2">
+            <div class="col-md-8 text-left">
+              <p><strong>Économies mensuelles estimées sur les dépenses (hébergement, subsistance, transport)</strong></p>
+            </div>
+            <div class="col-md-4 text-left"><span id="monthlyExpense">(10)</span></div>
+          </div>
+          <div id="pensionError1" style="display: none; color: red;"></div>
+          <div id="oasError1" style="display: none; color: red;"></div>
+          <div id="gisError1" style="display: none; color: red;"></div>
+          <div id="benefitsOtherError1" style="display: none; color: red;"></div>
+          <div id="retirementError1" style="display: none; color: red;"></div>
+          <div id="rrspError1" style="display: none; color: red;"></div>
+          <div id="rrifError1" style="display: none; color: red;"></div>
+          <div id="lrifError1" style="display: none; color: red;"></div>
+          <div id="investmentError1" style="display: none; color: red;"></div>
+          <div id="companyPensionError1" style="display: none; color: red;"></div>
+          <div id="employmentError1" style="display: none; color: red;"></div>
+          <div id="otherIncomeError1" style="display: none; color: red;"></div>
+          <div id="rentalError1" style="display: none; color: red;"></div>
+          <div id="otherIncome2Error1" style="display: none; color: red;"></div>
+          <div id="homeError2" style="display: none; color: red;"></div>
+          <div id="mortgageError1" style="display: none; color: red;"></div>
+          <div id="legalError1" style="display: none; color: red;"></div>
+          <div id="commissionError1" style="display: none; color: red;"></div>
+          <div id="movingCostsError1" style="display: none; color: red;"></div>
+          <div id="cashProceedsError1" style="display: none; color: red;"></div>
+          <div id="rateError1" style="display: none; color: red;"></div>
+          <div id="mortgageCostError1" style="display: none; color: red;"></div>
+          <div id="rentError1" style="display: none; color: red;"></div>
+          <div id="condoError1" style="display: none; color: red;"></div>
+          <div id="propertyTaxesError1" style="display: none; color: red;"></div>
+          <div id="gasError1" style="display: none; color: red;"></div>
+          <div id="electricityError1" style="display: none; color: red;"></div>
+          <div id="otherUtlitiesError1" style="display: none; color: red;"></div>
+          <div id="premiumError1" style="display: none; color: red;"></div>
+          <div id="lawnError1" style="display: none; color: red;"></div>
+          <div id="landscapingError1" style="display: none; color: red;"></div>
+          <div id="snowError1" style="display: none; color: red;"></div>
+          <div id="securityError1" style="display: none; color: red;"></div>
+          <div id="windowError1" style="display: none; color: red;"></div>
+          <div id="garbageCollectionError1" style="display: none; color: red;"></div>
+          <div id="roofError1" style="display: none; color: red;"></div>
+          <div id="furnaceError1" style="display: none; color: red;"></div>
+          <div id="acError1" style="display: none; color: red;"></div>
+          <div id="appliancesError1" style="display: none; color: red;"></div>
+          <div id="emergencyError1" style="display: none; color: red;"></div>
+          <div id="otherMaintenanceError1" style="display: none; color: red;"></div>
+          <div id="otherCostsError1" style="display: none; color: red;"></div>
+          <div id="foodExpensesError1" style="display: none; color: red;"></div>
+          <div id="entertainmentError1" style="display: none; color: red;"></div>
+          <div id="LeaseError1" style="display: none; color: red;"></div>
+          <div id="carGasError1" style="display: none; color: red;"></div>
+          <div id="carInsuranceError1" style="display: none; color: red;"></div>
+          <div id="carMaintenanceError1" style="display: none; color: red;"></div>
+          <div id="licenseError1" style="display: none; color: red;"></div>
+          <div id="parkingError1" style="display: none; color: red;"></div>
+          <div id="carWashError1" style="display: none; color: red;"></div>
+          <div id="repairsError1" style="display: none; color: red;"></div>
+          <div id="transportationError1" style="display: none; color: red;"></div>
+          <div class="row d-flex flex-row align-items-center justify-content-end mt-2">
+            <div id="preResult" class="nav_button" onclick="preResult()"><span class="fas fa-chevron-circle-left" style="color: #0072bb;"></span></div>
+          </div>
+
+          <br>
+          <br>
+          <div class="row cta" style="display: none;">
+            <div class="col-md-12">
+              <div class="text-center">
+                <hr class="featurette-divider invisibleLine">
+                <h2>Vous aimeriez en savoir plus?</h2>
+                <p style="color: #0580ff;">
+                  Aimeriez-vous effectuer une visite ou en savoir plus au sujet de ce que nous offrons?<br>
+                  Nous serons heureux de répondre à toutes vos questions et de vous aider à clarifier vos choix.<br>
+                  Appelez-nous directement en composant le:<br>
+                  1-855-461-0685
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row finalBtn">
+            <div class="col-md-6">
+              <div id="btn_print_page" onclick="printResult()" class="btn btn-info">Imprimer</div>
+            </div>
+            <div class="col-md-6">
+              <div id="refresh" onclick="reCalculate();" class="btn btn-info">Réinitialiser le formulaire</div>
+            </div>
+          </div>
+          <div id="refreshPage" class="informationBox" style="padding: 20px; width:100%;">
+            <div class="row">
+              <div class="row">
+                <div class="col-md-12">
+                  <p><strong>Désirez-vous refaire le calcul afin d’obtenir des résultats différents?  Si oui, vous aurez besoin de saisir les données à nouveau.</strong></p>
+                  <p>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="text-center">
+                    <div class="btn btn-info" onclick="restartTool()" id="btn_refresh_calculate"><span class="fas fa-redo-alt">&nbsp;</span>Réinitialiser</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="text-center">
+                    <div class="btn btn-info" onclick="turnOffRefresh()" id="btn_refresh_cancel"><span class="fas fa-times-circle">&nbsp;</span>Annuler</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- / .staticPage -->
+<br>
+<div class="row">
+  <div class="cta" style="display: none;">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="text-center">
+      <hr class="featurette-divider invisibleLine">
+      <p style="font-style: italic;" id="disclaimer">
+        <strong>Désistement</strong><br>
+        Cet outil est confidentiel.  Chartwell ne compile et ne conserve pas ces informations.<br>
+        Cet outil a été conçu afin d'aider dans la planification budgétaire à la vie en résidence, et non à la vie en établissement de soins de longue durée, de soins prolongés ou en CHSLD.<br>
+        Veuillez prendre note que Chartwell n’offre pas de consultation fiscale et recommande de s’adresser à un conseiller financier professionnel.
+      </p>
+    </div>
+  </div>
+</div>
+<script src="~/Assets/js/budgetAssistant-fr.js"></script>

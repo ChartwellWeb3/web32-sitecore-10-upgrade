@@ -1,0 +1,19 @@
+﻿body.mobile-view {
+  #baguetteBox-overlay, .modal {
+    height: calc(100% - 145px);
+    top: 70px;
+    z-index: 9998;
+  }
+
+  .modal {
+    @media (orientation: landscape) {
+      .modal-dialog {
+        margin: 0rem auto;
+      }
+    }
+
+    .modal-dialog-centered {
+      height: 100%;
+    }
+  }
+}

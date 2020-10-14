@@ -1,0 +1,1531 @@
+﻿@import "_variables.scss";
+
+@media (min-width: 992px) {
+  .col-md-12 {
+    width: 100%;
+    float: none;
+  }
+}
+
+
+.color-primary {
+  color: $chartwellPrimary;
+}
+
+.resContent, li, p, em {
+  line-height: 1.5em;
+  font-size: 16px;
+}
+
+  li > ul > li, li > ol > li {
+    line-height: 1.6em;
+    font-size: 1em;
+  }
+
+
+
+.supportInfo h4, .supportInfo h4 a {
+  color: #337ab7;
+  margin-bottom: 0px;
+  text-align: right;
+}
+
+
+#searchoverlay, #divLoading {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.65); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  text-align: center;
+}
+
+
+
+/* ================================================
+Sub Layouts
+=================================================== */
+
+/* START of Property side menu */
+.leftPropNav {
+  width: 100%;
+}
+
+  .leftPropNav .btn.btn-primary {
+    background-color: #0073bc;
+    background-image: none;
+  }
+
+  .leftPropNav a:hover {
+    text-decoration: none;
+  }
+
+.leftPropNav a span.glyphicon {
+  font-size: 1.3em;
+
+  @media screen and (max-width: $sm-BP) {
+    padding: 1px;
+    font-size: 1.35em;
+  }
+}
+
+  .leftPropNav a span.glyphicon {
+    margin-right: 15px;
+  }
+
+  .leftPropNav a span.icomoon {
+    margin-right: 11px;
+  }
+
+  .leftPropNav a span.nameText {
+    font-weight: 400;
+  }
+
+  .leftPropNav .btn.btn-primary span.glyphicon {
+    color: White;
+  }
+
+
+  .leftPropNav .btn.btn-default {
+    background-color: White;
+  }
+
+  .leftPropNav .btn {
+    text-align: left;
+
+    @media screen and (max-width: $sm-BP) {
+      height: 50px;
+      width: 65px;
+      overflow: hidden;
+      float: left;
+    }
+  }
+
+    .leftPropNav .btn.btn-default:hover {
+      background-color: #EDEDED;
+      background-image: none;
+    }
+
+    .leftPropNav .btn .icomoon {
+      font-size: 1.7em;
+      @media screen and (max-width: $sm-BP) {
+        padding: 1px;
+        font-size: 1.49em;
+      }
+    }
+/* -- btn-primary --*/
+.btn-group-vertical.leftPropNav .btn.btn-primary, .btn-group-vertical.leftPropNav .btn.btn-default {
+  padding-left: 0px;
+}
+
+  .btn-group-vertical.leftPropNav .btn.btn-primary a {
+    color: white;
+    padding: 16px 0 8px 20px;
+  }
+
+.btn-group.leftPropNav .btn.btn-primary a {
+  color: white;
+}
+
+.btn-group-vertical.leftPropNav .btn.btn-default a {
+  color: #0073bc;
+  padding: 16px 0 8px 20px;
+  font-size: 14px;
+}
+/*padding:6px 54% 6px 20px; */
+
+@media screen and (min-width: $sm-BP) {
+  .leftPropNav.btn-group-lg > .btn {
+    font-size: 14px;
+    width: 100%;
+    margin-top: -1px;
+  }
+}
+
+
+.resPhoneMob {
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+  .resPhoneMob span.glyphicon {
+    color: gray;
+    padding-right: 10px;
+  }
+
+.PhoneMobileOnly {
+  margin: 12px auto 12px auto;
+}
+
+@media print {
+  .PhoneMobileOnly {
+    color: black;
+    margin-bottom: 80px;
+  }
+
+    .PhoneMobileOnly:after {
+      clear: both;
+    }
+}
+
+@media screen and (min-width: 992px) {
+  .leftPropNav a span.nameText {
+    display: inline-block;
+    width: 75%;
+    white-space: normal;
+  }
+
+  .leftPropNav .btn.btn-default {
+    background-image: none;
+    border-color: #ededed;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+  }
+
+  .leftPropNav .btn {
+    border-left: none;
+    border-right: none;
+  }
+
+    .leftPropNav .btn.btn-primary {
+      border-radius: 4px !important;
+      border: 0px;
+    }
+
+  .leftPropNav a span.glyphicon {
+    color: #777;
+  }
+
+  .leftPropNav .btn.btn-default a span.icomoon {
+    color: #777;
+  }
+
+  .leftPropNav .btn.btn-primary a span.icomoon {
+    color: white;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  span.nameText {
+    display: none;
+  }
+
+  .leftPropNav a span.glyphicon, .leftPropNav a span.icomoon {
+    margin-right: 0;
+  }
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('/Assets/Fonts/icomoon/icomoon.eot?3xo4am');
+  src: url('/Assets/Fonts/icomoon/icomoon.eot?3xo4am#iefix') format('embedded-opentype'), url('/Assets/Fonts/icomoon/icomoon.ttf?3xo4am') format('truetype'), url('/Assets/Fonts/icomoon/icomoon.woff?3xo4am') format('woff'), url('/Assets/Fonts/icomoon/icomoon.svg?3xo4am#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-neighbourhood:before {
+  content: "\e900";
+}
+
+.icon-amenities:before {
+  content: "\e901";
+}
+
+.icon-care:before {
+  content: "\e902";
+}
+
+.icon-active-living-2:before {
+  content: "\e903";
+}
+
+.icon-wellness:before {
+  content: "\e904";
+}
+/* END of Property side menu */
+
+
+
+/* =====================================================================
+Central area
+*/
+.resFeatureImg {
+  height: 250px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0px;
+}
+
+  .resFeatureImg > .whtGradientFeatureImg {
+    width: 100%;
+    height: 100%;
+    background-image: url(img/grdnt-h100-wht-100x0.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+  }
+
+/*.moveUp {margin:-70px -15px auto -15px; display: block; background-color: White; padding:0 15px 15px 15px; border-radius: 8px; box-shadow: 0px 0px 3px rgba(0,0,0,.5)}*/
+
+h1.resName {
+  color: black;
+  font-size: 2em;
+  margin-top: 10px;
+}
+
+address.resAddress {
+  font-weight: 600;
+  color: #880d53;
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.resVideo {
+  padding: 4px;
+  padding-bottom: 0px;
+  margin: 0 0 4px 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+.resAddress > .fas {
+  color: #0073bc;
+}
+
+.resAddress > .addressLink {
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.panel.ltcCompliance {
+  box-shadow: none;
+  border: none;
+  .panel-body {
+    border: 0;
+    padding: $standardUnit;
+    a {
+      color: $chartwellPrimary;
+      font-weight: bold;
+      line-height: 2.25;
+
+      .glyphicon {
+        font-size: 30px;
+        float: left;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+blockquote.resQuote {
+  display: block;
+  font-style: italic;
+  background: #fff;
+  padding: 0px 20px 15px 0px;
+  margin: 0 0 0px 0px;
+  position: relative;
+  border: none;
+  font-family: $headingFontStack;
+  font-size: 20px;
+  line-height: 1.8;
+  color: #666;
+  border-left: none;
+}
+
+  blockquote.resQuote::after { /*Reset to make sure*/
+    content: "";
+  }
+
+  blockquote.resQuote a {
+    text-decoration: none;
+    background: #eee;
+    cursor: pointer;
+    padding: 0 3px;
+    color: #c76c0c;
+  }
+
+    blockquote.resQuote a:hover {
+      color: #666;
+    }
+
+  blockquote.resQuote em {
+    font-style: italic;
+  }
+
+
+.fix-editor {
+  display: none;
+}
+
+.resBottomBar {
+  margin-top: 1.5rem;
+  padding: 1.5rem 0;
+  overflow: auto;
+  border-top: $standardBorder;
+}
+
+  .resBottomBar ul {
+    list-style: none;
+    padding-left: 0px;
+  }
+
+    .resBottomBar ul li a span.glyphicon {
+      padding-right: 10px;
+    }
+
+    .resBottomBar ul li {
+      padding: 4px;
+      a { color: #0072bb; font-weight: bold;}
+      i.fas {
+        font-size: 35px;
+        float: left;
+        margin-right: 10px;
+        margin-top: -5px;
+        color: #0072bb;
+      }
+    }
+
+.reviewsRaingTitle {
+  text-align: center;
+  color: gray;
+  margin-top: 4px
+}
+
+@media screen and (max-width: 991px) {
+  .paragraphMedia {
+    width: 80%;
+    margin: 1rem auto;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .paragraphMedia {
+    width: 60%;
+    margin: 1rem auto;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+
+/* read more start ------------------------------------ */
+
+.section.section {
+  display: block;
+
+  #ReadMoreContent {
+    display: block;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+
+    &:after {
+      background: -moz-linear-gradient(top, rgba(240,249,255,0) 0%, rgba(255,255,255,1) 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(240,249,255,0)), color-stop(100%,rgba(255,255,255,1)));
+      background: -webkit-linear-gradient(top, rgba(240,249,255,0) 0%,rgba(255,255,255,1) 100%);
+      background: -o-linear-gradient(top, rgba(240,249,255,0) 0%,rgba(255,255,255,1) 100%);
+      background: -ms-linear-gradient(top, rgba(240,249,255,0) 0%,rgba(255,255,255,1) 100%);
+      background: linear-gradient(to bottom, rgba(240,249,255,0) 0%,rgba(255,255,255,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f0f9ff', endColorstr='#ffffff',GradientType=0 );
+      bottom: 0;
+      content: '';
+      height: 80px;
+      left: 0;
+      position: absolute;
+      right: 0;
+      z-index: 1;
+    }
+
+    @media screen and (max-device-width: 414px) {
+      height: 450px;
+    }
+
+    &.expanded {
+      height: auto;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  .rdMoreBtn {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+/* read more end ------------------------------------ */
+
+/* Content ------------------------------------------ */
+blockquote {
+  border: 1px solid #efefef;
+  padding: 1rem;
+  background-color: #fdfdfd;
+}
+
+.staticPage .imgContentLeft {
+  float: left;
+  padding: 10px 15px 0px 0;
+  width: 250px;
+  height: auto;
+  display: block;
+}
+
+.staticPage .borderLeftColorised {
+  border-left: 6px solid lightGray;
+  margin-left: 0px;
+}
+
+.staticPage blockquote > p {
+  font-size: 16px;
+}
+
+
+.portretLeftColumn {
+  background-color: #EDEDED;
+  padding: 10px;
+  margin-right: -15px;
+}
+
+  .portretLeftColumn img {
+    border: 2px solid White;
+    margin: 15px auto;
+  }
+/*.portretLeftColumn blockquote {    font-family: Georgia, serif; font-style:italic; quotes: "\201C""\201D""\2018""\2019"; padding-top:10px; border-left:none;}
+.portretLeftColumn blockquote:before { line-height: 10px;    color: White;
+    content: open-quote;    font-size: 3em; float:left; padding-right: 20px;}
+.portretLeftColumn blockquote:after { line-height: 1em;
+    color: White;
+    content: close-quote;
+    font-size: 3em; float:right; margin-top:-25px; }
+.portretLeftColumn blockquote p {margin-top:-25px;} */
+
+.RespectWord {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #8d1360;
+}
+
+.RespectList {
+  list-style: none;
+  letter-spacing: 1px;
+  font-size: 1.4em;
+  color: gray;
+  padding-left: 0;
+}
+
+  .RespectList li {
+    line-height: 1.55em;
+  }
+
+    .RespectList li::first-letter, .RespectList li:first-letter {
+      font-size: 2em;
+      color: #8d1360;
+    }
+
+
+/* STEP BY STEP static page with folder structure tree - Resource centre --------------------------------------------------------- */
+
+.sbsResourceMainTabs {
+  width: 100%;
+  min-height: 90px;
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-image: url("/Assets/Images/Layout/resource-centre/resource_tab-01.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  padding: 8px 4px;
+  margin: 0;
+  font-size: 18px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+  letter-spacing: 1px;
+  color: White;
+}
+
+  .sbsResourceMainTabs:first-child {
+    padding-top: 25px;
+    min-height: 105px;
+  }
+
+  .sbsResourceMainTabs:nth-child(4) {
+    min-height: 60px;
+  }
+
+a.sbsResourceMainTabs:hover {
+  color: White;
+  cursor: pointer;
+}
+
+.stepByStepItemBtn i, .stepByStepItemBtn h3, .stepByStepItemBtn p {
+  vertical-align: middle;
+  color: #333333;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 1px rgba(255,255,255,.7);
+}
+
+.m-0 {
+  margin: 5px;
+}
+
+.d-block {
+  display: block;
+}
+
+.blueBlockSBS {
+  min-height: 90px;
+}
+
+  .blueBlockSBS i {
+    font-size: 40px;
+    padding: 24px 0px 20px 12px;
+  }
+
+div.blueBlockSBS > div > i {
+  font-size: 55px;
+  padding-top: 44px;
+}
+
+.stepByStepItemBtn {
+  margin-bottom: 25px;
+}
+
+@media screen and (max-width:768px) {
+  .row.stepByStepItemBtn {
+    margin: auto;
+  }
+
+  .blueBlockSBS i {
+    font-size: 45px;
+    padding: 24px 0px 0px 13px;
+    color: #55a1a1;
+  }
+
+  div.blueBlockSBS > div > i {
+    font-size: 55px;
+    padding: 20px 0px 0px 0px;
+  }
+
+  .stepByStepItemBtn p {
+    line-height: 24px;
+  }
+
+  .blueBlockSBS {
+    margin-bottom: 10px;
+  }
+
+  .h-sm-111px {
+    min-height: 111px;
+  }
+}
+
+.stepByStepItemBtn i {
+  color: #55a1a1;
+}
+
+
+.blueBlockSBS { /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f1ffff+0,aedcdc+100 */
+  background: #f1ffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #f1ffff 0%, #aedcdc 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #f1ffff 0%,#aedcdc 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #f1ffff 0%,#aedcdc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1ffff', endColorstr='#aedcdc',GradientType=0 ); /* IE6-9 */
+  border-radius: 4px;
+  -moz-box-shadow: inset 0 0 4px rgba(0,0,0,.3);
+  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.3);
+  box-shadow: inset 0 0 4px rgba(0,0,0,.3);
+}
+
+a.blueBlockSBS:hover { /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d5eae7+0,84d6c5+100 */
+  background: #d5eae7; /* Old browsers */
+  background: -moz-linear-gradient(top, #d5eae7 0%, #84d6c5 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #d5eae7 0%,#84d6c5 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #d5eae7 0%,#84d6c5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5eae7', endColorstr='#84d6c5',GradientType=0 ); /* IE6-9 */
+}
+
+  a.blueBlockSBS:hover h3 {
+    text-decoration: underline;
+  }
+
+
+.orangeBlockSBS {
+  background-color: #ed7171;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffd3cc+100 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #ffd3cc 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#ffd3cc 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%,#ffd3cc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffd3cc',GradientType=0 ); /* IE6-9 */
+}
+
+a.orangeBlockSBS:hover { /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffebe8+0,ffb6ad+100 */
+  background: #ffebe8; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffebe8 0%, #ffb6ad 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffebe8 0%,#ffb6ad 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffebe8 0%,#ffb6ad 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffebe8', endColorstr='#ffb6ad',GradientType=0 ); /* IE6-9 */
+}
+
+.orangeBlockSBS i {
+  color: #f1a0a0;
+}
+
+.yellowBlockSBS {
+  background-color: #f38833;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f2cb8c+100 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #f2cb8c 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#f2cb8c 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%,#f2cb8c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2cb8c',GradientType=0 ); /* IE6-9 */
+}
+
+a.yellowBlockSBS:hover { /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7f3d4+0,eabe7c+100 */
+  background: #f7f3d4; /* Old browsers */
+  background: -moz-linear-gradient(top, #f7f3d4 0%, #eabe7c 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #f7f3d4 0%,#eabe7c 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #f7f3d4 0%,#eabe7c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f3d4', endColorstr='#eabe7c',GradientType=0 ); /* IE6-9 */
+}
+
+.yellowBlockSBS i {
+  color: #f1a76d;
+}
+
+.greenBlockSBS {
+  background-color: #c99ac4;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,c6a1c2+100 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #c6a1c2 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#c6a1c2 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%,#c6a1c2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c6a1c2',GradientType=0 ); /* IE6-9 */
+}
+
+a.greenBlockSBS:hover { /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7e1ec+0,e5b3d0+100 */
+  background: #f7e1ec; /* Old browsers */
+  background: -moz-linear-gradient(top, #f7e1ec 0%, #e5b3d0 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #f7e1ec 0%,#e5b3d0 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #f7e1ec 0%,#e5b3d0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7e1ec', endColorstr='#e5b3d0',GradientType=0 ); /* IE6-9 */
+}
+
+.greenBlockSBS i {
+  color: #c99ac4;
+}
+
+.listingThreeGrayLg h4 {
+  font-weight: 700;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+.listingThreeGrayLg sup {
+  color: #888888;
+}
+
+.listingThreeGrayLg, .listingThreeGrayLg ul {
+  list-style-type: none;
+  margin: 0 0 0 0px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.listingThreeGrayLg {
+  padding-left: 22px;
+}
+
+ul.listingThreeGrayLg, ul.listingThreeGrayLg > li {
+  list-style: square;
+  list-style-type: disc;
+  color: #CCC;
+  font-size: 24px;
+  line-height: 20px;
+}
+
+.listingThreeGrayLg ul > li {
+  margin: 0;
+  padding: 8px 4px 8px 20px;
+  position: relative;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+  .listingThreeGrayLg ul > li::before, .listingThreeGrayLg li::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  /* horizontal line on inner list items */
+  .listingThreeGrayLg ul > li::before {
+    border-top: 3px solid #DEDEDE;
+    top: 17px;
+    width: 14px;
+    height: 0;
+  }
+
+  /* vertical line on list items */
+  .listingThreeGrayLg ul > li:after {
+    border-left: 3px solid #DEDEDE;
+    height: 100%;
+    width: 0px;
+    top: -10px;
+  }
+
+/* lower line on list items from the first level because they don't have parents */
+.listingThreeGrayLg > li::after {
+  top: 10px;
+}
+
+/* hide line from the last of the first level list items */
+.listingThreeGrayLg > li:last-child::after {
+  display: none;
+}
+
+
+/* step by step - resource centre mobile version ------------*/
+.resourceTabsContentBlog .col-md-6 > a .row {
+  margin-left: 8px;
+  border-left: 8px solid #8d1360;
+}
+
+.resourceTabsContentBlog a .row {
+  margin-bottom: 4px;
+  padding: 4px;
+  border: 1px solid #EDEDED;
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  -o-border-radius: 4px !important;
+  border-radius: 4px !important;
+}
+
+  .resourceTabsContentBlog a .row:hover {
+    background-color: aliceblue;
+  }
+
+.resourceTabsContentBlog a h4 {
+  margin-top: 0px;
+  font-size: 1.2em;
+  line-height: 120%;
+  letter-spacing: 0px;
+  color: #8d1360;
+}
+
+.resourceTabsContentBlog p {
+  color: gray;
+  font-size: .9em;
+  line-height: 120%;
+  letter-spacing: 0px;
+}
+
+  .resourceTabsContentBlog p i {
+    font-weight: bold;
+  }
+
+.resourceTabsContentBlog a .row.subItemBox {
+  border-left: 4px solid #0073bc;
+  margin-left: 12px;
+}
+
+.resourceTabsContentBlog a .subItemBox h4 {
+  font-size: 1em;
+  color: #0073bc;
+}
+
+
+.resourceTabsContentBlog a > .row > .col-sm-2 {
+  padding: 0px;
+}
+
+.contact-well {
+  background-color: #e1f1ff;
+  background-image: none;
+}
+
+  .contact-well label {
+    margin-top: 16px;
+  }
+
+@media (min-width: 768px) and (max-width: 970px) {
+  .col-sm-4.corpContactUsRightPanel {
+    margin-right: 8px;
+    width: 32%;
+  }
+}
+
+
+/* residence pages with background image - .moveUpArea  ----------------------------------------- */
+
+#bgPropertyImage.ResidenceBgImg {
+  height: 150px;
+  width: 100%;
+  background-repeat: repeat-x;
+  opacity: .5;
+}
+
+.moveUpArea {
+
+}
+
+  .moveUpArea, ul.treeList, ul.treeList li, .moveUpArea p, .moveUpArea ul, .moveUpArea ul li {
+    font-size: 16px;
+  }
+
+.moveUpArea p {
+  line-height: 1.9;
+}
+
+@media screen and (max-width: 992px) {
+  #bgPropertyImage.ResidenceBgImg {
+    height: 75px;
+  }
+
+  .moveUpArea {
+    margin-top: 0px;
+  }
+}
+
+
+
+
+
+/* CSR 2016 -2015 pages ----------------------------- */
+
+.bs-example {
+  background-color: #efebec;
+  padding: 15px 15px 15px;
+  -webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+  margin-bottom: 0px;
+  margin-top: 25px;
+}
+
+
+  .bs-example h2.media-heading {
+    font-size: 24px;
+    font-weight: 600;
+    color: #180B03;
+  }
+
+.listReport {
+  border: 1px solid #E1E1E8;
+  margin-bottom: 14px;
+  padding: 9px 14px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  -moz-border-radius-bottomleft: 4px !important;
+  -webkit-border-bottom-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+
+.csrContent ul {
+  margin: 25px 10px 25px 15px;
+  padding-left: 75px;
+}
+
+  .csrContent ul li, .csrContent em {
+    list-style-type: disc;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.4em;
+    margin-bottom: 1em;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  }
+
+/* Suite plans template  --------------------------- */
+.suitesPlan p, .suitesPlan a {
+  display: block;
+}
+
+.suitesPlan p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.suitesPlan a {
+  margin: 10px 0;
+}
+
+/* newResidence ------------------------------------------------------- */
+
+.newResidence {
+}
+
+  .newResidence .panel {
+    background-color: #0073bc;
+    color: #333;
+  }
+
+  .newResidence .panel-body {
+    background-color: White;
+  }
+
+    .newResidence .panel-body p {
+      color: #333333;
+      font-size: 16px;
+      line-height: 1.2em;
+      font-style: italic;
+    }
+
+    .newResidence .panel-body address .glyphicon-map-marker {
+      color: lightGray;
+      font-size: 3em;
+      float: left;
+      text-align: left;
+      margin-left: -15px;
+    }
+
+    .newResidence .panel-body address {
+      padding-top: 10px;
+      border-top: 1px solid #ededed;
+    }
+
+  .newResidence .panel img {
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  .newResidence .panel-info {
+    border-color: lightGray;
+    -moz-border-radius-bottomright: 14px;
+    -webkit-border-bottom-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+
+    .newResidence .panel-info > .panel-heading {
+      color: white;
+      background-color: #2E83C2;
+      border-color: #3E9ADE;
+      border-radius: 0px;
+    }
+
+      .newResidence .panel-info > .panel-heading a {
+        color: white;
+      }
+
+      .newResidence .panel-info > .panel-heading h3 {
+        line-height: 1.4em;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0,0,0,.6);
+      }
+
+  .newResidence .panel-heading h3 a {
+    display: block;
+    overflow: auto;
+  }
+
+  .newResidence .panel-info img {
+    margin: 0px;
+    width: 100%;
+  }
+
+  .newResidence .panel-footer {
+    text-align: center;
+    -moz-border-radius-bottomright: 14px;
+    -webkit-border-bottom-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+
+
+  .newResidence .panel-primary {
+    border-color: lightGray;
+    -moz-border-radius-bottomright: 14px;
+    -webkit-border-bottom-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+
+    .newResidence .panel-primary > .panel-heading {
+      color: white;
+      background-color: #2E83C2;
+      border-color: #3E9ADE;
+      border-radius: 0px;
+    }
+
+      .newResidence .panel-primary > .panel-heading a {
+        color: white;
+      }
+
+      .newResidence .panel-primary > .panel-heading h3 {
+        line-height: 1.4em;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0,0,0,.6);
+      }
+
+    .newResidence .panel-primary > .panel-body {
+      color: darkGray;
+    }
+
+    .newResidence .panel-primary img {
+      margin: 0px;
+      width: 100%;
+    }
+
+
+
+  .newResidence .panel-footer h4 {
+    letter-spacing: 1px;
+    margin-top: 0px;
+  }
+
+    .newResidence .panel-footer h4 span, .nearby .panel-footer p span {
+      color: gray;
+    }
+
+  .newResidence .panel-footer .viewResBtn {
+    margin: auto -15px -10px auto;
+  }
+
+    .newResidence .panel-footer .viewResBtn .btn {
+      text-shadow: 1px 0px 2px rgba(0,0,0,.9);
+      font-size: 1em;
+      color: White;
+      letter-spacing: 1px;
+      -moz-border-radius-topleft: 12px;
+      -webkit-border-top-left-radius: 12px;
+      border-top-left-radius: 12px;
+      -moz-border-radius-bottomright: 12px;
+      -webkit-border-bottom-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+      -moz-border-radius-topright: 0px;
+      -webkit-border-top-right-radius: 0px;
+      border-top-right-radius: 0px;
+      -moz-border-radius-bottomleft: 0px;
+      -webkit-border-bottom-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+
+  .newResidence > .col-md-4:nth-child(4),
+  .newResidence > .col-md-4:nth-child(7),
+  .newResidence > .col-md-4:nth-child(10),
+  .newResidence > .col-md-4:nth-child(13),
+  .newResidence > .col-md-4:nth-child(16),
+  .newResidence > .col-md-4:nth-child(19),
+  .newResidence > .col-md-4:nth-child(22),
+  .newResidence > .col-md-4:nth-child(25),
+  .newResidence > .col-md-4:nth-child(28) {
+    clear: left;
+  }
+
+/* end newResidence ----------*/
+
+.splitPageWrap .panel-assisted > .panel-heading {
+  background-color: #ec6668;
+  border-bottom: 1px solid #E94E50;
+}
+
+  .splitPageWrap .panel-assisted > .panel-heading:hover {
+    background-color: #E94E50;
+  }
+
+.splitPageWrap .panel-body p {
+  color: #333;
+  font-style: normal;
+}
+
+.gridCity.SearchResultsGrid .col-md-4:nth-child(3n+1) {
+  clear: left;
+}
+
+
+
+.panelSearchHover img {
+  opacity: .85;
+}
+
+.panelSearchHover .panel-heading {
+  background-color: #005E9A !important;
+}
+
+.panelSearchHover .panel-footer {
+  background-color: #E5E5E5;
+}
+
+.panelSearchHoverAssisted .panel-heading {
+  background-color: #E94E50 !important;
+}
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .moveUp {
+    margin-top: 0;
+  }
+}
+
+
+/* Slider New Development ------------------------------------------- */
+#carouselNewDevelopment > .carousel-inner > .carousel-item {
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+  height: 430px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: none;
+  &.active {
+    display: block
+  }
+}
+
+@media (max-width: 768px) {
+  #carouselNewDevelopment > .carousel-inner > .carousel-item {
+    height: 21vh;
+    background-position: 60% center;
+  }
+}
+
+
+/* Autocomplete ------------------------------- */
+.ui-autocomplete {
+  max-height: 100%;
+  /* overflow-y: scroll; */
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+  height: 100px;
+}
+
+.ui-menu .ui-menu-item {
+  overflow: hidden;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+  border: 1px solid gray;
+  background: lightGray;
+  color: Black;
+}
+/*.ui-menu .ui-state-focus, .ui-menu .ui-state-active {
+    margin: -1px;
+}*/
+
+
+
+
+
+/* Sidebar -------------------------------------- */
+/* make sidebar nav vertical */
+
+.quickLinksTitle {
+  margin: 0px;
+  padding: 4px 10px;
+  color: #fff;
+  background-color: #9ec0e2;
+  text-shadow: 1px 1px 2px rgba(0,0,0,.5);
+  letter-spacing: 1px;
+}
+
+@media (min-width: 768px) {
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+
+
+    .sidebar-nav .navbar li > ul > li > a {
+      border: none;
+    }
+
+  .nav.navbar-nav.quickLinksNav {
+    float: left;
+    width: 100%;
+  }
+
+  .navbar .sidebar-navbar-collapse {
+    text-align: left;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .sidebar-nav > .navbar.navbar-default {
+    box-shadow: none;
+    margin-bottom: 4px;
+  }
+
+    .sidebar-nav > .navbar.navbar-default .nav.navbar-nav li ul {
+      list-style: none;
+    }
+}
+
+
+
+
+/* Rating Star Widgets Style --------------------------- */
+.rating-stars ul {
+  list-style-type: none;
+  padding: 0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+  .rating-stars ul > li.star {
+    display: inline-block;
+  }
+
+    /* Idle State of the stars */
+    .rating-stars ul > li.star > i.fa {
+      font-size: 1.4em; /* Change the size of the stars */
+      color: black; /* Color on idle state */
+    }
+
+    /* Hover state of the stars */
+    .rating-stars ul > li.star.hover > i.fa {
+      color: #FF8900;
+    }
+
+    /* Selected state of the stars */
+    .rating-stars ul > li.star.selected > i.fa {
+      color: #FF8900;
+    }
+
+.shortField {
+  width: 15px;
+  display: block;
+  /*float: right;*/
+  margin-top: 0px;
+  border: none;
+}
+
+.numberShortField {
+  width: 1px;
+  height: 1px;
+  margin-top: -5px;
+  border: 0px !important;
+  &:focus {
+    opacity: 0;
+    border: 0;
+  }
+}
+
+.responsiveWidth {
+  width: 100%;
+  max-width: 850px;
+  min-width: 50px;
+  height: 35px !important;
+}
+
+.fancybox-button.fancybox-button--arrow_right.arrow-right-wider {
+  right: 15px;
+}
+
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+}
+
+/*Recently Viewed Pages styles*/
+.personalizationPastHomes {
+  background: $lightestGray;
+  padding: 10px 0px 0px;
+  display: block;
+  position: relative;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+  #recentlyViewedBasket.show {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    @media screen and (max-width: $xs-sm-BP){
+      flex-direction: column;
+    }
+  }
+}
+
+  .personalizationPastHomes h3.pasthomesToggle {
+    font-size: 16px;
+    text-align: center;
+    color: $chartwellPrimary;
+  }
+
+a[aria-expanded=true] .fa-chevron-down {
+  display: none;
+}
+
+a[aria-expanded=false] .fa-chevron-up {
+  display: none;
+}
+
+/*Location Based Styles*/
+
+
+/*Header changes recommended by Erwin*/
+
+
+
+
+
+
+.personalizationPastHomes h3.pasthomesToggle {
+  text-align: center;
+}
+
+.personalizationPastHomes h3.pasthomesToggle .fas {
+  margin-left: 20px;
+  float: none !important;
+}
+
+@media screen and (min-width: 1200px) {
+  .nearestResidencesTopRight {
+    min-width: 55%;
+  }
+
+  .nearestResidencesTopRight a {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 991px) {
+
+  .navbar .navbar-nav:before, .navbar .navbar-nav:after {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #333;
+    display: block;
+    top: -7px;
+    right: 14px;
+    position: absolute;
+  }
+
+  .navbar .navbar-nav:after {
+    border-bottom: 5px solid #efefef;
+    top: -5px;
+  }
+
+/*  #nearResidenceId.nearestResidencesTopRight {
+    margin-top: -50px;
+  }
+
+  #nearResidenceId.nearestResidencesTopRight {
+    margin: 5px auto;
+    display: block;
+    width: 100%;
+    min-width: 100%;
+    padding: 10px 0 0 30px;
+    overflow: auto;
+    background-position: left 12px;
+  }
+*/
+  #globalHeaderNav.navbar-collapse.collapse {
+    display: none !important;
+  }
+
+  #globalHeaderNav.navbar-collapse.collapse.show {
+    display: block !important;
+  }
+
+
+
+  #globalHeaderNav.fr .navbar-nav > li > a {
+    font-size: .775em;
+  }
+
+  .header-static .navbar-toggle {
+    display: block;
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 0px;
+    margin-bottom: 8px;
+  }
+
+
+
+
+  .topBarLangCarrInvest {
+    width: 100%;
+    float: none;
+    clear: both;
+    text-align: left;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+
+
+
+  .navbar .navbar-nav:before, .navbar .navbar-nav:after {
+    right: 30px;
+  }
+
+  .header-static .navbar-header {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+
+
+  .header-static .navbar-collapse.collapse.show, .header-static .navbar-inverse .navbar-collapse {
+    border-top: none !important;
+  }
+
+
+
+  .topBarLangCarrInvest {
+    width: 100%;
+    float: none !important;
+    clear: both;
+    text-align: left;
+  }
+}   
+
+
+

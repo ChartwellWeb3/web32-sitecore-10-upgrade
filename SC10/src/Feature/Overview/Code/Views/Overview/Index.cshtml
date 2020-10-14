@@ -1,0 +1,105 @@
+﻿@model Chartwell.Foundation.Models.OverviewModel
+
+@using Sitecore.Mvc.Analytics.Extensions
+
+
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Data
+
+@Html.Sitecore().VisitorIdentification()
+
+<div id="PropertyDetailsContainer" class="d-sm-flex flex-sm-row">
+
+  <div id="PropertyNavigationContainerMobile" class="align-items-sm-stretch">@Html.Sitecore().Placeholder("Property.NavigationMobile")</div>
+
+  <div id="PropertyDetails">
+    <div id="PropertyHeader" style="text-align: center">
+      @Html.Sitecore().Placeholder("Property.ResidenceImageheader")
+      <h1 class="resName PropertyName">@Html.Sitecore().Field("Property Name", @Model.InnerItem) </h1>
+      <address class="PropertyAddress">
+        <span class="fas fa-map-marker-alt color-primary"></span> @Model.PropertyFormattedAddress
+      </address>
+    </div>
+    <div id="PropertyNavTop"><!-- do not delete. Used to calculate offset --></div>
+    <div id="PropertyNavigationContainer" class="sticky-top">@Html.Sitecore().Placeholder("Property.Navigation")</div>
+
+    <div class="d-flex propertyLayout" id="mainBlock">
+      <div class="row" id="mainRow">
+        <div class="col-sm-12 col-md-5 col-lg-8 tabletFullWidth">
+          <section class="section">
+            <h2 class="font-weight-bolder mt-3 pt-3 pb-3 mb-2 border-bottom text-center lead">@Model.PropertyTagLine</h2>
+            @if (!String.IsNullOrEmpty(Convert.ToString(@Model.VideoLink)))
+            {
+              <div class="pull-right hidden-sm hidden-xs inline-img-right paragraphMedia propVideo"> <iframe id="FramePropVideo" class="embed-responsive-item" src='https://www.youtube.com/embed/@Model.VideoLink?rel=0&iv_load_policy=3&enablejsapi=1' allowFullScreen="" frameborder="0"></iframe> </div>
+            }
+            else
+            {
+              <div class="pull-right hidden-sm hidden-xs inline-img-right paragraphMedia">
+                @Html.Sitecore().Field("Thumbnail Photo", @Model.InnerItem, new { @class = "large-image", @mw = "600" })
+              </div>
+            }
+
+            @if (@Model.isLandingpage)
+            {
+              <div>
+                @Html.Sitecore().Field("Landing Description", @Model.InnerItem)
+              </div>
+            }
+            else
+            {
+              <div>
+                @Html.Sitecore().Field("Property Description", @Model.InnerItem)
+              </div>
+              if (!String.IsNullOrEmpty(Convert.ToString(@Model.BrochureURL)))
+              {
+                <div class="resPdfBut d-flex align-items-center justify-content-center">
+                  <a href="@Model.BrochureURL" target="_blank" class="btn btn-outline-primary btn-lg">
+                    <span class="fas fa-file-pdf mr-2" aria-hidden="true"></span>@Sitecore.Globalization.Translate.Text("Download Property Brochure")
+                  </a>
+                </div>
+              }
+            }
+
+            @if (!@Model.isLandingpage)
+            {
+              if (@Model.PropertyType != "LTC")
+              {
+                <div id="lblReviewContent">
+                  @if (Convert.ToString(@Model.PropertySelectedLanguage) == "en")
+                  {
+                    <h4 class="reviewsRaingTitle hidden-print mt-4 ">Reviews and Ratings</h4>
+                    <div class="row hidden-print d-flex justify-content-center">
+                      <a href="https://www.google.ca/search?q=@Model.GoogleReviewKeyword" target="_new"><img alt="Google Rate and Review" src="~/Assets/Images/google-rate-button.png" id="googleReviewsTracking" name="googleReviewsTracking"></a>
+                      <a href="@Model.ReviewURL"><img alt="Chartwell Rate and Review" src="~/Assets/Images/chartwell-rate-button.png" id="chartwellReviewsTracking" name="chartwellReviewsTracking"> </a>
+                    </div>
+                  }
+                  else
+                  {
+                    <h4 class="reviewsRaingTitle hidden-print mt-4 ">Critiques et évaluations</h4>
+                    <div class="row hidden-print d-flex justify-content-center">
+                      <a href="https://www.google.ca/search?q=@Model.GoogleReviewKeyword" target="_new"><img alt="Google critiques et évaluations" src="~/Assets/Images/google-rate-button-fr.png" id="googleReviewsTrackingFrench" name="googleReviewsTrackingfrench"></a>
+                      <a href=@Model.ReviewURL><img alt="Chartwell critiques et évaluations" src="~/Assets/Images/chartwell-rate-button-fr.png" id="chartwellReviewsTrackingFrench" name="chartwellReviewsTrackingFrench"> </a>
+                    </div>
+                  }
+                </div>
+              }
+            }
+          </section>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 rightContainer deviceAbsoluteHide">
+          @Html.Sitecore().Placeholder("Grid.Right")
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    if ($('.bannerBlue').length) {
+      $('.bannerBlue').insertAfter('.resQuote');
+    }
+  });
+</script>

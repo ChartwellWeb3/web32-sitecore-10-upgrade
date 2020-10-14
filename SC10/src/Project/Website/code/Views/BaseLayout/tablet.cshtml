@@ -1,0 +1,116 @@
+@{ Layout = null;
+
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8" />
+  @Html.Sitecore().Placeholder("Page.SEO")
+  <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none'" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-192x192.png" sizes="192x192" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-32x32.png" sizes="32x32" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Lato|Montserrat|Open+Sans|Open+Sans+Condensed:300|Quicksand" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+  <script src="~/Assets/js/vendor.js?v=chart_1601589097064"></script>
+  <script src="~/Assets/js/vendor-mobile.js?v=chart_1601589097064"></script>
+  <link href="~/Assets/Styles/vendor.css?v=chart_1601589097091" rel="stylesheet" />
+  <link href="~/Assets/Styles/chartwell.css?v=chart_1601589097091" rel="stylesheet" />
+  <link href="~/Assets/Styles/chartwell-mobile.css?v=chart_1601589097091" rel="stylesheet" />
+  <link href="~/Assets/Styles/chartwell-tablet.css?v=chart_1601589097091" rel="stylesheet" />
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-56FVJBX');</script>
+  <!-- End Google Tag Manager -->
+  <!-- AMP Google Tag Manager -->
+  <!--
+    <script async=async async=async async=async async=async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <amp-analytics type="gtag" data-credentials="include">
+      <script type="application/json">
+        {
+        "vars" : {
+        "gtag_id": "GTM-56FVJBX",
+        "config" : {
+        "GTM-56FVJBX": { "groups": "default" }
+        }
+        }
+        }
+      </script>
+    </amp-analytics>
+  -->
+  <!-- End AMP Google Tag Manager -->
+  <!-- property photo gallery -->
+  <script>
+    var qrStr = window.location.search;
+    if (qrStr == "?photos=true") {
+      var meta = document.createElement('meta');
+      meta.name = "robots";
+      meta.content = "noindex,nofollow";
+      document.getElementsByTagName('head')[0].appendChild(meta);
+    }
+    var ChartwellGlobalLang = '@Model.Item.Language.Name';
+  </script>
+
+  <script type="application/ld+json">
+    {
+    "@@context": "https://schema.org",
+    "@@type": "WebSite",
+    "url": "https://chartwell.com/",
+    "potentialAction": [{
+    "@@type": "SearchAction",
+    "target": "https://chartwell.com/search-results/?City={search_term_string}",
+    "query-input": "required name=search_term_string"
+    }]
+    }
+  </script>
+
+</head>
+
+<body class="cwBody tablet-view @Model.Item.Language.Name" id="TabletLayout">
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56FVJBX"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  @Html.Sitecore().Placeholder("Page.Banner")
+  @Html.Sitecore().Placeholder("Page.SearchBar")
+  @Html.Sitecore().Placeholder("Page.TabletHeader")
+
+  <!-- =========================
+  Sub Layouts - START
+  ============================== -->
+  @Html.Sitecore().Placeholder("Page.RecentViews")
+  @Html.Sitecore().Placeholder("Page.HomepageContent")
+  @Html.Sitecore().Placeholder("Page.Grid")
+  <div id="PostGrid">
+    @Html.Sitecore().Placeholder("Page.HeroBanner")
+    @Html.Sitecore().Placeholder("Page.PostGrid")
+  </div>
+  <!-- =========================
+  / Sub Layouts - END
+  ============================== -->
+  @Html.Sitecore().Placeholder("Page.TabletFooter")
+
+  <script src="~/Assets/js/chartwell.js?v=chart_1601589097064"></script>
+  <script src="~/Assets/js/mobile-self-executing.js?v=chart_1601589097064"></script>
+  <script src="~/Assets/js/tablet-self-executing.js?v=chart_1601589097064"></script>
+  @Html.Sitecore().Placeholder("Page.PostPage")
+</body>
+
+</html>

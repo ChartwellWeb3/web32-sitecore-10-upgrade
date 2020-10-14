@@ -1,0 +1,213 @@
+﻿@model  List<Chartwell.Foundation.Models.PropertySearchModel>
+@using Sitecore.Mvc
+@using Chartwell.Foundation.utility
+@using Sitecore.Mvc.Analytics.Extensions
+@using Chartwell.Foundation.utility
+
+@Html.Sitecore().VisitorIdentification()
+
+@Html.AntiForgeryToken()
+
+@{ ChartwellUtiles utilities = new ChartwellUtiles();
+  Layout = null;
+  var cnt = 0; }
+
+@if (Model != null)
+{
+  {
+
+    bool isCityLandingPage = Model.Select(x => x.CityLandingPage).FirstOrDefault();
+    bool isSearchResults = Model.Select(x => x.SearchResults).FirstOrDefault();
+    <div id="CityLandingPageList">
+      @if (isSearchResults)
+      {
+        if (isCityLandingPage)
+        {
+          <div class="row">
+            <div class="col-md-12 text-center ">
+              <h1>@Sitecore.Globalization.Translate.Text(@Model[0].CityLandingPageText) @Model[0].SearchText</h1>
+
+              @if (Convert.ToBoolean(Model[0].IsRegion))
+              {
+                <div class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                  @Html.DropDownListFor(m => m[0].RegionList, Model[0].RegionList as List<SelectListItem>, new { onchange = "document.location.href = this.options[this.selectedIndex].value;", @class = "form-control regionDropDown" })
+                </div>
+                <hr /> }
+              else
+              {
+
+
+                <div class="d-flex flex-row align-items-center justify-content-center">
+                  @Ajax.ActionLink(utilities.GetDictionaryItem("Retirement Residences", Model[0].Language), "CityLandingPage", "SearchResultsGrid", new { SearchText = Model[0].SearchText, CityLandingPageButton = "RET", SearchType = Model[0].SearchType, PageSize = 0, IsRegion = Model[0].IsRegion, Language = Model[0].Language, FoundCitySearch = Model[0].FoundCitySearch, Lat = Model[0].Lat, Lng = Model[0].Lng, DistanceFromCurrentLocation = Model[0].DistanceFromCurrentLocation }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "CityLandingPageList", LoadingElementId = "searchoverlay" }, new { @class = "btn btn-outline-secondary btn-sm m-3 p-2 pl-3 pr-3", id = "test", data_toggle = "button", aria_pressed = "false" })
+                  @Ajax.ActionLink(utilities.GetDictionaryItem("Long Term Care Residences", Model[0].Language), "CityLandingPage", "SearchResultsGrid", new { SearchText = Model[0].SearchText, CityLandingPageButton = "LTC", SearchType = Model[0].SearchType, PageSize = 0, IsRegion = Model[0].IsRegion, Language = Model[0].Language, FoundCitySearch = Model[0].FoundCitySearch, Lat = Model[0].Lat, Lng = Model[0].Lng, DistanceFromCurrentLocation = Model[0].DistanceFromCurrentLocation }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "CityLandingPageList", LoadingElementId = "searchoverlay" }, new { @class = "btn btn-outline-secondary btn-sm m-3 p-2 pl-3 pr-3", id = "test1", data_toggle = "button", aria_pressed = "false" })
+                </div>
+                <hr />}
+            </div>
+          </div> }
+        else
+        {
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h2>@Sitecore.Globalization.Translate.Text(@Model[0].CityLandingPageText) @Model[0].SearchText</h2>
+            </div>
+            <div class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+              @if (Convert.ToBoolean(Model[0].IsRegion))
+              {
+                @Html.DropDownListFor(m => m[0].RegionList, Model[0].RegionList as List<SelectListItem>, new { onchange = "document.location.href = this.options[this.selectedIndex].value;", @class = "form-control regionDropDown" })}
+            </div>
+
+            <div class="col-md-12">
+              <hr />
+            </div>
+          </div><!-- / .row --> }
+      }
+      else
+      {
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1>@Sitecore.Globalization.Translate.Text(@Model[0].CityLandingPageText) @Model[0].SearchText</h1>
+            @if (Model[0].CityLandingPageText.Contains("No search results found") || Model[0].CityLandingPageText.Contains("Aucun résultat trouvé"))
+            {
+              <h3>@Sitecore.Globalization.Translate.Text("SearchResultsNotFoundLine2") </h3>}
+          </div>
+          <div class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            @if (Convert.ToBoolean(Model[0].IsRegion))
+            {
+              if (@Sitecore.Context.Language.Name == "en")
+              {
+                @Html.DropDownListFor(m => m[0].RegionList, Model[0].RegionList as List<SelectListItem>, new { onchange = "document.location.href = this.options[this.selectedIndex].value;", @class = "form-control regionDropDown" }) }
+              else
+              {
+                @Html.DropDownListFor(m => m[0].RegionList, Model[0].RegionList as List<SelectListItem>, new { onchange = "document.location.href = this.options[this.selectedIndex].value;", @class = "form-control regionDropDown" })}
+            }
+
+          </div>
+
+          <div class="col-md-12">
+            <hr />
+          </div>
+        </div><!-- / .row -->}
+      <div id="searchoverlay">
+        <img src="~/Assets/Images/loading.gif" style="position: relative; top: 50%;" alt="loading" />
+      </div>
+
+      <div class="row gridCity d-flex flex-row">
+        @foreach (var property in Model)
+        {
+          @Html.HiddenFor(p => @Model.First().SearchText, new { @id = "searchtext" + cnt })
+          @Html.HiddenFor(p => @Model.First().PropertyType, new { @id = "propertytype" + cnt })
+          @Html.HiddenFor(p => @Model.First().Language, new { @id = "language" + cnt })
+          @Html.HiddenFor(p => @Model.First().PageSize, new { @id = "pagesize" + cnt })
+
+          <div class="col-sm-12 col-md-4 p-sm-2 align-items-stretch d-flex flex-row">
+
+            <div class="card chartwell-card m-0 m-md-1 m-lg-3 mb-3 mb-md-2 mb-lg-3 align-items-stretch">
+
+              @if (String.IsNullOrEmpty(Convert.ToString(@Html.Sitecore().Field("Thumbnail Photo", @property.InnerItem))))
+              {
+                <a href="@property.PropertyItemUrl"><img class="card-img-top" src="@Url.Content("~/Assets/Images/Layout/Chartwell Pembroke Heritage Retirement Residence.jpg")" alt="@property.PropertyName"></a> }
+              else
+              {
+                <a href="@property.PropertyItemUrl">@Html.Sitecore().Field("Thumbnail Photo", @property.InnerItem, new { @class = "card-img-top", @mw = "1280", @alt = @property.PropertyName, @style = "height: auto" })</a>}
+
+              <div class="card-body pb-0 d-flex flex-column cursor-hand" onclick="self.location.href='@property.PropertyItemUrl'">
+                <h5 class="pb-2 text-center mb-3"><a href="@property.PropertyItemUrl">@property.PropertyName</a></h5>
+
+                <p class="d-flex mb-3" style="line-height:1.2; flex:1">@Html.Raw(property.USP)</p>
+                <p class="d-flex flex-row align-items-center" style="line-height:1.35">
+                  <span class="fas fa-map-marker-alt ml-2 mr-3 text-secondary"></span>
+                  <span class=" text-secondary small">@property.PropertyFormattedAddress</span>
+                </p>
+
+                @if (isSearchResults)
+                {
+                  <p id="@("cityCentreDistanceID")@cnt" class="d-flex flex-row align-items-center mb-2" style="line-height:1.35">
+                    <span class="fas fa-route ml-2 mr-3 text-secondary" aria-hidden="true"></span>
+                    <span class=" text-secondary small">@Sitecore.Globalization.Translate.Text("distancefromcitycentre", Model[0].Language) @property.CityCentreDistance</span>
+                  </p> if (property.DistanceFromCurrentLocation)
+                  {
+                    <p id="@("currentLocDistanceID")@cnt" class="d-flex flex-row align-items-center mb-2" style="line-height:1.35">
+                      <span class="fas fa-route ml-2 mr-3 text-secondary" aria-hidden="true"></span>
+                      <span class=" text-secondary small">@Sitecore.Globalization.Translate.Text("distancefromcurrentlocation", Model[0].Language) @property.Distance</span>
+                    </p>
+                  }
+                }
+
+              </div>
+              <div class="card-body pt-0 d-flex flex-row align-items-end">
+                <div class="d-flex flex-column w-100">
+                  <a href="tel:@property.PhoneNo" class="w-75 d-flex ml-auto mr-auto mb-2 mt-4 btn btn-outline-primary justify-content-center">
+                    <span class="fas fa-phone mr-3"></span>
+                    <span>@property.PhoneNo</span>
+                  </a>
+                  <a href="@property.PropertyItemUrl" class="w-75 btn btn-primary ml-auto mr-auto">@utilities.GetDictionaryItem("View Residence", Model[0].Language)</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          cnt = cnt + 1;
+        }
+      </div><!-- / .row -->
+
+      <div class="d-flex flex-row justify-content-center">
+        @if (Model[0].PageSize <= Model.Count)
+        {
+          if (Model[0].CityLandingPageButton == "RET")
+          {
+            @Ajax.ActionLink(utilities.GetDictionaryItem("View More Retirement Homes", Model[0].Language), "CityLandingPage", "SearchResultsGrid", new { SearchText = Model[0].SearchText, CityLandingPageButton = Model[0].CityLandingPageButton, SearchType = Model[0].SearchType, PageSize = Model[0].PageSize, IsRegion = Model[0].Display_RegionsDD, Language = Model[0].Language, FoundCitySearch = Model[0].FoundCitySearch, Lat = Model[0].Lat, Lng = Model[0].Lng, DistanceFromCurrentLocation = Model[0].DistanceFromCurrentLocation }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "CityLandingPageList", LoadingElementId = "searchoverlay" }, new { @class = "btn btn-primary ml-auto mr-auto" }) }
+          else
+          {
+            @Ajax.ActionLink(utilities.GetDictionaryItem("ViewMoreLongTermResidences", Model[0].Language), "CityLandingPage", "SearchResultsGrid", new { SearchText = Model[0].SearchText, CityLandingPageButton = Model[0].CityLandingPageButton, SearchType = Model[0].SearchType, PageSize = Model[0].PageSize, IsRegion = Model[0].Display_RegionsDD, Language = Model[0].Language, FoundCitySearch = Model[0].FoundCitySearch, Lat = Model[0].Lat, Lng = Model[0].Lng, DistanceFromCurrentLocation = Model[0].DistanceFromCurrentLocation }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "CityLandingPageList", LoadingElementId = "searchoverlay" }, new { @class = "btn btn-primary ml-auto mr-auto" })}
+        }
+      </div>
+    </div><!-- / .CityLandingPageList -->}
+}
+<script type="text/javascript">
+ if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(onNearbyPositionUpdate);
+  }
+
+  function onNearbyPositionUpdate(position) {
+
+    var Lat = position.coords.latitude;
+    var Lng = position.coords.longitude;
+    var searchText = $("#searchtext0").val();
+    var propertyType = $("#propertytype0").val();
+    var pageSize = $("#pagesize0").val();
+    var language = $("#language0").val();
+
+    @*var m = @Html.Raw(Json.Encode(@Model));*@
+    $.ajax({
+      url: "../../api/sitecore/SearchResultsGrid/LatLngSearch",
+      type: "POST",
+      dataType: "json",
+      traditional: true,
+      data: { Latitude: Lat, Longitude: Lng, SearchText: searchText, PropertyType: propertyType, pageSize: pageSize, Language: language },
+      success: function (data) {
+        document.getElementById('City').value = data[0].City;
+        var currLocDistance = "";
+        var cityCentreDistance = "";
+        $.each(data, function (i, model) {
+          cityCentreDistance = '<span class="fas fa-route ml-2 mr-3 text-secondary" aria-hidden="true"></span><span class="text-secondary small">@Sitecore.Globalization.Translate.Text("distancefromcitycentre") ' + model.CityCentreDistance + '</span>';
+          currLocDistance = '<span class="fas fa-route ml-2 mr-3 text-secondary" aria-hidden="true"></span><span class="text-secondary small">@Sitecore.Globalization.Translate.Text("distancefromcurrentlocation") ' + model.Distance + '</span>';
+          var cityCentreDistanceID = "#cityCentreDistanceID" + i;
+          var currLocDistanceID = "#currentLocDistanceID" + i;
+
+          $(cityCentreDistanceID).html(cityCentreDistance);
+          $(currLocDistanceID).html(currLocDistance);
+        });
+      }
+    });
+  }
+
+  function ResetPage(xhr, request) {
+    var requestParams = request.url.split('&');
+    console.log(request)
+    var newUrl = requestParams[0] + "&" + requestParams[1] + "&" + requestParams[2] + "&" + requestParams[3] + "&" + requestParams[4] + "&" + requestParams[5] + "&" + requestParams[6];
+    request.url = newUrl;
+  }
+</script>
+
+
+

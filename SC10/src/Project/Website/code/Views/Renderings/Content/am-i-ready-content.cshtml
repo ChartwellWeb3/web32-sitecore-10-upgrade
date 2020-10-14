@@ -1,0 +1,696 @@
+﻿<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="~/Assets/Styles/questionnaires/questionnaires.css">
+<div class="staticPage">
+	<!-- id="Results"> -->
+
+	<div class="row surveyRow">
+		<div class="col-xs-12">
+
+			<h1 class="text-center">@Html.Sitecore().Field("Title")</h1>
+			<hr class="featurette-divider" />
+			@Html.Sitecore().Field("Text")
+
+			<hr />
+
+			<app-root></app-root>
+
+		</div>
+	</div>
+
+	<div class="row"> <div class="col-md-12"> <div class="text-center"></div> </div> </div>
+
+
+
+</div><!-- staticPage -->
+<script>
+
+	document.write("<base href='" + location.pathname + "' />");
+
+	var questionnaireLang = document.getElementsByTagName("body")[0].classList.contains("en") ? "EN" : "FR";
+
+	var questionnaireData = {
+		"title": {
+			"EN": "AM I READY QUESTIONNAIRE",
+			"FR": "QUESTIONNAIRE « SUIS-JE PRÊT? »",
+		},
+		"next": {
+			"EN": "Next",
+			"FR": "Prochain",
+		},
+		"back": {
+			"EN": "Back",
+			"FR": "Arrière",
+		},
+		"allRequired": {
+			"EN": "Please fill out every question",
+			"FR": "Veuillez répondre à toutes les questions",
+		},
+		"print": {
+			"EN": "Print",
+			"FR": "Imprimer"
+		},
+		"recommendation": {
+			"EN": "Recommendation",
+			"FR": "Voir les recommandations"
+		},
+		"reset": {
+			"EN": "Reset",
+			"FR": "Réinitialiser"
+		},
+		"done": {
+			"EN": "Done",
+			"FR": "Terminé"
+		},
+		"emailButton": {
+			"EN": "Email My Results",
+			"FR": "Envoyer mes résultats à cette adresse courriel"
+		},
+		"intro": {
+			"EN": "Are you considering whether a move to a retirement community would be a beneficial lifestyle change? Take our “Am I Ready?” questionnaire to explore how retirement living may make your life better.",
+			"FR": "Vous vous demandez si déménager dans une résidence pour retraités serait un changement positif dans votre vie? Répondez à notre questionnaire « Suis-je prêt? » pour en savoir plus sur les avantages de la vie en résidence.",
+		},
+		"sections": [
+			{
+				"title": {
+					"EN": "Safety",
+					"FR": "Sécurité",
+				},
+				"isComplete": false,
+				"questions": [
+					{
+						"id": "s1q1",
+						"question": {
+							"EN": "Do you ever feel nervous or unsafe living on your own? *",
+							"FR": "Vous sentez-vous parfois inquiet ou vulnérable du fait de vivre seul? *"
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s1q2",
+						"question": {
+							"EN": "Do you find it difficult to move around your current home? *",
+							"FR": "Éprouvez-vous de la difficulté à vous déplacer dans votre maison actuelle? *"
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s1q3",
+						"question": {
+							"EN": "Have you recently experienced a fall or health concern that required hospitalization? *",
+							"FR": "Avez-vous fait une chute ou connu un problème de santé exigeant une hospitalisation récemment? *"
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "A while ago",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Il y a quelque temps",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s1q4",
+						"question": {
+							"EN": "Do you have trouble remembering to take any medications you have been prescribed? *",
+							"FR": "Avez-vous du mal à vous rappeler de prendre les médicaments qui vous sont prescrits? *"
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s1q5",
+						"question": {
+							"EN": "Would you feel more at ease living somewhere that offers 24/7 security, and where people are always around in case of emergency? *",
+							"FR": "Vous sentiriez-vous plus à l’aise de vivre dans un endroit où la sécurité est assurée en tout temps et où quelqu’un est toujours présent en cas d’urgence? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Maybe",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Peut-être",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"title": {
+					"EN": "Independence",
+					"FR": "Autonomie",
+				},
+				"isComplete": false,
+				"questions": [
+					{
+						"id": "s2q1",
+						"question": {
+							"EN": "Are you unable to drive? Or do you feel uncomfortable driving at night or during poor weather? *",
+							"FR": "Êtes-vous dans l’incapacité de conduire, ou appréhendez-vous de conduire le soir ou par mauvais temps? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes, I don’t drive",
+									"value": 2
+								},
+								{
+									"text": "Sometimes I feel nervous driving",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui, je ne conduis pas",
+									"value": 2
+								},
+								{
+									"text": "Conduire me rend parfois nerveux",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s2q2",
+						"question": {
+							"EN": "Are you finding it increasingly difficult to run errands like grocery shopping, going to the bank or attending medical appointments? *",
+							"FR": "Trouvez-vous de plus en plus difficile de faire des courses, comme aller à l’épicerie ou à la banque, et de vous rendre à vos rendez-vous médicaux?  *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "To some extent",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Jusqu’à un certain point",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s2q3",
+						"question": {
+							"EN": "Do you need help with household chores, such as cooking and cleaning? *",
+							"FR": "Avez-vous besoin d’aide avec les tâches ménagères, comme les repas et le ménage? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s2q4",
+						"question": {
+							"EN": "Do you need help managing outdoor maintenance projects like gardening, lawn care or snow shoveling? *",
+							"FR": "Avez-vous besoin d’aide avec l’entretien extérieur, comme le jardinage, la tonte de la pelouse ou le déneigement? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s2q5",
+						"question": {
+							"EN": "Do you need help coordinating the payment of your bills? *",
+							"FR": "Avez-vous besoin d’aide pour assurer le paiement de toutes vos factures? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"title": {
+					"EN": "Wellness",
+					"FR": "Bien-être",
+				},
+				"isComplete": false,
+				"questions": [
+					{
+						"id": "s3q1",
+						"question": {
+							"EN": "Do you eat three well-balanced meals per day? *",
+							"FR": "Prenez-vous trois repas équilibrés chaque jour? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s3q2",
+						"question": {
+							"EN": "Do you see your family often throughout the day, week or month? *",
+							"FR": "Voyez-vous votre famille souvent au cours d’une journée, d’une semaine ou d’un mois? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s3q3",
+						"question": {
+							"EN": "Do you often socialize with friends or acquaintances your own age? *",
+							"FR": "Socialisez-vous régulièrement avec des amis ou des connaissances de votre âge? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s3q4",
+						"question": {
+							"EN": "Do you often participate in your favourite hobbies or activities? *",
+							"FR": "Pratiquez-vous régulièrement vos passe-temps ou activités préférés? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					},
+					{
+						"id": "s3q5",
+						"question": {
+							"EN": "Do you have access to physical activity opportunities to help you meet your fitness needs? *",
+							"FR": "Avez-vous l’occasion de faire de l’activité physique afin de garder la forme? *",
+						},
+						"answers": {
+							"EN": [
+								{
+									"text": "Yes",
+									"value": 2
+								},
+								{
+									"text": "Sometimes",
+									"value": 1
+								},
+								{
+									"text": "No",
+									"value": 0
+								}
+							],
+							"FR": [
+								{
+									"text": "Oui",
+									"value": 2
+								},
+								{
+									"text": "Parfois",
+									"value": 1
+								},
+								{
+									"text": "Non",
+									"value": 0
+								}
+							]
+						}
+					}
+				]
+			},
+		],
+		"results": [
+			{
+				"targetScoreMin": 0,
+				"targetScoreMax": 11,
+				"title": {
+					"EN": "It may not be time to move into a retirement community yet, but it's important to consider your options for the future.",
+					"FR": "Peut-être que le moment de choisir d’emménager dans une résidence pour retraités n’est pas encore venu pour vous, mais il est important que vous réfléchissiez aux options possibles."
+				},
+				"content": {
+					"EN": "<p class=\"lead\"><strong>If you don’t feel ready for a move, there’s no better time than now to begin planning for how you want to live as your needs evolve over time. You may even consider booking a Short Stay visit to experience the lifestyle, commitment-free.</strong></p><p>You may be managing well at the moment and may not be ready for a move; however, your exploration also speaks to you thinking about and planning for the future.</p><p>When it comes to retirement living, there are many advantages to embracing the lifestyle earlier, as it means you can fully enjoy all of the benefits, including a robust offering of social and recreational experiences. Choosing to move earlier in your retirement can also help to prolong your wellness, thanks to offerings like well-balanced, delicious dining options, active living programs, social connections and personal support services.</p><p>While you continue to research living and support options that can help you live well—and with the choice, control and independence you want as you age—you may think about sitting down with your family to communicate your thoughts and wishes for support options in the future, or seeking financial advice to ensure you can pursue the option that you desire most.</p><p><strong>Explore the lifestyle in a Chartwell retirement community today by visiting the <a target=\"_blank\" href=\"/en/help-me-choose/exploring-your-options\">Help Me Choose</a> section of our website.</strong></p><h3>You may also like…</h3><p><a target=\"_blank\" href=\"https://www.youtube.com/watch?v=_Ez6YLzNqfw\">Video - Dr. Amy: Planning for how you want to live</a><br/><a target=\"_blank\" href=\"/en/blog/2019/04/aging-well-is-more-than-just-good-physical-health-for-seniors\">Blog: Aging well is more than just good physical health for seniors</a><br/><a target=\"_blank\" href=\"/blog/2016/03/the-benefits-of-considering-a-retirement-lifestyle-before-experiencing-a-health-scare\">Blog: The benefits of considering a retirement lifestyle before experiencing a health scare</a></p><h4>Use the buttons below to print or email your results:</h4>",
+					"FR": "<p class=\"lead\"><strong>Bien  que vous ne soyez pas prêt à déménager, le moment est idéal pour commencer à  réfléchir au mode de vie qui vous conviendra au fur et à mesure que vos besoins  changeront. Vous pourriez  même réserver un court séjour afin d&rsquo;expérimenter ce style de vie, sans  engagement.</strong></p><p> Pour l&rsquo;instant, il se peut  que vous vous en sortiez bien et que vous n&rsquo;ayez aucune envie de déménager.  Cependant, vos recherches témoignent aussi de l&rsquo;importance que vous accordez à la  planification de votre avenir.</p><p>Adopter la vie en résidence  plus tôt dans sa vie comporte de nombreux avantages. On peut profiter  pleinement de tous les services offerts, notamment d&rsquo;une foule d&rsquo;activités  sociales et récréatives. Déménager dans une résidence pour retraités plus tôt  peut aussi contribuer à prolonger son bien-être global en raison des choix de  repas délicieux et équilibrés, des programmes favorisant un mode de vie actif,  de la vie sociale et des services de soutien personnels qui y sont offerts.</p><p>Pendant que vous continuez  à explorer les options d&rsquo;hébergement et de soutien qui vous permettraient de  bien vivre, avec toute la liberté de choix et l&rsquo;autonomie que vous souhaitez en  vieillissant, pensez à informer votre famille de vos souhaits en matière de  soins futurs ou à retenir l&rsquo;aide d&rsquo;un conseiller financier pour vous assurer de  pouvoir réaliser le projet qui vous tient le plus à cœur.</p><p><strong>Découvrez  la vie dans une résidence pour retraités Chartwell dès aujourd&rsquo;hui en visitant  la section </strong><a target=\"_blank\" href=\"https://chartwell.com/fr/aidez-moi-à-choisir/explorez-les-options\"><strong>Aidez-moi  à choisir</strong></a><strong> de notre site Web.</strong></p><h3>Autres ressources qui  pourraient vous intéresser…</h3><p><a target=\"_blank\" href=\"https://www.youtube.com/watch?v=WXI-OMh9JHg\"><strong>Vidéo&nbsp;:  Dre Amy&nbsp;– Planifier comment vous souhaitez vivre votre vie</strong></a><br><a target=\"_blank\" href=\"https://chartwell.com/fr/blogue/2019/04/bien-vieillir-cest-plus-que-simplement-demeurer-en-bonne-santé\"><strong>Blogue&nbsp;:  Bien vieillir c&rsquo;est plus que simplement demeurer en bonne santé</strong></a><strong><br></strong><a target=\"_blank\" href=\"https://chartwell.com/fr/blogue/2016/03/les-bienfaits-d’envisager-la-vie-en-résidence-pour-retraités-avant-d’avoir-un-souci-de-santé\"><strong>Blogue&nbsp;:  Les bienfaits d&rsquo;envisager la vie en résidence pour retraités avant d&rsquo;avoir un  souci de santé</strong></a></p><h4>Cliquez sur les boutons ci-dessous pour imprimer vos résultats ou les recevoir par courriel</h4>"
+				}
+			},
+			{
+				"targetScoreMin": 12,
+				"targetScoreMax": 18,
+				"title": {
+					"EN": "You are in a great position to consider an independent retirement living lifestyle.",
+					"FR": "C’est le bon moment d’envisager de vivre dans une résidence pour retraités. Vous pourriez commencer à effectuer des recherches et à visiter les résidences pour retraités de votre région."
+				},
+				"content": {
+					"EN": "<p class=\"lead\"><strong>An  independent lifestyle in a retirement community may be a great fit for you. You  may want to explore if your local retirement communities offer independent  options, and consider booking  a Short Stay to experience the lifestyle commitment-free.</strong></p><p>You may be handling living on your own  fairly well, but could still benefit from some of the worry-free services  associated with retirement living. For example, access to leisure activities,  events and outings may enrich your social life and expand your circle of  friends. Onsite exercise programs, charitable initiatives and lifelong learning  classes may give you the chance to try something new or maintain your level of  fitness. Dining options mean you can take a break from cooking when you aren&rsquo;t  feeling up to it, or enjoy a meal alongside friends. You may also experience a  greater sense of peace of mind, having staff available 24/7 if you ever need  them, as well as the availability of personal support if your needs change over  time.</p><p>The beauty of life in a Chartwell residence  is that our accommodation options come in all shapes and sizes—from spacious  suites in a variety of layouts, to apartments with full kitchens and independent  townhomes. Parking, housekeeping and à la carte services all add to a lifestyle  centred on how you want to live, with the choice always being yours.</p><p><strong>Explore  the lifestyle in a Chartwell retirement community today by visiting the </strong><a target=\"_blank\" href=\"https://chartwell.com/en/help-me-choose/exploring-your-options\"><strong>Help  Me Choose</strong></a><strong> section of our website.</strong></p><h3>You may also like…</h3><p><a target=\"_blank\" href=\"https://www.youtube.com/watch?v=5YXH_2wXwTw&t=4s\"><strong>Video  – Dr. Amy: Advantages of aging in a retirement residence</strong></a><strong><br><a target=\"_blank\" href=\"https://chartwell.com/en/getting-started/understanding-the-benefits/a-day-in-the-life-of-a-resident\"><strong>Infographic:  A Day in the Life  of a Chartwell Resident</strong></a><br></strong><a target=\"_blank\" href=\"https://chartwell.com/en/our-services/suite-types-and-amenities\"><strong>Suite  and Accommodation Types at Chartwell</strong></a></p><h4>Use the buttons below to print or email your results:</h4>",
+					"FR": "<p class=\"lead\"><strong>Un  mode de vie autonome dans une résidence pour retraités pourrait vous convenir  parfaitement. Vous pourriez vérifier si les résidences de votre région offrent  des options pour personnes autonomes et réserver un court séjour afin d&rsquo;expérimenter ce style de vie, sans  engagement.</strong></p><p>Vous vous débrouillez  peut-être assez bien seul, mais vous pourriez quand même tirer avantage de  certains des services sans tracas qu&rsquo;offre la vie en résidence. Par exemple,  les activités de loisir, les événements et les sorties pourraient vous  permettre d&rsquo;enrichir votre vie sociale et d&rsquo;élargir votre cercle d&rsquo;amis. Les  programmes d&rsquo;exercice sur place, les initiatives caritatives et les cours en  tous genres constituent une occasion d&rsquo;essayer quelque chose de nouveau ou de  conserver la forme. La salle à manger vous offre un répit quand vous n&rsquo;avez pas  envie de cuisiner ou vous permet de partager un repas en bonne compagnie. La  présence du personnel jour et nuit, en cas de besoin, et la possibilité  d&rsquo;obtenir un soutien personnel si votre situation devait changer peut également  ajouter à votre tranquillité d&rsquo;esprit.</p><p>La beauté chez Chartwell,  c&rsquo;est qu&rsquo;il existe un large éventail d&rsquo;options d&rsquo;hébergement&nbsp;: unités  spacieuses aménagées dans différents styles, appartements avec cuisine tout  équipée ou encore maisons en rangée  indépendantes. Le stationnement, l&rsquo;entretien  ménager et les services à la carte sont autant d&rsquo;éléments qui contribuent à un  style de vie qui vous ressemble et qui respecte vos choix.</p><p> <strong>Découvrez  la vie dans une résidence pour retraités Chartwell dès aujourd&rsquo;hui en visitant  la section </strong><a target=\"_blank\" href=\"https://chartwell.com/fr/aidez-moi-à-choisir/explorez-les-options\"><strong>Aidez-moi  à choisir</strong></a><strong> de notre site Web.</strong></p><h3>Autres ressources qui  pourraient vous intéresser…</h3><p><a target=\"_blank\" href=\"https://www.youtube.com/watch?v=ykxh16Gw8sc\"><strong>Vidéo&nbsp;:  Dre Amy&nbsp;– Les avantages de vieillir dans une résidence pour  retraités</strong></a><br><strong>Document infographique</strong><a target=\"_blank\" href=\"https://chartwell.com/fr/par-où-commencer/comprendre-les-avantages/une-journée-dans-la-vie-d’un-résident\"><strong>&nbsp;:</strong><strong> Une journée dans la vie d&rsquo;un résident  de Chartwell</strong></a><br><a target=\"_blank\" href=\"https://chartwell.com/fr/nos-services/types-d'hébergements-et-aménagements\"><strong>Types  d&rsquo;hébergements offerts chez Chartwell</strong></a></p><h4>Cliquez sur les boutons ci-dessous pour imprimer vos résultats ou les recevoir par courriel</h4>"
+				}
+			},
+			{
+				"targetScoreMin": 19,
+				"targetScoreMax": 1000,
+				"title": {
+					"EN": "It's the right time to consider moving to a retirement community. You may want to begin researching and visiting retirement residences in your area.",
+					"FR": "Le mode de vie autonome pour retraités est tout à fait ce qui vous convient."
+				},
+				"content": {
+					"EN": "<p class=\"lead\"><strong>Now  is the right time to embrace a retirement living lifestyle. You may want to  begin researching and visiting retirement communities in your area, and consider booking a Short  Stay to experience the lifestyle commitment-free.</strong></p><p>You are ready to begin benefitting  from the worry-free lifestyle in a retirement residence. Convenient services  like delicious and nutritious dining options, housekeeping, 24-hour security  and personalized health and wellness support may be what you need to maintain  or restore your peace of mind. Access to social and leisure opportunities may also  be what you desire to lead the vibrant and engaging retirement you deserve.</p><p>Whether you are an active senior  looking for an independent lifestyle with light services, or you require  greater daily support to live comfortably, Chartwell provides a wide range of  lifestyle options tailored to individual preferences.</p><p><strong>Explore  the lifestyle in a Chartwell retirement community today by visiting the </strong><a target=\"_blank\" href=\"https://chartwell.com/en/help-me-choose/exploring-your-options\"><strong>Help  Me Choose</strong></a><strong> section of our website.</strong></p><h3>You may also like…</h3><p><a target=\"_blank\" href=\"https://chartwell.com/-/media/Files/guides/chartwell-exploring-retirement-living-guide.pdf?la=en\"><strong>Exploring  Retirement Living Guide</strong></a><strong><br></strong><a target=\"_blank\" href=\"https://chartwell.com/en/blog/2019/03/Why-retirement-living-may-suit-you-better-than-receiving-support-at-home\"><strong>Blog:  Why retirement living may suit you better than receiving support at home</strong></a><strong><br></strong><a target=\"_blank\" href=\"https://chartwell.com/en/blog/2019/01/essential-conversations-with-dr-amy-what-is-blocking-you-from-making-a-lifestyle-change\"><strong>Essential  Conversations with Dr. Amy: What is blocking you from making a lifestyle change  for the better?</strong></a></p><h4>Use the buttons below to print or email your results:</h4>",
+					"FR": "<p class=\"lead\"><strong>Il  s&rsquo;agit du moment idéal pour adopter le mode de vie en résidence. Vous pourriez  entamer des recherches et visiter quelques résidences dans votre région. Les courts séjours sont une  autre option qui vous permettrait d&rsquo;expérimenter ce style de vie, sans  engagement.</strong></p><p>Vous êtes prêt à passer au  mode de vie sans tracas offert par les résidences pour retraités. L&rsquo;éventail de  services pratiques&nbsp;– comme le choix de repas sains et savoureux,  l&rsquo;entretien ménager, la sécurité 24&nbsp;heures sur&nbsp;24 et les services de  santé et de bien-être personnalisés&nbsp;– est peut-être ce qu&rsquo;il vous faut  pour maintenir ou retrouver votre tranquillité d&rsquo;esprit. L&rsquo;accès à des  activités sociales et de loisir est peut-être aussi la solution pour vivre la  retraite active et stimulante que vous méritez.</p><p>Que vous soyez un retraité  actif en quête d&rsquo;un mode de vie autonome et de quelques services ou que vous  ayez besoin de plus d&rsquo;aide au quotidien pour vivre convenablement, Chartwell  propose différents modes de vie conçus pour répondre aux préférences de chacun.</p><p><strong>Découvrez  la vie dans une résidence pour retraités Chartwell dès aujourd&rsquo;hui en visitant  la rubrique  </strong><a target=\"_blank\" href=\"https://chartwell.com/fr/aidez-moi-à-choisir/explorez-les-options\"><strong>Aidez-moi  à choisir</strong></a><strong> de notre site Web.</strong></p><p><strong><em>Autres ressources qui  pourraient vous intéresser…</em></strong></p><p><a target=\"_blank\" href=\"https://chartwell.com/-/media/Files/guides/self/chartwell-explorons-la-vie-en-rsidence-guide.pdf?la=fr\"><strong>Guide <em>Explorons la vie en résidence</em></strong></a><a target=\"_blank\" href=\"https://chartwell.com/fr/blogue/2019/03/les-avantages-de-la-vie-en-résidence-par-rapport-aux-services-de-soutien-à-domicile\"><strong><br>Blogue&nbsp;:  Les avantages de la vie en résidence par rapport aux services de soutien à  domicile</strong></a><strong><br></strong><a target=\"_blank\" href=\"https://chartwell.com/fr/blogue/2019/01/dre-amy-qu’est-ce-qui-vous-empêche-d’apporter-un-changement-pour-améliorer-votre-mode-de-vie\"><strong>Conversations  essentielles avec Dre Amy&nbsp;: Qu&rsquo;est-ce qui vous empêche  d&rsquo;apporter un changement pour améliorer votre mode de vie?</strong></a></p><h4>Cliquez sur les boutons ci-dessous pour imprimer vos résultats ou les recevoir par courriel</h4>"
+				}
+			},
+		]
+	};
+</script>
+<script src="~/Assets/js/questionnaires/questionnaires.js"></script>

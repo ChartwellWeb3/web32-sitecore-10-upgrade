@@ -1,0 +1,22 @@
+﻿@model Chartwell.Foundation.Models.RegionalContactModel
+@using Sitecore.Mvc.Analytics.Extensions
+@using Chartwell.Foundation.utility
+
+@Html.Sitecore().VisitorIdentification()
+@{
+  ChartwellUtiles ViewUtil = new ChartwellUtiles();
+  var conf = ViewUtil.GetEndUserMessageDetails().Fields["Contact Form Confirmation Message"].Value;
+}
+
+@if (Model != null && !string.IsNullOrEmpty(Model.FirstName) && !Model.SendEmailError)
+{
+  <div class="resFormConfirmation">
+    @*<h4><strong>@Model.ContactUsConfirmMsg1</strong></h4>
+      <p>@Model.ContactUsConfirmMsg2</p>
+      <br />
+      @Model.PVConfirmationMsg*@
+
+
+    @Html.Raw(HttpUtility.HtmlDecode(@conf))
+  </div>
+}

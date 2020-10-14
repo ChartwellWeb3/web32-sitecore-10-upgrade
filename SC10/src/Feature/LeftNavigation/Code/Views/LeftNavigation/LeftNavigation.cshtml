@@ -1,0 +1,81 @@
+﻿@using Sitecore.Mvc
+
+@model Chartwell.Foundation.Models.LeftNavigationModel
+@{
+  Sitecore.Links.UrlOptions options = new Sitecore.Links.UrlOptions();
+
+  options.LanguageEmbedding = Sitecore.Links.LanguageEmbedding.Always;
+  options.LanguageLocation = Sitecore.Links.LanguageLocation.FilePath;
+  options.UseDisplayName = true;
+}
+
+
+  <div class="hidden-print d-flex flex-column flex-md-row justify-content-center" role="group" aria-label="Property Navigation" id="PropertyNavigation">
+    @foreach (var item in Model.Children)
+    {
+
+      if (@item["Title"].ToLower() != "contact us" && @item["Title"].ToLower() != "nous joindre")
+      {
+        <div class="d-flex flex-row flex-sm-column flex-md-row align-content-start flex-wrap ml-lg-2 mr-lg-2 propNavItem @item["Title"].Replace(" ", "")">
+          @if (@item["Title"].ToLower() != "map" && @item["Title"].ToLower() != "carte")
+          {
+            <a class="d-flex flex-column" id="lnk-@item.DisplayName.Replace(" ", "")" href="@Sitecore.Links.LinkManager.GetItemUrl(@item, options)">
+              <span class="@item["Icon"] align-content-center align-items-center"></span>
+              <span class="propertySection">@item["Title"]</span>
+            </a>
+          }
+          else
+          {
+            <a class="d-flex flex-column" id="lnk-@item.DisplayName.Replace(" ", "")" target='_blank' href="@Model.PropertyLocationUrl">
+              <span class="@item["Icon"] align-content-center align-items-center"></span>
+              <span class="propertySection">@item["Title"]</span>
+            </a>
+          }
+        </div>
+      }
+    }
+    <br />
+  </div>
+
+
+<script>
+  $(function () {
+    var currentLocation = decodeURI(location.pathname.split("/")[pathlength - 1]).toLowerCase();
+    var pathlength = location.pathname.split("/").length;
+    var pathid = "lnk-" + decodeURI(location.pathname.split("/")[pathlength - 1]).toLowerCase();
+    console.log(pathid);
+    $(".propNavItem").removeClass('active');
+    $('#' + pathid).parent('div.propNavItem').addClass('active');
+
+    /*
+    if (pathid == "lnk-overview") {
+      $('#' + pathid).parent('div').removeClass('btn-default');
+      $('#' + pathid).parent('div').addClass('active');
+      $('#lnk-aperçu').parent('div').removeClass('btn-default');
+      $('#lnk-aperçu').parent('div').addClass('active');
+    }
+
+    if ($('#' + pathid).parent('div').hasClass('btn-default')) {
+      $('#' + pathid).parent('div').removeClass('btn-default');
+      $('#' + pathid).parent('div').addClass('active');
+    }
+    */
+
+
+  });
+
+</script>
+@*
+  <div>
+
+    @if (@Model.isEventDisplay)
+    {
+      <p>
+        @Html.Sitecore().Field("Property Special Events", @Model.InnerItem)
+
+
+      </p>
+
+    }
+
+  </div>*@

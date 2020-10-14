@@ -1,0 +1,24 @@
+@import "../../../node_modules/bootstrap/dist/css/bootstrap";
+//@import "./vendor/bootstrap-3.3.7/_bootstrap.scss";
+//@import "./vendor/bootstrap-theme.3.3.7.min.scss";
+
+@import "./vendor/fontawesome-5.7.2/fontawesome.scss";
+@import "./vendor/fontawesome-5.7.2/solid.scss";
+@import "./vendor/fontawesome-5.7.2/regular.scss";
+@import "./vendor/fontawesome-5.7.2/brands.scss";
+
+@import "../../../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker";
+@import "../../../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3";
+
+@import "../../../node_modules/baguettebox.js/dist/baguetteBox"; // 1.11.0
+
+@import "./vendor/tabs-to-accordion.scss";
+
+//some pointing to icon assets
+.ui-widget-header .ui-icon {
+  background-image: url(https://code.jquery.com/ui/1.12.1/themes/base/images/ui-icons_444444_256x240.png);
+}
+
+
+
+

@@ -1,0 +1,18 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{
+  var itemName = string.Empty;
+  var itemTextID = string.Empty;
+  var itemText = string.Empty;
+  var footerItemName = string.Empty;
+}
+
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<header id="PageHeader" class="cxMobilePageHeader">
+  <a href='@Url.Action("Index", "StaticPages", new { PartialItemUrlText = @Sitecore.Globalization.Translate.Text("Home"), StaticLanguage = Model.Item.Language.ToString() }, null)' class="logoEn" id="logo">
+    <img src="~/Assets/Images/Layout/mobile-logo.svg" alt="Chartwell Logo" />
+  </a>
+  <a class="emphasis btn btn-primary" id="navBarCTA" data-scroll=data-scroll href="#scenariosSlide">@Html.Sitecore().Field("Mobile Navbar Link Text")</a>
+</header>
+

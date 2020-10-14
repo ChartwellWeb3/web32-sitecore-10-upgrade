@@ -1,0 +1,23 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{}
+@Html.Sitecore().Placeholder("Grid.Above")
+<!-- 3 column grid -->
+  <div class="container-fluid resContainerUp" id="mainBlock">
+    <div class="row" id="mainRow">
+      <div class="col-sm-12 col-md-3 col-lg-2 leftContainer">
+        @Html.Sitecore().Placeholder("Grid.Left")
+      </div>
+      <div class="col-sm-12 col-md-5 col-lg-6 moveUpArea">
+        @Html.Sitecore().Placeholder("Grid.BreadCrumb")
+        @Html.Sitecore().Placeholder("Grid.Center")
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4 rightContainer">
+        @Html.Sitecore().Placeholder("Grid.Right")
+      </div>
+    </div>
+    @Html.Sitecore().Placeholder("Grid.Below")
+    @Html.Sitecore().Placeholder("Grid.12")
+  </div>
+@Html.Sitecore().Placeholder("Grid.Nearby")

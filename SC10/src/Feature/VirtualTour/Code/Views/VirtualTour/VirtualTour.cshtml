@@ -1,0 +1,57 @@
+﻿@model Chartwell.Foundation.Models.VirtualTourModel
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Data
+@using Sitecore.Mvc.Analytics.Extensions
+
+@Html.Sitecore().VisitorIdentification()
+
+  <div id="PropertyDetailsContainer" class="d-sm-flex flex-sm-row">
+
+    <div id="PropertyNavigationContainerMobile" class="align-items-sm-stretch">@Html.Sitecore().Placeholder("Property.NavigationMobile")</div>
+
+    <div id="PropertyDetails">
+      <div id="PropertyHeader" style="text-align: center">
+        @Html.Sitecore().Placeholder("Property.ResidenceImageheader")
+        <h1 class="resName PropertyName">@Html.Sitecore().Field("Property Name", @Model.InnerItem) </h1>
+        <address class="PropertyAddress">
+          <span class="fas fa-map-marker-alt color-primary"></span> @Model.PropertyFormattedAddress
+        </address>
+      </div>
+      <div id="PropertyNavTop"><!-- do not delete. Used to calculate offset --></div>
+      <div id="PropertyNavigationContainer" class="sticky-top">@Html.Sitecore().Placeholder("Property.Navigation")</div>
+
+
+      <div class="d-flex propertyLayout" id="mainBlock">
+        <div class="row" id="mainRow">
+          <div class="col-sm-12 col-md-5 col-lg-8 tabletFullWidth">
+            <section class="section">
+              <h2 class="font-weight-bolder mt-0 pt-3 pb-3 mb-2 border-bottom text-center lead">@Model.PropertyTagLine</h2>
+
+              <div class="embed-responsive embed-responsive-16by9"> <iframe id="FramePropVideo" class="embed-responsive-item" src='https://www.youtube.com/embed/@Model.VideoLink?rel=0&iv_load_policy=3&enablejsapi=1' allowFullScreen=""></iframe> </div>
+
+            </section>
+
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4 rightContainer deviceAbsoluteHide">
+            @Html.Sitecore().Placeholder("Grid.Right")
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+

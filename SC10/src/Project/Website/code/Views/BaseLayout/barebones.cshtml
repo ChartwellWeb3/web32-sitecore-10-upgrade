@@ -1,0 +1,47 @@
+@{
+  Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8" />
+  @Html.Sitecore().Placeholder("Page.SEO")
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-192x192.png" sizes="192x192" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-32x32.png" sizes="32x32" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  @Html.Sitecore().Field("css")
+  <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+  @if (!(Sitecore.Globals.ServerUrl).Contains("local"))
+  {
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-56FVJBX');</script>
+    <!-- End Google Tag Manager -->
+  }
+
+  <script>
+  var ChartwellGlobalLang = '@Model.Item.Language.Name';
+  </script>
+  <script src="~/Assets/js/vendor.js?v=chart_1601589097049"></script>
+</head>
+<body class="cwBody @Model.Item.Language.Name">
+  @Html.Sitecore().Placeholder("Page.landingPageBody")
+  <div id="generalContactFormContainer" class="fullhide">
+    @Html.Sitecore().Placeholder("Page.ContactForm")
+  </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿@model Chartwell.Foundation.Models.InfectionProtocolModel
+@using Chartwell.Foundation.utility
+
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Analytics.Extensions
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Data
+
+@Html.Sitecore().VisitorIdentification()
+
+<div id="PropertyDetailsContainer" class="d-sm-flex flex-sm-row">
+  <div id="PropertyNavigationContainerMobile" class="align-items-sm-stretch">@Html.Sitecore().Placeholder("Property.NavigationMobile")</div>
+  <div id="PropertyDetails">
+    <div id="PropertyHeader" style="text-align: center">
+      @Html.Sitecore().Placeholder("Property.ResidenceImageheader")
+      <h1 class="resName PropertyName">@Html.Sitecore().Field("Property Name", @Model.InnerItem)</h1>
+      <address class="PropertyAddress">
+        <span class="fas fa-map-marker-alt color-primary"></span> @Model.PropertyFormattedAddress
+      </address>
+    </div>
+    <div id="PropertyNavTop"><!-- do not delete. Used to calculate offset --></div>
+    <div id="PropertyNavigationContainer" class="sticky-top">@Html.Sitecore().Placeholder("Property.Navigation")</div>
+
+
+    <div class="d-flex propertyLayout" id="mainBlock">
+      <div class="row" id="mainRow">
+        <div class="col-sm-12 col-md-5 col-lg-8 tabletFullWidth">
+          <section class="section" id="SafetyReadMoreContainer">
+            <h2 class="font-weight-bolder mt-3 pt-3 pb-3 mb-2 border-bottom text-center lead">@Model.PropertyTagLine</h2>
+            <h2 class="text-center">@Html.Sitecore().Field("Safety and Outbreak Prevention Title", @Model.InnerItem)</h2>
+
+
+
+            @if (!String.IsNullOrEmpty(Convert.ToString(@Model.SafetyAndOutbreakPreventionYTVideoLink)))
+            {
+            <div class="pull-right hidden-sm hidden-xs inline-img-right paragraphMedia propVideo">
+              <iframe id="FramePropVideo" class="embed-responsive-item" src='https://www.youtube.com/embed/@Model.SafetyAndOutbreakPreventionYTVideoLink?rel=0&iv_load_policy=3&enablejsapi=1' allowFullScreen="" frameborder="0"></iframe>
+            </div>
+            }
+            <p>
+              @Html.Sitecore().Field("Safety and Outbreak Prevention description", @Model.InnerItem)
+            </p>
+</section>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 rightContainer deviceAbsoluteHide">
+          @Html.Sitecore().Placeholder("Grid.Right")
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

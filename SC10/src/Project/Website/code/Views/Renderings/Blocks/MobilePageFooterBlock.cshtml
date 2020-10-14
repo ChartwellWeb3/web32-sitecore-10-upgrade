@@ -1,0 +1,67 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+
+@model RenderingModel
+@{
+  var itemName = string.Empty;
+  var footerItemName = string.Empty;
+}
+
+<div id="socialMediaBar">
+  <ul class="socialBar">
+    <li><a href="https://www.instagram.com/chartwellretirementresidences/" id="iconInstagram" target="_blank"><img src="~/Assets/Images/Layout/social-instagram.png" alt="Chartwell Instagram" /></a></li>
+    <li><a href="https://www.google.ca/search?q=Chartwell+Retirement+Residences+Mississauga" id="iconGooglePlus" target="_blank"><img src="~/Assets/Images/Layout/social-google.png" alt="Chartwell Google PLus" /></a></li>
+    <li><a href="https://www.linkedin.com/company/chartwell-retirement-residences" id="iconLinkedIn" target="_blank"><img src="~/Assets/Images/Layout/social-linkedin.png" alt="Chartwell LinkedIn" /></a></li>
+    <li><a href="https://www.youtube.com/chartwellretirement" id="iconYoutube" target="_blank"><img src="~/Assets/Images/Layout/social-youtube.png" alt="Chartwell Youtube" /></a></li>
+
+    @if (Model.Item.Language.Name == "en")
+    {
+      <li><a href="https://www.facebook.com/chartwellretirement" id="iconFacebook" target="_blank"><img src="~/Assets/Images/Layout/social-facebook.png" alt="Chartwell Facebook" /></a></li>
+    }
+    else
+    {
+      <li><a href="https://www.facebook.com/residenceschartwell/" id="iconFacebook" target="_blank"><img src="~/Assets/Images/Layout/social-facebook.png" alt="Chartwell Facebook" /></a></li>
+    }
+  </ul>
+</div>
+<div id="copyrightFooter" class="text-center">
+  <p>
+    Material Copyright © 2009-2020 | Chartwell Master Care LP
+  </p>
+  <p>
+    @{
+      footerItemName = @Sitecore.Globalization.Translate.Text("Website Terms of Use");
+    }
+    @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Website Terms of Use"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+    |
+    @{
+      footerItemName = @Sitecore.Globalization.Translate.Text("Website Privacy Statement");
+    }
+    @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Website Privacy Statement"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+    |
+    <a href="../../-/media/452EDF85EC134B6DBB3854C611B25E81.ashx">Accessibility</a>
+    |
+    @{
+      footerItemName = @Sitecore.Globalization.Translate.Text("Subscribe");
+    }
+
+    @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Subscribe"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+
+  </p>
+
+</div>
+
+<footer id="PageFooter">
+  <div class="pageFooterHeader">
+    <button class="navbar-toggle collapsed btn btn-primary" id="MobileFooterContactFormShowBtn" data-toggle="collapse" data-parent="#MobileFooterContactForm" data-target="#MobileFooterContactForm" aria-expanded="false">
+      @Sitecore.Globalization.Translate.Text("ContactUsButtonText")
+      <span class="fas fa-chevron-circle-up"></span>
+    </button>
+    <a class="btn btn-warning" id="MobileFooterContactFormPhoneNumber" href="tel:1-855-461-0685"><span class="fas fa-phone"></span><span id="devicePhoneText">1-855-461-0685</span></a>
+  </div>
+
+
+  <div class="collapse navbar-collapse" id="MobileFooterContactForm">
+    @Html.Sitecore().Placeholder("Footer.Contact")
+  </div>
+</footer>

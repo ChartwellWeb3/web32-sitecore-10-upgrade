@@ -1,0 +1,62 @@
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+
+@{
+  var homePageLinkUrl = Request.Url.Scheme + "://" + Request.Url.Host + "/" + Model.Item.Language.Name;
+  var imageSource = Model.Item.Language.Name == "en" ? "/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color.svg" : "/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color-fr.svg";
+  Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  @Html.Sitecore().Placeholder("Page.SEO")
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-192x192.png" sizes="192x192" />
+  <link rel="icon" type="image/png" href="~/Assets/Images/Layout/favicon-32x32.png" sizes="32x32" />
+  <link href="https://fonts.googleapis.com/css?family=Tulpen+One|Roboto|Lato|Montserrat|Open+Sans|Open+Sans+Condensed:300|Quicksand" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  @if (!(Sitecore.Globals.ServerUrl).Contains("s92") && !(Sitecore.Globals.ServerUrl).Contains("local"))
+  {
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-56FVJBX');</script>
+    <!-- End Google Tag Manager -->
+  }
+  <script>
+    var ChartwellGlobalLang = '@Model.Item.Language.Name';
+  </script>
+  <link href="~/Assets/Styles/vendor.css?v=chart_1601589097083" rel="stylesheet" />
+  <link href="~/Assets/Styles/chartwell.css?v=chart_1601589097083" rel="stylesheet" />
+  <link href="~/Assets/Styles/landingpages/styles.css?v=chart_1601589097083" rel="stylesheet" />
+  <script src="~/Assets/js/vendor.js?v=chart_1601589097055"></script>
+  <script src="~/Assets/js/landingpages/scenarioslandingpage.js?v=chart_1601589097055"></script>
+</head>
+<body class="cwBody customPage customPageMobile mobile-view @Model.Item.Language.Name">
+  <header id="navBar" class="navbar navbar-expand navbar-dark flex-row bd-navbar">
+    <a href="@homePageLinkUrl" id="logoLink" class="navbar-brand mr-0">
+      <img id="chartwellLogo" src=@imageSource alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+    </a>
+    <div id="tagline">
+      <span>@Sitecore.Globalization.Translate.Text("Making Peoples Lives Better")</span>
+    </div>
+  </header>
+  <div class="container-fluid">
+    @Html.Sitecore().Placeholder("Page.Body")
+    @Html.Sitecore().Placeholder("Page.SectionsContainer")
+    @Html.Sitecore().Placeholder("Page.footer")
+  </div>
+  <footer id="MobileFooter">
+    @Html.Sitecore().Field("MobileBottomNav")
+  </footer>
+</body>
+</html>

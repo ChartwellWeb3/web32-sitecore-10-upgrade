@@ -1,0 +1,17 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{
+
+}
+@Html.Sitecore().Placeholder("Grid.Above")
+<div class="container-fluid" id="mainBlock">
+  <div class="row border-between">
+    <div class="col col-12 col-sm-12 tabletSingleColumn">
+      @Html.Sitecore().Placeholder("Grid.BreadCrumb")
+      @Html.Sitecore().Placeholder("Grid.Center")
+      @Html.Sitecore().Placeholder("Grid.TabletBlockBelow")
+    </div>
+  </div>
+</div>
+@Html.Sitecore().Placeholder("Grid.Nearby")

@@ -1,0 +1,54 @@
+﻿@model Chartwell.Foundation.Models.PropertySearchModel
+
+<style>
+  #nearResidenceId.nearestResidencesTopRight  {
+    display: inline-block;
+    min-width: 40%;
+    text-align: center;
+    padding-left: 30px;
+    background-image: url('/Assets/images/closest-residence.svg');
+    background-repeat: no-repeat;
+    background-size: auto 30px;
+    color: white;
+    font-size: 18px;
+  }
+</style>
+
+<script>
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(onPositionUpdate);
+  }
+
+  function onPositionUpdate(position) {
+    var Lat = position.coords.latitude;
+    var Lng = position.coords.longitude;
+    var contextLang = $('#Language').val();
+    $.ajax({
+      url: "../../api/sitecore/LocationBasedSearch/LatLngSearch",
+      type: "POST",
+      dataType: "json",
+      data: { Latitude: Lat, Longitude: Lng, LocContextLang: contextLang },
+      success: function (data) {
+        document.getElementById('City').value = data.City;
+        var result = '<a style="color: rgba(141,19,96,0.95); font-size: 18px" href=' + data.PropertyItemUrl + '>' + data.PropertyName + '</a>';
+          //+ '<p>' + data.Latitude + ', ' + data.Longitude + '</p>';
+        $("#nearbyspan").html(result);
+      }
+    });
+  }
+</script>
+
+@if (Model != null)
+{
+  @*@Html.HiddenFor(m => m.Language)
+  @Html.HiddenFor(m => m.ServerRole)*@
+  @Html.HiddenFor(m => m.Latitude)
+  @Html.HiddenFor(m => m.Longitude)
+
+  <div id="nearResidenceId" class="nearestResidencesTopRight">
+    <div id="locDiv" class="text-left">
+      <span> @Sitecore.Globalization.Translate.Text("NearestResidence")</span><br />
+      <span class="closest" id="nearbyspan"><a style="color: rgba(141,19,96,0.95); font-size: 18px" href=@Model.PropertyItemUrl>@Model.PropertyName</a></span>
+    </div>
+  </div>
+}

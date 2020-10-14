@@ -1,0 +1,96 @@
+﻿@model  IEnumerable<Chartwell.Foundation.Models.NearbyResidencesModel>
+
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Data
+@using Sitecore.Mvc.Analytics.Extensions
+
+
+@Html.Sitecore().VisitorIdentification()
+
+@Html.HiddenFor(m => @Model.First().Parent_ContextItemID)
+
+<div class="container-fluid hidden-print pt-4 pb-3" id="nearbyResidences">
+  <div class="row">
+    <div class="col-sm-12 text-center pb-1">
+      <h4>@Sitecore.Globalization.Translate.Text("NearByResidences")</h4>
+    </div>
+  </div>
+  <div class="row d-flex flex-row">
+    <div class="row d-flex flex-row" id="outernearby">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(onNearbyPositionUpdate);
+  }
+
+  function onNearbyPositionUpdate(position) {
+
+    var Lat = position.coords.latitude;
+    var Lng = position.coords.longitude;
+    var ContextItem = $("#Parent_ContextItemID").val();
+    var m = @Html.Raw(Json.Encode(@Model));
+    $.ajax({
+      url: "../../api/sitecore/NearbyResidences/LatLngSearch",
+      type: "POST",
+      dataType: "json",
+      traditional: true,
+      data: { Latitude: Lat, Longitude: Lng, Parent_ContextItemID: ContextItem, nearbyResidencesModels: JSON.stringify(m) },
+        success: function (data) {
+          var result = "";
+          $.each(data, function (i, model) {
+            result +=
+              //'<div class="col-sm-12 col-md-6 col-lg-3 p-sm-2 align-items-stretch d-flex flex-row">' +
+              //'<div class="card chartwell-card m-0 m-md-1 m-lg-3 mb-3 mb-md-2 mb-lg-3 align-items-stretch">' +
+              //'<a href=' + model.PropertyItemUrl + '>' +
+              //'<img src=' + model.NearbyResidencesImage + ' class="card-img-top" alt="' + model.PropertyName + '">' +
+              //'<div class="card-body pb-0 d-flex flex-column cursor-hand">' +
+              //'<h5 class="pb-2 text-center mb-3">' + model.PropertyName + '</h5>' +
+              //'</div>' +
+              //'<div class="panel-body">' +
+              //'<address>' +
+              //'<div class="col-xs-2 col-sm-2 col-md-2">' +
+              //'<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>' +
+              //'</div>' +
+              //'<div class="col-xs-10 col-sm-10 col-md-10">' + model.PropertyFormattedAddress +
+              //'</div>' +
+              //'</address>' +
+              //'</div>' +
+              //'<div class="panel-footer">' +
+              //'<h4><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> ' + model.PhoneNo + '</h4>' +
+              //'<p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Distance: ' + model.Distance + ' km</p>' +
+              //'</div>' +
+              //'</a>' +
+              //'</div>';
+
+              '<div class="col-sm-12 col-md-6 col-lg-3 p-sm-2 align-items-stretch d-flex flex-row">' +
+              '<div class="card chartwell-card m-0 m-md-1 m-lg-3 mb-3 mb-md-2 mb-lg-3 align-items-stretch">' +
+              '<a href=' + model.PropertyItemUrl + '>' +
+              '<img class="card-img-top" src=' + model.NearbyResidencesImage +  ' alt="' + model.PropertyName + '"></a>' +
+              '<div class="card-body pb-0 d-flex flex-column cursor-hand" onclick="self.location.href=' + model.PropertyItemUrl + '">' +
+              '<h5 class="pb-2 text-center mb-3"><a href= ' + model.PropertyItemUrl + '>' + model.PropertyName + '</a></h5>' +
+              '<p class="d-flex flex-row align-items-center" style="line-height:1.35">' +
+              '<span class="fas fa-map-marker-alt ml-2 mr-3 text-secondary"></span>' +
+              '<span class=" text-secondary small">' + model.PropertyFormattedAddress + '</span></p>' +
+              '<p class="d-flex flex-row align-items-center mb-2" style="line-height:1.35">' +
+              '<span class="fas fa-route ml-2 mr-3 text-secondary" aria-hidden="true"></span>' +
+              '<span class=" text-secondary small">Distance: ' + model.Distance + ' km</span></p></div>' +
+              '<div class="card-body pt-0 d-flex flex-row align-items-end">' +
+              '<div class="d-flex flex-column w-100">' +
+              '<a href="tel:' + model.PhoneNo + '"' + 'class="d-flex ml-auto mr-auto mb-2 mt-4 btn btn-outline-primary justify-content-center">' +
+              '<span class="fas fa-phone mr-3"></span>' +
+              '<span>' + model.PhoneNo + '</span></a>' +
+               '<a href=' + model.PropertyItemUrl  + ' class="btn btn-primary ml-auto mr-auto">@Sitecore.Globalization.Translate.Text("View Residence")</a>' +
+              //'<a href=' + model.PropertyItemUrl + 'class="btn btn-primary ml-auto mr-auto"> @Sitecore.Globalization.Translate.Text("View Residence")' + '</a>' +
+              '</div></div></div></div>';
+          });
+          $("#outernearby").html(result);
+      }
+    });
+  }
+</script>
+
+

@@ -1,0 +1,9 @@
+@import "_variables.scss";
+$dottedLineSpacing: 2;
+
+@mixin dotted-line($color: $lightGray, $alignment: 30%) {
+  background-image: radial-gradient(circle, $color ($dottedLineSpacing + px), transparent ($dottedLineSpacing + px));
+  background-position: 0 $alignment;
+  background-size: (($dottedLineSpacing*7) + px) (($dottedLineSpacing*2) + px);
+  background-repeat: repeat-x;
+}

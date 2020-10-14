@@ -1,0 +1,394 @@
+@import "_variables.scss";
+//styling for the error messages
+%error-messages {
+  background-color: $mediumRed;
+  padding: $standardUnit $standardUnit*1.5;
+  border-radius: $standardUnit/2;
+  width: 100%;
+  display: block;
+  margin-top: $standardUnit/2;
+  position: relative;
+  box-shadow: $lowerBoxShadow;
+  text-shadow: $standardBoxShadow;
+  animation-name: fadeInDown;
+  animation-duration: 1.5s;
+
+  &::after {
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: $standardUnit solid transparent;
+    border-right: $standardUnit solid transparent;
+    border-bottom: $standardUnit solid $mediumRed;
+    position: absolute;
+    top: -$standardUnit;
+  }
+}
+
+
+//we extend this for the different forms
+%commonToAllForms {
+  .text-danger {
+    color: white !important;
+  }
+
+  .form-group {
+    margin-bottom: $standardUnit;
+
+    .radio label {
+      display: inline-block;
+    }
+
+    .form-control {
+      height: auto;
+      font-size: $rootfontSizeRem * .85;
+      border: 0px solid transparent;
+      color: black;
+
+      &.input-validation-error {
+        background-color: white;
+        color: $darkRed;
+        border: 1px solid $darkRed;
+
+        &::placeholder {
+          color: $darkRed !important;
+        }
+      }
+    }
+
+    .field-validation-valid.text-danger {
+      opacity: 0;
+    }
+
+    .field-validation-error {
+      @extend %error-messages;
+    }
+  }
+}
+
+label {
+  font-weight: 600;
+}
+
+legend {
+  font-size: 1rem;
+}
+
+//buttons
+.btn { font-weight: bold; }
+
+.btn-primary {
+  background-color: $chartwellPrimary;
+
+  &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active {
+    background-color: $chartwellPrimary;
+  }
+
+  &:focus {
+    background-color: $chartwellDarkPrimary;
+  }
+}
+
+.btn-outline-primary {
+  color: $chartwellPrimary;
+  border-color: $chartwellPrimary;
+
+  &:hover {
+    background-color: $chartwellPrimary;
+    border-color: $chartwellPrimary;
+  }
+}
+//typeahead
+.twitter-typeahead {
+  width: 100%;
+}
+
+.hiddenField {
+  display: none
+}
+
+.tt-menu {
+  &.tt-open {
+    width: 100%;
+    background-color: white;
+
+    .tt-dataset {
+      border-radius: 4px;
+      padding: 0.5vh 1vw;
+      max-height: 100%;
+      overflow: auto;
+      box-shadow: $higherBoxShadow;
+
+      .tt-suggestion {
+        color: $midGray;
+
+        strong.tt-highlight {
+          color: black;
+        }
+      }
+    }
+  }
+}
+//contact form
+#chartwellContactForm, #chartwellResidencesContactForm {
+  @extend %commonToAllForms;
+  padding: 1.25rem;
+  margin-bottom: $standardUnit*4;
+  background-color: $chartwellPrimary;
+  border-radius: $standardUnit;
+  color: white;
+  font-weight: 400;
+  font-size: $rootfontSizeRem * .95;
+
+  input::placeholder, select option, textarea::placeholder {
+    color: black !important;
+  }
+
+  h2, h3, h4, h5, p {
+    color: white;
+  }
+
+  h3 {
+    margin: 0 5px;
+    font-size: $rootfontSizeRem * 1.55;
+  }
+
+  hr {
+    margin: 7px 0;
+    opacity: 0.25;
+  }
+
+  a.phoneNumber {
+    color: $phoneNumberColor;
+    font-weight: 600;
+    letter-spacing: $standardUnit/5;
+  }
+
+  button {
+    color: black;
+    font-weight: 600;
+  }
+}
+.fr {
+  #chartwellContactForm, #chartwellResidencesContactForm {
+    h3 {
+      font-size: $rootfontSizeRem * 1.3;
+    }
+  }
+}
+
+.formIsItTime {
+  @extend %commonToAllForms;
+
+  .field-validation-valid.text-danger {
+    opacity: 0;
+  }
+
+  .field-validation-error {
+    @extend %error-messages;
+    margin-left: -$standardUnit*2;
+  }
+}
+
+#SubmitMsg {
+  @extend %commonToAllForms;
+
+  .field-validation-valid.text-danger {
+    opacity: 0;
+  }
+
+  .field-validation-error {
+    @extend %error-messages;
+    margin: -$standardUnit 0 $standardUnit 0;
+  }
+
+  .form-control {
+    margin-bottom: $standardUnit*3;
+  }
+}
+
+#ratingsForm {
+  @extend %commonToAllForms;
+  input:not(.numberShortField), textarea {
+    border: 1px solid $lightGray !important;
+  }
+
+  .field-validation-valid.text-danger {
+    opacity: 0;
+  }
+
+  .field-validation-error {
+    @extend %error-messages;
+    margin: -$standardUnit 0 $standardUnit 0;
+  }
+
+  .form-control {
+    margin-bottom: $standardUnit*3;
+  }
+}
+
+
+#ui-datepicker-div {
+  background-color: $lighterGray;
+  box-shadow: $higherBoxShadow;
+}
+
+#ContactMsg > .form-group label {
+  display: none;
+}
+
+.resFormConfirmation, .resFormConfirmation h4, .resFormConfirmation p {
+  color: white;
+}
+
+.ui-datepicker-trigger {
+  float: right;
+  display: inline-block;
+  position: relative;
+  top: -27px;
+  left: 28px;
+  border-bottom: none;
+  padding: 3px 3px;
+  border-radius: 4px;
+  border: 1px solid lightGray;
+  cursor: pointer;
+  background-color: rgba(255,255,255,.8);
+}
+
+.ui-datepicker-trigger:hover {
+  background-color: rgba(0,115,188,.5);
+}
+
+.input-group.date {
+  min-height: 26px;
+  margin-bottom: 0.5rem;
+}
+
+#TimeOfDayForVisit {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+
+.resPrintBut a {
+  color: gray;
+}
+
+.resPdfBut a > .glyphicon, .resPrintBut a > .glyphicon {
+  color: #0073bc;
+}
+
+.b2bform, #emailForm, .questionnaireEmailForm {
+  margin-top: 2rem;
+
+  .field-validation-error, .validation-summary-errors {
+    @extend %error-messages;
+    color: white;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+
+
+  .validation-summary-errors:after {
+    display: none;
+
+    &:after {
+      border-left: .5rem solid transparent;
+      border-right: .5rem solid transparent;
+      border-top: .5rem solid #d50000;
+      position: absolute;
+      border-bottom: 0 !important;
+      bottom: -0.5rem;
+      top: auto !important;
+    }
+  }
+
+
+  .alreadyRegistered {
+    text-decoration: underline;
+    cursor: pointer;
+    color: $chartwellPrimary;
+
+    &:hover {
+      text-decoration: none;
+      color: $chartwellSecondary;
+    }
+  }
+}
+
+.b2bform {
+  .validation-summary-errors {
+    display: none !important;
+  }
+}
+
+.row.readonlydatepicker {
+  position: relative;
+  margin: 0 0 1rem 0;
+  padding: 0.5rem 0;
+  background-color: $chartwellSecondary;
+  border-radius: 4px;
+
+  label#personalvisit {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  #dateContainer {
+
+    .input-group-addon {
+      background-color: #f9b215;
+      border: 0px;
+      width: 2.5rem;
+      border-top-right-radius: $standardUnit/2;
+      border-bottom-right-radius: $standardUnit/2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      i,span {
+        color: black;
+        font-size: $standardUnit*3;
+        color: black;
+      }
+    }
+
+    .datepicker {
+      position: absolute;
+      background-color: white;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+
+      .table-condensed {
+        td, th {
+          color: black;
+          font-weight: 600;
+
+          &.disabled {
+            color: #999;
+            font-weight: normal;
+          }
+
+          &.new {
+            color: #777;
+          }
+
+          &.active {
+            color: white
+          }
+        }
+      }
+    }
+  }
+}

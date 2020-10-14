@@ -1,0 +1,70 @@
+﻿@model List<Chartwell.Foundation.Models.TopNavModel>
+@using Sitecore.Mvc
+@using Sitecore.Globalization
+@{
+  string aboutUs = "";
+}
+
+<ul class="nav navbar-nav mr-sm-0 mr-md-auto mt-2 mt-lg-0">
+  @foreach (var topNavParentItem in Model)
+  {
+    if (topNavParentItem.TopNavParentItems == @Sitecore.Globalization.Translate.Text("Blog") || !topNavParentItem.HasChild)
+    {
+      if (topNavParentItem.TopNavParentItems == @Sitecore.Globalization.Translate.Text("Blog"))
+      {
+        <li class="nav-item d-flex flex-row align-items-center blogLink" id="cgtm_BlogLink">
+          <a class="nav-link d-flex flex-row align-items-center" href="@topNavParentItem.TopNavItemUrl" target="@topNavParentItem.TargetBlank" id="MainNav-@Sitecore.Globalization.Translate.Text(topNavParentItem.TopNavParentItems).Replace(" ", "")"><span>@Sitecore.Globalization.Translate.Text(topNavParentItem.TopNavParentItems)</span></a>
+        </li>
+      }
+      else
+      {
+        <li class="nav-item d-flex flex-row align-items-center">
+          <a class="nav-link d-flex flex-row align-items-center" href="@topNavParentItem.TopNavItemUrl" target="@topNavParentItem.TargetBlank" id="MainNav-@Sitecore.Globalization.Translate.Text(topNavParentItem.TopNavParentItems).Replace(" ", "")"><span>@Sitecore.Globalization.Translate.Text(topNavParentItem.TopNavParentItems)</span></a>
+        </li>
+      }
+    }
+    else
+    {
+      if (topNavParentItem.TopNavParentItems.Replace(" ", "") != @Sitecore.Globalization.Translate.Text("About Us").Replace(" ", ""))
+      {
+        <li class="nav-item d-flex flex-row align-items-center dropdown">
+          <a href="#" class="nav-link dropdown-toggle d-flex flex-row align-items-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="MainNav-@Sitecore.Globalization.Translate.Text(topNavParentItem.TopNavParentItems).Replace(" ", "")">
+            <span>@Sitecore.Globalization.Translate.Text(topNavParentItem.TopNavParentItems)</span>
+            <span class="caret"></span>
+          </a>
+          @if (topNavParentItem.TopNavParentItems != Translate.Text("Home") ||
+             topNavParentItem.TopNavParentItems != Translate.Text("Blog") ||
+             topNavParentItem.TopNavParentItems != Translate.Text("contact"))
+          {
+            <ul class="dropdown-menu">
+              @Html.Raw(topNavParentItem.ULClass)
+            </ul>
+          }
+        </li>
+      }
+      else
+      {
+        aboutUs = topNavParentItem.ULClass;
+      }
+    }
+  }
+</ul>
+<ul class="navbar-nav mr-0 mt-2 mt-lg-0 d-flex flex-row align-items-center topBarLangCarrInvest">
+  <li class="nav-item d-flex flex-row align-items-center dropdown @Sitecore.Globalization.Translate.Text("About Us").Replace(" ", "")">
+    <a href="#" class="nav-link dropdown-toggle d-flex flex-row align-items-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="MainNav-@Sitecore.Globalization.Translate.Text("About Us").Replace(" ", "")">
+      <span>@Sitecore.Globalization.Translate.Text("About Us")</span>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-right">
+      @Html.Raw(aboutUs)
+    </ul>
+  </li>
+  <li class="nav-item d-sm-none d-md-flex flex-md-row align-items-center absoluteHideOnSmall">
+    <div class="languageToggle @Sitecore.Context.Language">
+      @Html.Sitecore().Placeholder("Header.right")
+    </div>
+    <input type="hidden" name="session" id="session" />
+  </li>
+</ul>
+
+

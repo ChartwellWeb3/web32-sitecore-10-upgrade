@@ -1,0 +1,45 @@
+﻿@media print {
+  .rdMoreBtn, .rightContainer, .leftContainer {
+    display: none !important;
+  }
+  .moveUpArea.col-lg-7 {
+    width: 90% !important;
+    max-width: 100%;
+    padding: 5%;
+    display: block;
+    position: absolute;
+  }
+  #ReadMoreContainer {
+    max-height: none !important;
+    height: auto;
+  }
+
+
+  .topPhoneBar {
+    display: block !important;
+    margin: auto;
+  }
+
+  .section.section #ReadMoreContent {
+    height: auto;
+    width: 100%;
+  }
+
+
+
+  .questionnaireEmailForm {
+    display: none;
+  }
+
+
+  @media (min-width: 1200px) {
+    .moveUpArea.col-lg-7 {
+      width: 90% !important;
+      max-width: 100%;
+      padding: 5%;
+      display: block;
+      position: absolute;
+    }
+  }
+
+}

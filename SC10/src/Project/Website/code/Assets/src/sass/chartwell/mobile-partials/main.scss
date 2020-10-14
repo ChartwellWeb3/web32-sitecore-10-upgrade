@@ -1,0 +1,819 @@
+﻿@import '../_variables.scss';
+
+body.mobile-view {
+  box-sizing: content-box;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  overflow-x: hidden;
+
+  .absoluteHideOnSmall, .deviceAbsoluteHide {
+    display: none !important;
+  }
+
+  img#googleReviewsTracking, img#chartwellReviewsTracking {
+      max-width: 70%;
+      margin: 0.5rem auto;
+  }
+
+  #lblReviewContent {
+    a {
+      text-align: center;
+    }
+  }
+
+  #PostGrid {
+    display: block;
+    overflow: auto;
+    padding: 0 15px;
+  }
+
+  .paragraphMedia img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  #PostalCodeFieldContainer {
+    display: none;
+  }
+
+  &.fr {
+    .searchBar {
+      #searchLabel {
+        p {
+          @media screen and (max-width: 320px) {
+            margin-top: 0rem;
+          }
+        }
+      }
+    }
+  }
+
+  #FindAResidenceDiv {
+
+    .searchBar {
+      #searchLabel {
+        width: 100%;
+
+        p {
+          text-align: center;
+        }
+      }
+
+      #PostalCodeFieldContainer {
+        display: block;
+      }
+
+      .col-xs-3.residenceSearchformColumn, .col-xs-6.residenceSearchformColumn {
+        width: 25%;
+      }
+
+      .residenceSearchformColumn:last-child {
+        width: 48%;
+      }
+    }
+  }
+
+  #gtm-ResidenceSearch {
+    border-bottom: 1px solid $chartwellDarkPrimary;
+  }
+
+  #mainBlock {
+    padding: 0 1rem;
+    position: relative;
+  }
+
+  hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+
+  .ui-autocomplete {
+    z-index: 9999;
+  }
+
+  .btn {
+    background-image: none;
+  }
+
+  .btn-default {
+    background-color: $lightGray;
+  }
+
+  .btn-primary {
+    background-color: $chartwellPrimary;
+  }
+
+  .btn-success {
+    background-color: $chartwellSecondary;
+    border-color: $chartwellPurple;
+  }
+
+  #PageHeader {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    position: fixed;
+    z-index: 9999;
+    background-color: white;
+    height: 70px;
+    top: 0;
+    box-shadow: $standardBoxShadow;
+
+    #logo {
+      display: flex;
+      flex-basis: 18%;
+      min-width: 60px;
+      border-right: $standardBorder;
+      //border-bottom: $standardBorder;
+      padding: 0 5px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    #mobileNavToggle {
+      flex-basis: 15%;
+      min-width: 60px;
+      padding: 0;
+      align-content: center;
+      display: flex;
+
+
+
+      .navbar-toggle {
+        border: 0;
+        border-right: $standardBorder;
+        //border-bottom: $standardBorder;
+        border-color: $chartwellPrimary;
+        margin: 0;
+        background-color: $chartwellPrimary;
+        width: 100%;
+        height: 100%;
+        float: none;
+        border-radius: 0;
+
+        &:not(.collapsed) {
+          z-index: 2;
+        }
+
+        .fas.fa-bars {
+          font-size: 2.25rem;
+          color: white;
+        }
+
+        &.collapsed {
+          background-color: white;
+          border-color: $lightGray;
+
+          .fas.fa-bars {
+            color: black;
+          }
+        }
+      }
+
+      #globalHeaderNav {
+        position: absolute;
+        top: 69px;
+        left: 0;
+        width: 85vw;
+        background-color: $chartwellPrimary;
+        overflow: visible;
+      }
+
+      .navbar-collapse {
+        box-shadow: $standardBoxShadow;
+        max-height: calc(100vh - 140px);
+        overflow-y: scroll;
+
+        @media screen and (max-device-height: 480px) {
+          max-height: 69vh;
+        }
+
+        .navbar-nav {
+          @media screen and (max-device-height: 480px) {
+            overflow-y: scroll;
+          }
+
+          &.topBarLangCarrInvest {
+            li {
+              flex-grow: 1;
+
+              a:not(#lnkEnglish), a:not(#lnkFrench) {
+                border-left: 0 !important;
+              }
+            }
+          }
+
+          li {
+            padding: 0 4vw;
+
+            a {
+              color: white;
+              text-transform: uppercase;
+              font-size: 1.25rem;
+              padding-left: 5vw;
+              padding-right: 5vw;
+              padding-top: 5px;
+              padding-bottom: 5px;
+              border-bottom: 1px solid rgba(0,0,0,0.15);
+              white-space: normal;
+              flex-grow: 1;
+
+              @media screen and (min-height: 667px) {
+                font-size: 1.25rem;
+                padding-left: 5vw;
+                padding-right: 5vw;
+                padding-top: 2px;
+                padding-bottom: 2px;
+              }
+
+              .caret {
+                margin-left: 0.75rem;
+                transition: all ease 1s;
+                display: inline-block;
+                width: 0;
+                height: 0;
+                vertical-align: middle;
+                border-top: 8px dashed;
+                border-right: 4px solid transparent;
+                border-left: 4px solid transparent;
+                color: white;
+              }
+
+              &:hover, &:focus {
+                background-color: rgba(0,0,0,0.5);
+                color: white;
+
+                .caret {
+                  transform: rotate(180deg);
+                  transition: all ease 1s;
+                }
+              }
+            }
+
+
+            &.dropdown {
+              &.show {
+                a, a:focus, a:hover {
+                  color: white;
+                }
+              }
+
+              a:focus, a:hover {
+                color: $chartwellPrimary;
+              }
+
+              a.dropdown-toggle {
+                &:after {
+                  display: none;
+                }
+              }
+
+              ul.dropdown-menu {
+                padding: 0;
+
+                li {
+                  a {
+                    text-transform: none;
+                    font-size: 1rem;
+                    padding-top: 0.75vh;
+                    padding-bottom: 0.75vh;
+                    border-bottom: $standardBorder;
+                    background-color: $lightestGray;
+                    line-height: 1;
+                    display: block;
+
+
+                    @media screen and (min-height: 667px) {
+                      font-size: 1.25rem;
+                      padding-top: 1.25vh;
+                      padding-bottom: 0.75vh;
+                    }
+                  }
+                }
+
+                &.show {
+                  a, a:focus, a:hover {
+                    color: $chartwellPrimary;
+                  }
+                }
+              }
+
+              ul.dropDown3thLevel {
+                padding: .25vh 5vw .25vh 1vw;
+
+                li {
+                  a {
+                    font-weight: normal;
+                    display: inline-block;
+                    border-bottom: 0;
+                    background-color: white;
+                    padding-top: 0.5vh;
+                    padding-bottom: 0.25vh;
+                    line-height: 1;
+
+                    @media screen and (min-height: 667px) {
+                      font-size: 1.15rem;
+                      padding-top: 1.25vh;
+                      padding-bottom: 0.75vh;
+                    }
+                  }
+                }
+              }
+            }
+
+            ul {
+              li {
+                list-style-type: none;
+                padding-left: 0;
+                padding-right: 0;
+
+                a {
+                  font-weight: bold;
+                  border-bottom: 0;
+                }
+              }
+            }
+
+            .languageToggle {
+              float: right;
+              margin-top: 1vh;
+
+              a.langOption {
+                display: inline-block;
+                padding: 0.5vh 3vw;
+                border: 1px solid rgba(0,0,0,0.25);
+                border-top-color: rgba(255,255,255,0.5);
+                border-left-color: rgba(255,255,255,0.5);
+                float: left;
+                border-radius: 1vw;
+                margin-bottom: 0 !important;
+
+                &:first-child {
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                }
+
+                &:last-child {
+                  border-top-left-radius: 0;
+                  border-bottom-left-radius: 0;
+                }
+              }
+
+              &.en a.langOption.en, &.fr a.langOption.fr {
+                box-shadow: inset 3px 3px 4px rgba(0,0,0,0.5);
+                background-color: rgba(0,0,0,0.15);
+                border-color: rgba(0,0,0,0.25);
+              }
+            }
+
+            &.secondary {
+              a {
+                font-size: 1.15rem;
+                text-transform: none;
+                border-bottom: 0;
+                padding-top: 4px;
+                padding-bottom: 4px;
+              }
+            }
+          }
+        }
+
+        &.collapsing {
+          .nav.navbar-nav {
+            display: none;
+          }
+        }
+      }
+    }
+
+/*    #nearResidenceId.nearestResidencesTopRight {
+      flex-grow: 1;
+      border-right: $standardBorder;
+      //border-bottom: $standardBorder;
+      border-top: 0;
+      margin: 0;
+      align-content: center;
+      display: flex;
+      padding-left: 40px;
+      padding-right: 2vw;
+      padding-top: 0;
+      background-position: 5px 50%;
+
+      &.empty, &.hardEmpty {
+        background-image: none;
+      }
+
+      #locDiv {
+        text-align: left;
+        display: inline-block;
+        margin: auto 0;
+
+        .closest {
+          display: block;
+          width: 100%;
+          padding: 0;
+
+          a {
+            line-height: 1;
+            display: inline-block;
+          }
+        }
+
+        span:first-child, br {
+          display: none;
+        }
+      }
+    }
+*/
+    #mobileSearchButton {
+      flex-basis: 15%;
+      min-width: 60px;
+      //border-right: $standardBorder;
+      //border-bottom: $standardBorder;
+      font-size: 20px;
+      align-content: center;
+      display: flex;
+
+      .searchBar {
+        background-color: transparent;
+        box-shadow: none;
+
+        p {
+          color: white;
+        }
+      }
+
+      .navbar-toggle {
+        margin: auto;
+        float: none;
+        display: block;
+
+        &:not(.collapsed) {
+          background-color: $chartwellPrimary;
+          color: white;
+          border-radius: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+        }
+      }
+    }
+
+    #mobileSearch {
+      position: absolute;
+      top: 69px;
+      width: 82vw;
+      background-color: $chartwellPrimary;
+      right: 0;
+      box-shadow: $standardBoxShadow;
+      padding-bottom: 1rem;
+
+      form {
+        .residenceSearchformColumn {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  #socialMediaBar {
+    padding: 3vh 2vw 1vh;
+    background-color: $lightestGray;
+
+    ul {
+      list-style-type: none;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+      width: fit-content;
+      background-color: $lightestGray;
+
+      li {
+        display: inline-flex;
+        padding: 5px;
+      }
+    }
+  }
+
+  #copyrightFooter {
+    padding: 1vh 2vw;
+    background-color: $lightestGray;
+  }
+
+  #PageFooter {
+    width: 100%;
+    position: fixed;
+    z-index: 99999;
+    background-color: white;
+    bottom: 0;
+    box-shadow: $footerBoxShadow;
+
+    .pageFooterHeader {
+      padding: 1rem;
+      width: fit-content;
+      margin: 0 auto;
+      min-height: 60px;
+      display: flex;
+
+      .btn {
+        margin: 1%;
+        font-size: calc(13px + .5vh);
+        padding: 9px calc(5px + 1vw);
+        font-weight: 600;
+        white-space: nowrap;
+
+        i {
+          margin-left: 0.5rem;
+        }
+
+        &.btn-primary {
+          &:not(.collapsed) {
+            .fa-chevron-circle-up {
+              transform: rotate(180deg);
+              transition: all ease 0.25s;
+            }
+          }
+
+          &.collapsed {
+            .fa-chevron-circle-up {
+              transition: all ease 0.25s;
+            }
+          }
+        }
+
+        &.btn-success {
+          i.fas {
+            transform: rotate(110deg);
+            margin-left: 0rem;
+          }
+        }
+      }
+    }
+
+    #MobileFooterContactForm {
+      max-height: 70vh;
+      overflow-y: scroll;
+      padding: 0;
+      background-color: $chartwellPrimary;
+
+      @media (orientation: landscape) {
+        max-height: 50vh;
+      }
+
+      #chartwellContactForm, #chartwellResidencesContactForm {
+        h3 {
+          &:not(:first-child) {
+            display: none;
+          }
+
+          margin-bottom: 1rem;
+          font-size: 1.25rem;
+        }
+
+        hr {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .fancybox-button--contactForm, .fancybox-button--share {
+    display: none;
+  }
+
+  .fancybox-thumbs-y {
+    padding-bottom: 80px;
+  }
+  //Content stuff
+  .responsive-tabs-container .accordion-link {
+    font-size: 15px;
+  }
+
+  #VideoContainerRelative .sliderContainerAbsolute .sliderTabsWrap .tab-content {
+    padding: 0;
+    border: 0;
+  }
+
+  #VideoContainerRelative .sliderContainerAbsolute .sliderTabsWrap .sliderTitleHeadings h1 {
+    font-size: calc(18px + 1vh);
+  }
+
+  #VideoContainerRelative .sliderContainerAbsolute .sliderTabsWrap .sliderTitleHeadings h3 {
+    font-size: calc(14px + 1vh);
+  }
+
+  #VideoContainerRelative .sliderContainerAbsolute .sliderTabsWrap p {
+    letter-spacing: initial;
+  }
+
+  ol.breadcrumb {
+    padding: 0.5rem 1rem;
+    margin: 0 0 1rem 0;
+    border-bottom: 1px solid #f3f3f3;
+
+    li.breadcrumb-item {
+      display: none;
+      line-height: 1.15;
+      font-size: $smallFontSizeRem;
+
+      &:nth-last-child(-n+4) {
+        display: inline;
+      }
+
+      a {
+        font-weight: normal;
+        color: $midGray2;
+        font-size: $smallFontSizeRem;
+      }
+
+      &.active {
+        a {
+          color: black;
+          font-weight: bold;
+        }
+      }
+
+      &:first-child {
+        display: none;
+      }
+
+      &:before {
+        margin-right: 0;
+        padding-right: 0;
+        display: none;
+      }
+
+      &:after {
+        display: inline-block;
+        padding-left: 0.15rem;
+        padding-right: 0.15rem;
+        color: $lightGray;
+        content: ">";
+      }
+
+      &:last-child:after {
+        display: none;
+      }
+    }
+  }
+
+
+
+  .ContactUs, .Nousjoindre {
+    display: none !important;
+  }
+
+
+
+  .resAddress, .blockquote.resQuote {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+
+
+  .personalizationPastHomes h3.pasthomesToggle {
+    font-size: 1.1rem;
+  }
+
+  .resBottomBar ul li {
+    display: block;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border: $standardBorder;
+    margin: 2px 0;
+    border-radius: 3px;
+
+    i.fas {
+      margin-top: unset;
+      font-size: 1.65rem;
+      width: 6vw;
+
+      &:before {
+        text-align: center;
+        display: block;
+      }
+    }
+  }
+
+  #toolsgallery.row {
+    .col-xs-6, .col-xs-12 {
+      padding: 0;
+      height: 330px;
+
+      a {
+        border-radius: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  #ChartWellBlog #ChartWellBlogBody {
+    .pagination-container {
+      .pagination {
+        flex-wrap: wrap;
+
+        .PagedList-pageCountAndLocation {
+          width: 50%;
+
+          a {
+            border: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .leftContainer {
+    .img-responsive {
+      width: 60%;
+      margin: auto;
+    }
+  }
+
+  #PropertyDetailsContainer {
+    position: relative;
+    padding-left: 20vw;
+  }
+
+  #PropertyNavigationContainerMobile {
+    padding: 0;
+    margin: 0;
+    width: 20vw;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: $lightestGray;
+    border-right: $standardBorder;
+
+    #PropertyNavigation {
+      background-image: none;
+
+      .propNavItem {
+        margin: 0 auto $standardUnit auto;
+
+        a {
+          span.prop-icon, span.glyphicon, span.icomoon {
+            border-radius: 100%;
+            height: 50px;
+            width: 50px;
+            background-color: white;
+            border: 1px solid $lightGray;
+          }
+
+          span.propertySection {
+            width: 100%;
+            font-size: $rootfontSizeRem*.75;
+            margin: 5px auto;
+          }
+        }
+
+        &.active {
+          a {
+            span.prop-icon, span.glyphicon, span.icomoon {
+              background-color: $chartwellSecondary;
+              color: white;
+              border: 1px solid white;
+            }
+
+            span.propertySection {
+              color: $chartwellSecondary;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #PropertyHeader {
+    text-align: center;
+
+    #propertyBackgroundImage {
+      padding-top: 40%;
+    }
+
+    h1.PropertyName {
+      padding: 1rem 2rem 0 2rem;
+      margin-bottom: 0;
+    }
+
+    .PropertyAddress {
+      padding: $standardUnit;
+      font-size: $rootfontSizeRem;
+      margin-bottom: 0;
+    }
+  }
+
+  #PropertyDetails {
+    #mainBlock {
+      padding: $standardUnit $standardUnit*2;
+    }
+  }
+}

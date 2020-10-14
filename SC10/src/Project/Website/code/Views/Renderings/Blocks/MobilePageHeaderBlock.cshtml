@@ -1,0 +1,43 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{
+
+  var homePageLinkUrl = Request.Url.Scheme + "://" + Request.Url.Host + "/" + Model.Item.Language.Name;
+  var imageSource = Model.Item.Language.Name == "en" ? "/Assets/Images/Layout/mobile-logo.svg" : "/Assets/Images/Layout/mobile-logo.svg";
+  var careersLink = Model.Item.Language.Name == "en" ? "https://careersatchartwell.com/explore" : "https://careersatchartwell.com/fr/explorez";
+  var investorsLink = Model.Item.Language.Name == "en" ? "https://investors.chartwell.com/company-profile/" :
+                                                         "https://investors.chartwell.com/French/Profil-de-la-socit/";
+}
+
+<header id="PageHeader" class="accordion-group">
+  <a href="@homePageLinkUrl" class="logoEn" id="logo">
+    <img src=@imageSource alt="Chartwell Logo" />
+  </a>
+
+  <div id="mobileNavToggle">
+    <button type="button" class="navbar-toggle collapsed mobileToggle" data-toggle="collapse" data-parent="#PageHeader" data-target="#globalHeaderNav" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <i class="fas fa-bars"></i>
+    </button>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse @Sitecore.Context.Language" id="globalHeaderNav">
+      @Html.Sitecore().Placeholder("Page.TopNav")
+      
+      <ul class="nav navbar-nav pb-2 clearfix">
+        <li>
+          <div class="languageToggle @Sitecore.Context.Language">
+            @Html.Sitecore().Placeholder("Header.Language")
+          </div>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+
+  </div>
+
+  @Html.Sitecore().Placeholder("Header.ClosestResidence")
+</header>
+@Html.Sitecore().Placeholder("Page.Banner")
+<div id="gtm-ResidenceSearch">
+  @Html.Sitecore().Placeholder("Page.MobileNavSearch")
+</div>

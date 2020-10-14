@@ -1,0 +1,315 @@
+﻿@import '../_variables.scss';
+body.tablet-view {
+
+  .deviceAbsoluteHide {
+    display: none !important;
+  }
+
+  .tabletFullWidth {
+    width: 100% !important;
+    max-width: 100%;
+    flex-grow: 1;
+  }
+
+  .tabletSingleColumn {
+    padding: 2rem 4rem;
+    overflow-x: hidden;
+  }
+
+  #mainBlock {
+    padding-top: 0;
+  }
+
+  img.auto-width {
+    width: auto;
+  }
+
+  #VideoContainerRelative {
+    width: 100%;
+    min-height: 0;
+    max-height: none;
+
+    @media (orientation: landscape) {
+      padding-bottom: 56.25%;
+    }
+  }
+
+
+  #toolsgallery {
+    padding: 1rem 0;
+    overflow: auto;
+    margin: 1rem 0;
+
+    div.tool-column {
+      overflow: hidden;
+      height: auto;
+      padding-left: 5px;
+      padding-right: 5px;
+
+      a {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+
+
+  .breadcrumb {
+    margin-bottom: 1rem;
+  }
+
+  #PropertyHeader {
+    text-align: center;
+
+    #propertyBackgroundImage {
+      padding-top: 25%;
+    }
+  }
+
+  .topBarLangCarrInvest {
+    width: auto !important;
+
+    .languageToggle {
+      margin-left: 0.25rem;
+    }
+  }
+
+  #PropertyDetails, #mainRow {
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  #PropertyNavigation {
+    margin-bottom: 0;
+
+    .propNavItem {
+      margin: 0 auto $standardUnit auto;
+
+      a {
+        span.glyphicon, span.icomoon {
+          border-radius: 100%;
+          height: 40px;
+          width: 40px;
+          background-color: $lightGray;
+        }
+
+        span.propertySection {
+          width: auto;
+          font-size: $rootfontSizeRem*.7;
+          margin: 5px auto;
+
+          @media screen and (orientation: portrait) {
+            max-width: 65px;
+          }
+        }
+      }
+
+      &.active {
+        a {
+          span.glyphicon, span.icomoon {
+            background-color: $chartwellSecondary;
+            color: white;
+          }
+
+          span.propertySection {
+            color: $chartwellSecondary;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+
+  .corpContactUsRightPanel {
+    width: 33%;
+    flex: none;
+    padding-bottom: 3rem;
+  }
+
+  .row.readonlydatepicker {
+    flex-grow: 1;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .logoEn img {
+    width: 38px !important;
+  }
+
+  nav#globalHeaderNav.navbar.navbar-inverse .collapse .navbar-nav > li > a {
+    padding-left: .15rem;
+    padding-right: .25rem;
+    height: 100%;
+  }
+
+  nav#globalHeaderNav.navbar.navbar-inverse .collapse {
+
+    .navbar-nav > li > a {
+      > span:not(.caret) {
+        white-space: normal;
+        font-size: .9em;
+        letter-spacing: 0;
+        line-height: 1.1;
+      }
+
+      @media screen and (max-width: $lg-BP) {
+        &#MainNav-Nosservices, &#MainNav-InfoCOVID-19 {
+          > span:not(.caret) {
+            max-width: 65px;
+          }
+        }
+
+        > span:not(.caret) {
+          max-width: 85px;
+        }
+      }
+
+      @media screen and (min-width: $sm-BP) {
+        > span:not(.caret) {
+          font-size: 1.15em;
+        }
+      }
+
+      @media screen and (max-width: $xs-sm-BP+1) {
+        &#MainNav-Nosservices, &#MainNav-InfoCOVID-19 {
+          > span:not(.caret) {
+            max-width: 50px;
+          }
+        }
+
+        > span:not(.caret) {
+          max-width: 62px;
+        }
+
+        > span.caret {
+        }
+      }
+    }
+  }
+
+  nav#globalHeaderNav.navbar.navbar-inverse .navbar-nav > li ul.dropdown-menu li a {
+    font-size: 0.9em;
+  }
+
+
+  nav#globalHeaderNav.navbar.navbar-inverse .collapse .navbar-nav li a#MainNav-HelpMeChoose {
+    min-width: 80px;
+  }
+
+  nav#globalHeaderNav.navbar.navbar-inverse .navbar-nav > li.dropdown .caret {
+  }
+
+  #socialMediaBar {
+    padding: 3vh 2vw 1vh;
+    background-color: $lightestGray;
+
+    ul {
+      list-style-type: none;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+      width: fit-content;
+      background-color: $lightestGray;
+
+      li {
+        display: inline-flex;
+        padding: 5px;
+      }
+    }
+  }
+
+  #copyrightFooter {
+    padding: 1vh 2vw 5rem;
+    background-color: $lightestGray;
+  }
+
+  #PageFooter {
+    width: 100%;
+    position: fixed;
+    z-index: 99999;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    box-shadow: $tabletFooterBoxShadow;
+
+    .pageFooterHeader {
+      padding: 0.25rem;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+
+      h4 {
+        flex-grow: 1;
+        margin-bottom: 0;
+      }
+
+      .btn {
+        margin: 0.25rem;
+        font-size: calc(13px + .5vh);
+        padding: 9px calc(5px + 1vw);
+        font-weight: 600;
+        white-space: nowrap;
+
+        i {
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+
+          .fas.fa-phone {
+            transform: rotate(110deg);
+          }
+        }
+
+        &.btn-primary {
+          &:not(.collapsed) {
+            .fa-chevron-circle-up {
+              transform: rotate(180deg);
+              transition: all ease 0.25s;
+            }
+          }
+
+          &.collapsed {
+            .fa-chevron-circle-up {
+              transition: all ease 0.25s;
+            }
+          }
+        }
+
+        &.btn-success {
+          i.fas {
+            transform: rotate(110deg);
+            margin-left: 0rem;
+          }
+        }
+      }
+    }
+
+    #MobileFooterContactForm {
+      max-height: 70vh;
+      overflow-y: scroll;
+      padding: 0;
+      background-color: $chartwellPrimary;
+
+      @media (orientation: landscape) {
+        max-height: 50vh;
+      }
+
+      #chartwellContactForm, #chartwellResidencesContactForm {
+        h3 {
+          &:not(:first-child) {
+            display: none;
+          }
+
+          margin-bottom: 1rem;
+          font-size: 1.25rem;
+        }
+
+        hr {
+          display: none;
+        }
+      }
+    }
+  }
+}

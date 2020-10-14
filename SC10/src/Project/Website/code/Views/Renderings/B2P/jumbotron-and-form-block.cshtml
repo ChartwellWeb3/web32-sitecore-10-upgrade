@@ -1,0 +1,81 @@
+﻿@using Sitecore.Mvc
+
+<div class="container" id="SignupFormAndContent">
+  <div class="row">
+    <div class="col-md-7 col-xs-12 contentSide">
+      @Html.Sitecore().Field("Content Top")
+    </div>
+    <div class="col-md-5 col-xs-12 formSide">
+      @Html.Sitecore().Placeholder("Page.RegistrationForm")
+      <div id="emailForm" style="display: none; clear: both;">
+        @Html.Sitecore().Placeholder("Page.EmailSearchForm")
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  $(function () { //ready
+    $('body').addClass("signUpForm");
+
+    $('.industryOther').hide();
+
+    $('.industry').change(function () {
+      if ($(this).val() == 'Other') {
+        $('.industryOther').show()
+      } else {
+        $('.industryOther').hide()
+      }
+    });
+
+    $(".alreadyRegistered").click(function () {
+      $("#emailForm").toggle();
+    });
+  });
+   //-----------Override unobtrusive error msgs-----------------------------
+
+    if ($('body').hasClass('fr')) {
+
+      ReplaceUnObRequiredText('.b2bform:first-child .form-control', 'fr');
+      rebindvalidators('.b2bform:first-child')
+
+      ReplaceUnObRequiredText('#emailForm form:first-child .form-control', 'fr');
+      rebindvalidators('#emailForm form:first-child')
+    }
+    //else {
+    //  ReplaceUnObRequiredText('.b2bform:first-child .form-control', 'en');
+    //  rebindvalidators('.b2bform:first-child')
+
+    //  ReplaceUnObRequiredText('#emailForm form:first-child .form-control', 'en');
+    //  rebindvalidators('#emailForm form:first-child')
+    //}
+
+    function rebindvalidators(form) {
+      var $form = $(form);
+      $form.unbind();
+      $form.data("validator", null);
+      $.validator.unobtrusive.parse($form);
+      $form.validate($form.data("unobtrusiveValidation").options);
+    }
+
+    function ReplaceUnObRequiredText(formEl, lang) {
+      $(formEl).each(function () {
+        if (typeof $(this).attr('data-val-required') !== 'undefined') {
+          var id = '#' + $(this).attr('id');
+          if (lang == 'fr') {
+            ReplaceTextHelper(id, 'Ville requis', 'Ville requise');
+            ReplaceTextHelper(id, 'Please enter a valid email address', "S'il vous plaît, mettez une adresse email valide")
+          }
+          
+        }
+      })
+    }
+
+    function ReplaceTextHelper(id, target, replaceText) {
+      $(id).attr('data-val-required', $(id).attr('data-val-required').toString().replace(target, replaceText));
+
+    }
+</script>

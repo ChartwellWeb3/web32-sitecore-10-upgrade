@@ -1,0 +1,68 @@
+﻿@model Chartwell.Foundation.Models.WellnessServiceModel
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Extensions
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Data
+@using Sitecore.Mvc.Analytics.Extensions
+
+@Html.Sitecore().VisitorIdentification()
+
+@{
+  var itemid = @Model.PropertyGuid;
+}
+
+<div id="PropertyDetailsContainer" class="d-sm-flex flex-sm-row">
+
+  <div id="PropertyNavigationContainerMobile" class="align-items-sm-stretch">@Html.Sitecore().Placeholder("Property.NavigationMobile")</div>
+
+  <div id="PropertyDetails">
+    <div id="PropertyHeader" style="text-align: center">
+      <div id="propertyBackgroundImage" style="background-image: url('@Model.BackgroundImage');"></div>
+      <h1 class="resName PropertyName">@Html.Sitecore().Field("Property Name", @Model.InnerItem)</h1>
+      <address class="PropertyAddress">
+        <span class="fas fa-map-marker-alt color-primary"></span> @Model.PropertyFormattedAddress
+      </address>
+    </div>
+    <div id="PropertyNavTop"><!-- do not delete. Used to calculate offset --></div>
+    <div id="PropertyNavigationContainer" class="sticky-top">@Html.Sitecore().Placeholder("Property.Navigation")</div>
+
+    <div class="d-flex propertyLayout" id="mainBlock">
+      <div class="row" id="mainRow">
+        <div class="col-sm-12 col-md-5 col-lg-8 tabletFullWidth">
+          <section class="section">
+            <h2>@Model.WellnessTitle</h2>
+            <!-- Photo Section Start -->
+            @if (!String.IsNullOrEmpty(Convert.ToString(@Html.Sitecore().Field("Wellness Photo", @Model.InnerItem))))
+            {
+              <div class="pull-right hidden-sm hidden-xs inline-img-right paragraphMedia">
+                @Html.Sitecore().Field("Wellness Photo", @Model.InnerItem, new { @class = "large-image", @mw = "800" })
+              </div>
+            }
+            else
+            {
+              <div class="pull-right hidden-sm hidden-xs inline-img-right paragraphMedia">
+                @Html.Sitecore().Field("Thumbnail Image", @Model.TemplateItem, new { @class = "large-image", @mw = "800" })
+              </div>
+            }
+            <!-- Photo Section End -->
+            <p>@Model.WellnessName</p>
+            <ul class="treeList">
+              @*@Html.Sitecore().Field("Wellness Section Description", @Model.InnerItem)*@
+              @using (Html.EditFrame(@itemid.ToString(), "Chartwell Wellness", null, null, null, null))
+              {
+                foreach (Sitecore.Data.Items.Item listItem in @Model.WellnessItem)
+                {
+                  <li> @listItem.Fields["Wellness Name"]</li>
+                }
+              }
+            </ul>
+          </section>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 rightContainer deviceAbsoluteHide">
+          @Html.Sitecore().Placeholder("Grid.Right")
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

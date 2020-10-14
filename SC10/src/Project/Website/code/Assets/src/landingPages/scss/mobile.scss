@@ -1,0 +1,117 @@
+﻿$iphone5-h: 568px;
+$iphone4-h: 480px;
+
+body.customPageMobile.mobile-view {
+
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $defaultFont;
+  }
+
+  a.readMoreLink {
+    display: block;
+    color: white;
+    text-decoration: underline;
+    text-align: center;
+  }
+
+  .readMore {
+    p {
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    h3 {
+      display: none;
+    }
+  }
+
+  #SectionsContainer {
+    .section {
+      padding: 2vh 2vw;
+
+      .text-CTA {
+        margin: 1rem auto;
+      }
+
+      #chartwellContactForm .form-group .form-control {
+        font-size: 1rem;
+        padding: 0.5rem;
+      }
+
+      .stat {
+        cite {
+          margin: 1rem auto;
+
+          em {
+            font-size: 100px;
+            margin-top: -50px;
+          }
+        }
+
+        p.text-center {
+          line-height: 1;
+        }
+      }
+
+      ul.doodleList {
+        padding: 0;
+
+        li {
+          padding-left: 0;
+          background-image: none;
+        }
+      }
+    }
+  }
+
+  .btn.btn-primary {
+    font-size: 1.2rem;
+    line-height: 1.1;
+  }
+
+  .display-2 {
+    font-size: 1.85rem;
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+  }
+
+  .display-5 {
+    font-size: 1.3rem;
+  }
+
+  #navBar {
+    margin-bottom: 0;
+
+    a#logoLink {
+      img {
+        min-height: 35px;
+      }
+    }
+
+    #tagline {
+      color: $secondaryColor;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+    }
+  }
+
+  #MobileFooter {
+    position: sticky;
+    bottom: 0;
+    padding: 0.5rem;
+    background-color: white;
+    text-align: center;
+    box-shadow: -2px -2px 3px rgba(black, 0.1);
+  }
+
+  #chartwellLogo {
+    height: 5vh;
+    width: auto;
+    z-index: 1;
+    float: left;
+  }
+}

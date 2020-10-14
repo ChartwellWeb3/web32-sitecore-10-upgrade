@@ -1,0 +1,62 @@
+﻿@model Chartwell.Foundation.Models.PropertySearchModel
+@using Sitecore.Mvc.Analytics.Extensions
+
+@Html.Sitecore().VisitorIdentification()
+
+@{
+  using (Html.BeginForm(null, null, FormMethod.Post, new { id = "searchBarform" }))
+  {
+    <div class="container-fluid hidden-print" id="SearchForm">
+
+
+      <div class="d-flex flex-row align-items-center">
+
+        <div class="d-none d-md-flex col-md-4">
+          @Html.Sitecore().Placeholder("Header.DesktopTabletClosestResidence")
+        </div>
+        <div class="col-sm-12 col-md-8">
+
+          <div class="d-flex flex-row align-items-center justify-content-end">
+
+            <div class="col-sm-12 col-md-3 col-lg-2 pr-1" id="searchLabel">
+              @Html.HiddenFor(m => m.Language)
+              @Html.HiddenFor(m => m.ServerRole)
+              @Html.HiddenFor(m => m.ContextItemID)
+              <p>@Sitecore.Globalization.Translate.Text("Find a residence")</p>
+            </div>
+            <div class="col-sm-3 pr-1 residenceSearchformColumn">
+              <div class="form-group">
+                @Html.LabelFor(m => m.City, new { @class = "d-none" })
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control citySearchField", placeholder = @Sitecore.Globalization.Translate.Text("City Name") })
+              </div>
+            </div>
+            <div class="col-sm-2 pr-1 residenceSearchformColumn" id="PostalCodeFieldContainer">
+              <div class="form-group" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="@Sitecore.Globalization.Translate.Text("PostalCodeMessage")">
+                @Html.LabelFor(m => m.PostalCode, new { @class = "d-none" })
+                @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control postalCode", placeholder = @Sitecore.Globalization.Translate.Text("Postal Code"), autocomplete = "off" })
+              </div>
+            </div>
+            <div class="col-sm-3 pr-1 residenceSearchformColumn">
+              <div class="form-group">
+                @Html.Label("searchPropertyName", @Sitecore.Globalization.Translate.Text("Residence Name"), new { @class = "d-none" })
+                @Html.TextBoxFor(m => m.PropertyName, new { @class = "form-control residenceSearchField", @id = "searchPropertyName", placeholder = @Sitecore.Globalization.Translate.Text("Residence Name") })
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-1 residenceSearchformColumn">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button type="submit" id="ChartwellSearch" class="btn btn-warning submit" aria-label="@Sitecore.Globalization.Translate.Text("Search")">
+                      <!--span class="btn-label">@Sitecore.Globalization.Translate.Text("Search")</span-->
+                      <span class="fas fa-search" aria-hidden="true" aria-label="@Sitecore.Globalization.Translate.Text("Search")"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- / Search Bar-->
+  }
+}

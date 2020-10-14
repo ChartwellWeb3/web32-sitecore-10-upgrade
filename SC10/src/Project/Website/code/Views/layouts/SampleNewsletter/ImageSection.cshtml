@@ -1,0 +1,34 @@
+﻿@using Sitecore.EmailCampaign.SampleNewsletter
+@using Sitecore.EmailCampaign.SampleNewsletter.Extensions
+@using Sitecore.Mvc
+@using Sitecore.Resources.Media
+@model Sitecore.EmailCampaign.SampleNewsletter.Models.SectionViewModel
+@if (Model == null)
+{
+    if (Sitecore.Context.PageMode.IsExperienceEditor)
+    {
+        <div>Datasource item not set</div>
+    }
+
+    return;
+}
+
+@if (Sitecore.Context.PageMode.IsExperienceEditor)
+{
+    <center style="font-size: 0">
+        <div style="display: block; position: relative; margin: auto;">
+            @Html.Sitecore().ImageField(Templates.SectionContent.Fields.Image, mw: Model.NewsletterOptions.MaxWidth, item: Model.ContentItem)
+            <h3 style="display: block; width: 65%; padding: 20px 2.5%; text-align: center;position: absolute;top: 50%;left: 15%; background-color:rgba(0,0,0,0.35);font-size: 24px; color: white; font-family: @Model.NewsletterOptions.FontFamily">@Html.Sitecore().Field(Templates.SectionContent.Fields.Heading, Model.ContentItem)</h3>        
+        </div>
+    </center>
+}
+else if (Model.ContentItem.FieldHasValue(Templates.SectionContent.Fields.Image))
+{
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td background="@Model.ContentItem.ImageUrl(Templates.SectionContent.Fields.Image, new MediaUrlOptions {MaxWidth = Model.NewsletterOptions.MaxWidth})" height="350" style="background-image: url('@Model.ContentItem.ImageUrl(Templates.SectionContent.Fields.Image, new MediaUrlOptions {MaxWidth = Model.NewsletterOptions.MaxWidth})');background-size:cover" align="center" valign="middle">
+          <h3 style="display: block; width: 65%; padding: 20px 2.5%; text-align: center;background-color:rgba(0,0,0,0.35);font-size: 24px; color: white; font-family: @Model.NewsletterOptions.FontFamily">@Html.Sitecore().Field(Templates.SectionContent.Fields.Heading, Model.ContentItem)</h3>
+        </td>
+      </tr>
+    </table>
+}

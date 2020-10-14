@@ -1,0 +1,8 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+
+<a href='@Url.Action("Index", "StaticPages", new { PartialItemUrlText = @Sitecore.Globalization.Translate.Text("Home"), StaticLanguage = Model.Item.Language.ToString() }, null)' class="logoEn" id="logo">
+  <img src="/Assets/Images/Layout/chart-logo-2014.png" alt=" @Sitecore.Globalization.Translate.Text("Home")">
+</a>
+
+@Html.Sitecore().Placeholder("Page.TopNav")

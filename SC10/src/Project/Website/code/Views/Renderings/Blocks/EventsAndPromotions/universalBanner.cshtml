@@ -1,0 +1,21 @@
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{
+  var item = Sitecore.Context.Database.GetItem("/sitecore/content/Chartwell/Project/UniversalBanner/UniversalBannerPromo");
+}
+@{
+
+  string BannerContent = string.Empty;
+  if (item.Fields["isPromoActive"].Value == "1") // 0 == false
+  {
+    BannerContent = item.Fields["BannerContent"].Value.ToString();
+
+    <div class="container-fluid top-banner" id="OpenHousePromo">
+      <div class="row">
+        <div class="content text-left col-md-12 text-center">
+          @Html.Raw(BannerContent)
+        </div>
+      </div>
+    </div>
+  }
+}

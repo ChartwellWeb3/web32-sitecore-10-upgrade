@@ -1,0 +1,59 @@
+﻿@model  Chartwell.Foundation.Models.PropertyCustomModel
+@using Sitecore.Mvc.Analytics.Extensions
+
+@Html.Sitecore().VisitorIdentification()
+
+@using Sitecore.Mvc
+@{
+  Layout = null;
+}
+
+
+
+  <h1 class="text-center">@Model.SplitterPageTitle</h1>
+  <h2 class="h5 font-weight-normal" style="line-height: 1.5">@Model.SplitterPageDescription</h2>
+
+  <div class="row gridCity SearchResultsGrid splitPageWrap mt-3 d-flex flex-row">
+
+    @foreach (var property in Model.lstProperty)
+    {
+      <div class="col-sm-12 col-md-4 p-sm-2 align-items-stretch d-flex flex-column">
+
+        <div class="card chartwell-card m-0 m-md-1 m-lg-3 mb-3 mb-md-2 mb-lg-3 align-items-stretch">
+
+          @if (String.IsNullOrEmpty(Convert.ToString(@Html.Sitecore().Field("Thumbnail Photo", @property.InnerItem))))
+          {
+            <a href="@property.PropertyItemUrl"><img class="card-img-top" src="@Url.Content("~/Assets/Images/Layout/Chartwell Pembroke Heritage Retirement Residence.jpg")" alt="@property.PropertyName"></a>
+          }
+          else
+          {
+            <a href="@property.PropertyItemUrl">  @Html.Sitecore().Field("Thumbnail Photo", @property.InnerItem, new { @class = "card-img-top", @mw = "1280", @alt = @property.PropertyName, @style = "height: auto" })</a>
+          }
+
+          <div class="card-body pb-0 d-flex flex-column cursor-hand" onclick="self.location.href='@property.PropertyItemUrl'">
+            <h5 class="pb-2 text-center mb-3"><a href="@property.PropertyItemUrl">@property.PropertyName</a></h5>
+            <p class="d-flex mb-3" style="line-height:1.2; flex:1">@Html.Raw(property.USP)</p>
+            <p class="d-flex flex-row align-items-center" style="line-height:1.35">
+              <span class="fas fa-map-marker-alt ml-2 mr-3 text-secondary"></span>
+              <span class=" text-secondary small">@property.PropertyFormattedAddress</span>
+            </p>
+          </div>
+          <div class="card-body pt-0 d-flex flex-row align-items-end">
+            <div class="d-flex flex-column w-100">
+
+
+              <a href="tel:@property.PhoneNo" class="d-flex w-75 ml-auto mr-auto mb-2 btn btn-outline-primary justify-content-center">
+                <span class="fas fa-phone mr-3"></span>
+                <span>@property.PhoneNo</span>
+              </a>
+              <a href="@property.PropertyItemUrl" class="w-75 btn btn-primary ml-auto mr-auto">@Sitecore.Globalization.Translate.Text("View Residence")</a>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    }
+  </div><!-- / .gridCity SearchResultsGrid -->
+

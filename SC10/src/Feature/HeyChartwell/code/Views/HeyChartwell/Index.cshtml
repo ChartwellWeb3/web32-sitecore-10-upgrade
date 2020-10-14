@@ -1,0 +1,207 @@
+﻿<body style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px;">
+  <!-- <uidiv> -->
+
+  <div id="content" style="display:none">
+    <table width="100%">
+      <tr style="display:none;">
+        <td></td>
+        <td><h1 style="font-weight:500;">Test web app Voice Search for Chartwell.com</h1></td>
+      </tr>
+      <tr style="display:none;">
+        <td align="right"><a href="https://docs.microsoft.com/azure/cognitive-services/speech-service/get-started" target="_blank">Subscription</a>:</td>
+        <td><input id="subscriptionKey" type="text" size="40" value="546ac979ed334315bd1acdca971ec31a"></td>
+      </tr>
+      <tr style="display:none;">
+        <td align="right">Region</td>
+        <td><input id="serviceRegion" type="text" size="40" value="westus"></td>
+      </tr>
+      <tr>
+        <td>
+          &nbsp;&nbsp;
+          <button id="startRecognizeOnceAsyncButton" style="margin:10px; border:none; background-color: transparent;"><img src="~/Assets/Images/mic4.ico" style="width:15px;height:20px;" /></button>
+        </td>
+      </tr>
+      <tr style="display:none;">
+        <td style="display:none;" align="right" valign="top">Results</td>
+        <td><textarea id="phraseDiv" style="display: inline-block; width: 312px; height: 20px"></textarea></td>
+      </tr>
+    </table>
+  </div>
+  
+  <!-- </uidiv> -->
+  <!-- <speechsdkref> -->
+  <!-- Speech SDK reference sdk. -->
+  @*<script src="~/Content/CognitiveServices/microsoft.cognitiveservices.speech.sdk.bundle.js"></script>*@
+
+  <!-- </speechsdkref> -->
+  <!-- <authorizationfunction> -->
+  <!-- Speech SDK Authorization token -->
+  <script>
+    // Note: Replace the URL with a valid endpoint to retrieve
+    //       authorization tokens for your subscription.
+    var authorizationEndpoint = $('<a href=".">')[0].href;
+
+    function RequestAuthorizationToken() {
+      if (authorizationEndpoint) {
+        var a = new XMLHttpRequest();
+        a.open("GET", authorizationEndpoint);
+        a.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        a.send("");
+        a.onload = function () {
+          var token = JSON.parse(atob(this.responseText.split(".")[1]));
+          serviceRegion.value = token.region;
+          authorizationToken = this.responseText;
+          subscriptionKey.disabled = true;
+          subscriptionKey.value = "using authorization token (hit F5 to refresh)";
+          console.log("Got an authorization token: " + token);
+        }
+      }
+    }
+  </script>
+  <!-- </authorizationfunction> -->
+  <!-- <quickstartcode> -->
+  <!-- Speech SDK USAGE -->
+  <script>
+    // status fields and start button in UI
+    var phraseDiv;
+    var startRecognizeOnceAsyncButton;
+
+    // subscription key and region for speech services.
+    var subscriptionKey, serviceRegion;
+    var authorizationToken;
+    var SpeechSDK;
+    var recognizer;
+
+    document.addEventListener("DOMContentLoaded", function () {
+      startRecognizeOnceAsyncButton = document.getElementById("startRecognizeOnceAsyncButton");
+      subscriptionKey = document.getElementById("subscriptionKey");
+      serviceRegion = document.getElementById("serviceRegion");
+      phraseDiv = document.getElementById("phraseDiv");
+
+      startRecognizeOnceAsyncButton.addEventListener("click", function () {
+        startRecognizeOnceAsyncButton.disabled = true;
+        phraseDiv.innerHTML = "";
+
+        // if we got an authorization token, use the token. Otherwise use the provided subscription key
+        var speechConfig;
+        if (authorizationToken) {
+          speechConfig = SpeechSDK.SpeechConfig.fromAuthorizationToken(authorizationToken, serviceRegion.value);
+        } else {
+          if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+            alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
+            return;
+          }
+          speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+        }
+
+        speechConfig.speechRecognitionLanguage = "en-US";
+        var audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+        recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
+
+        recognizer.recognizeOnceAsync(
+          function (result) {
+            startRecognizeOnceAsyncButton.disabled = false;
+            phraseDiv.innerHTML += result.text;
+            window.console.log(result);
+            console.log(phraseDiv.innerHTML);
+
+            if (phraseDiv.innerHTML !== "")
+              VoiceDictation(phraseDiv.innerHTML);
+
+            recognizer.close();
+            recognizer = undefined;
+          },
+          function (err) {
+            startRecognizeOnceAsyncButton.disabled = false;
+            phraseDiv.innerHTML += err;
+            window.console.log(err);
+
+            recognizer.close();
+            recognizer = undefined;
+          });
+      });
+
+      if (!!window.SpeechSDK) {
+        SpeechSDK = window.SpeechSDK;
+        startRecognizeOnceAsyncButton.disabled = false;
+
+        document.getElementById('content').style.display = 'block';
+        document.getElementById('warning').style.display = 'none';
+
+        // in case we have a function for getting an authorization token, call it.
+        if (typeof RequestAuthorizationToken === "function") {
+          RequestAuthorizationToken();
+        }
+      }
+    });
+  </script>
+  <!-- </quickstartcode> -->
+  <!-- #region Voice Dictation -->
+
+  <script>
+    function VoiceDictation(phrase) {
+      var cityUrl = $('.locDiv.link').prop("href").toString();
+
+      if (phrase !== "undefined" && phrase !== "") {
+        $.ajax({
+          type: "GET",
+          url: "/api/sitecore/heychartwell/VoiceDictation",
+          data: { com: phrase, cityUrl: cityUrl },
+          contentType: "application/json",
+          dataType: "json",
+          success: function (result) {
+            console.log(result);
+            if (result.cityUrl !== "") {
+              window.location.href = result.cityUrl;
+            }
+            speak(result.phrase);
+          }
+        });
+      }
+      else {
+        speak("Not a valid request");
+      }
+    }
+
+  </script>
+  <!-- #endregion Voice Dictation -->
+  <!-- #region Speach Synthesis -->
+  <script>
+    var synth = window.speechSynthesis;
+
+    var voices = synth.getVoices().sort(function (a, b) {
+      const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
+      if (aname < bname) return -1;
+      else if (aname == bname) return 0;
+      else return +1;
+    });
+    function speak(inputTxt) {
+
+      if (synth.speaking) {
+        console.error('speechSynthesis.speaking');
+        return;
+      }
+      if (inputTxt !== '') {
+        var utterThis = new SpeechSynthesisUtterance(inputTxt);
+        utterThis.onend = function (event) {
+          console.log('SpeechSynthesisUtterance.onend');
+        }
+        utterThis.onerror = function (event) {
+          console.error('SpeechSynthesisUtterance.onerror');
+        }
+        var selectedOption = "Microsoft David Desktop - English (United States)";
+        for (i = 0; i < voices.length; i++) {
+          if (voices[i].name === selectedOption) {
+            utterThis.voice = voices[i];
+            break;
+          }
+        }
+        utterThis.pitch = "1";
+        utterThis.rate = "1";
+
+        synth.speak(utterThis);
+      }
+    }
+  </script>
+  <!-- #endregion -->
+</body>

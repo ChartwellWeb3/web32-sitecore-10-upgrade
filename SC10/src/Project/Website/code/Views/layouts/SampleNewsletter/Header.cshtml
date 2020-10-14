@@ -1,0 +1,63 @@
+﻿@using Sitecore.EmailCampaign.SampleNewsletter
+@using Sitecore.EmailCampaign.SampleNewsletter.Extensions
+@using Sitecore.Mvc
+@using Sitecore.EmailCampaign.Model.Web.Settings
+@model Sitecore.EmailCampaign.SampleNewsletter.Models.SectionViewModel
+@if (Model == null)
+{
+    if (Sitecore.Context.PageMode.IsExperienceEditor)
+    {
+        <div>Datasource item not set</div>
+    }
+
+    return;
+}
+
+@if (Request.QueryString[GlobalSettings.OnlineVersionQueryStringKey] != "1")
+{
+    <div style="padding: 10px; font-size: 10px; font-family: @Model.NewsletterOptions.FontFamily; background-color: #fafafa; color: #666">
+        @Html.Sitecore().Field(Templates.Header.Fields.ViewOnlineHavingTrouble, Model.ContentItem)
+
+        <a href="/?sc_itemid=@Sitecore.Context.Item.ID&sc_lang=@Sitecore.Context.Language.Name&@GlobalSettings.OnlineVersionQueryStringKey=1" class="browserLink" style="color: #666; text-decoration: underline">
+            @Html.Sitecore().Field(Templates.Header.Fields.ViewOnlineClickHere, Model.ContentItem)
+        </a>
+    </div>
+}
+@{
+  var headerImageSource = Sitecore.Context.Language.Name == "en" ? "http://www.chartwell.com/Assets/Images/Layout/chart-logo-2014.png" : "http://www.chartwell.com/Assets/Images/Layout/chart-logo-2014-fr.png";
+}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="@Model.SectionOptions.BackgroundColor" style="background-color: @Model.SectionOptions.BackgroundColor">
+    <tbody>
+        <tr>
+            <td colspan="4" height="20"></td>
+        </tr>
+        <tr>
+            <td colspan="4" align="center" style="padding-bottom: 20px;"><img src="@headerImageSource" alt="@Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" width="225" height="auto"></td>
+        </tr>
+        <tr>
+            <td width="20"></td>
+            <td align="right" style="color: @Model.SectionOptions.LinkColor; text-align: center;" class="headerLinks">
+                @{
+                    var links = Model.ContentItem.Children.Where(c => c.IsDerived(Templates.Link.ID)).ToArray();
+                    foreach (var item in links)
+                    {
+                        @Html.Sitecore().Field(Templates.Link.Fields.Link, item, new
+                   {
+                       style = string.Format("margin: 0 10px; font-weight: bold; font-size: {0}; color: {1}; font-family: {2}; text-decoration: none", Model.NewsletterOptions.ContentFontSize, Model.SectionOptions.LinkColor, @Model.NewsletterOptions.FontFamily)
+                   })
+                        /*if (links.Last() != item)
+                        {
+                            @:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            }*/
+                    }
+                }
+                <a href="tel:18554610685" style="color:white;text-decoration:none;font-weight:bold;padding:0 15px;display:inline-block;height:35px;background-color:#0072bb;border-radius:8px;font-size:16px;line-height:33px" target="_blank">1-855-461-0685</a>
+            </td>
+            <td width="20"></td>
+        </tr>
+        <tr>
+            <td colspan="4" height="20"></td>
+        </tr>
+    </tbody>
+</table>

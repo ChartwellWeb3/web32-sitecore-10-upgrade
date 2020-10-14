@@ -1,0 +1,38 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+
+@{
+  var hasAccess = "";
+  try
+  {
+    hasAccess = HttpContext.Current.Session["hasAccess"].ToString();
+  }
+  catch (Exception)
+  {
+    hasAccess = "false";
+  }
+
+}
+
+<div class="container-fluid" id="headerBackground"></div>
+
+
+@if (hasAccess == "true")
+{
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        @Html.Sitecore().Field("Content Top")
+      </div>
+    </div>
+  </div>
+
+}
+else
+{
+
+  var url = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + '/' + Sitecore.Context.Language.Name + "/Professionals/register";
+
+  HttpContext.Current.Response.Redirect(url);
+
+}

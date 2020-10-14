@@ -1,0 +1,225 @@
+﻿/* Tabs to accordion ------------------------ */
+/*
+ * jQuery Bootstrap Responsive Tabs v2.0.1 | Valeriu Timbuc - vtimbuc.com
+ * github.com/vtimbuc/bootstrap-responsive-tabs
+ * @license WTFPL http://www.wtfpl.net/about/
+ */
+.responsive-tabs-container .tab-pane {
+  margin-bottom: 15px;
+}
+
+.optionsTabs li {
+  margin-bottom: -2px;
+}
+
+.responsive-tabs-container .accordion-link {
+  display: none;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+@media (max-width: 767px) {
+  .responsive-tabs-container.accordion-xs .nav-tabs {
+    display: none;
+  }
+
+  .responsive-tabs-container.accordion-xs .accordion-link {
+    display: block;
+    background-image: url(/Assets/Images/Layout/arrow-angle-down.png);
+    background-position: center right;
+    background-repeat: no-repeat;
+  }
+
+  .accordion-link {
+    overflow: hidden;
+    font-size: 1.4em;
+    vertical-align: middle;
+  }
+
+  .accordion-link img {
+    width: 50px;
+    display: inline-block;
+    float: left;
+    padding-right: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .responsive-tabs-container.accordion-sm .nav-tabs {
+    display: none;
+  }
+
+  .responsive-tabs-container.accordion-sm .accordion-link {
+    display: block;
+  }
+
+  .accordion-link {
+    overflow: auto;
+    font-size: 1.4em;
+    vertical-align: middle;
+  }
+
+  .accordion-link img {
+    width: 50px;
+    display: inline-block;
+    float: left;
+    padding-right: 10px;
+  }
+
+  .accordion-link span {
+    margin-top: 6px;
+    display: block;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .responsive-tabs-container.accordion-md .nav-tabs {
+    display: none;
+  }
+
+  .responsive-tabs-container.accordion-md .accordion-link {
+    display: block;
+  }
+}
+
+@media (min-width: 1200px) {
+}
+
+
+
+.responsive-tabs-container.accordion-lg .nav-tabs {
+  display: none;
+}
+
+.responsive-tabs-container.accordion-lg .accordion-link {
+  display: block;
+}
+
+
+
+.optionsTabs li a {
+  word-wrap: break-word;
+  min-height: 63px;
+  text-align: center;
+  font-size: .8em;
+  background-color: #EDEDED;
+}
+
+.optionsTabs li a img {
+  margin: 0 auto 4px 0px;
+  text-align: left;
+  float: left;
+  display: block;
+  width: 20%;
+  padding-top: 0px;
+}
+
+.optionsTabs li a span {
+  font-size: 12px;
+  padding-top: 0px;
+  font-weight: 400;
+  line-height: 15px;
+  display: block;
+  float: left;
+  text-align: left;
+  width: 80%;
+  padding-left: 10px;
+}
+
+.tab-content {
+  border: 1px solid lightGray;
+  padding: 15px;
+  border-top: none;
+  margin-bottom: 15px;
+}
+
+
+/* / end of offcial styles --*/
+
+/* accordeon Quick Links - PinkNav Left Navigation Start ---------------------------------------------*/
+.leftNavAccordion {
+  margin-top: 8px;
+}
+
+.leftNavAccordion h1, .leftNavAccordion h2, .leftNavAccordion h3, .leftNavAccordion h4, .leftNavAccordion h5, .leftNavAccordion h6 {
+  color: Black;
+}
+
+.leftNavAccordion ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.leftNavAccordion .nav li {
+  border-bottom: 1px solid #eee;
+}
+
+.leftNavAccordion .nav li a {
+  font-size: 16px;
+}
+
+.leftNavAccordion .panel-body {
+  padding: 0;
+}
+
+.leftNavAccordion.panel-group .panel + .panel {
+  margin-top: 0;
+  border-top: 0;
+}
+
+.leftNavAccordion.panel-group .panel {
+  border-radius: 0;
+}
+
+.leftNavAccordion .panel-default > .panel-heading {
+  color: #333;
+  background-color: #fff;
+  border-color: #e4e5e7;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.leftNavAccordion .panel-default > .panel-heading a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.leftNavAccordion .panel-default > .panel-heading a:after {
+  content: "";
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  float: right;
+  transition: transform .25s linear;
+  -webkit-transition: -webkit-transform .25s linear;
+}
+
+.leftNavAccordion .panel-default > .panel-heading a[aria-expanded="true"] {
+  background-color: #eee;
+}
+
+.leftNavAccordion .panel-default > .panel-heading a[aria-expanded="true"]:after {
+  content: "\e113";
+}
+
+.leftNavAccordion .panel-default > .panel-heading a[aria-expanded="false"]:after {
+  content: "\e114";
+}
+
+
+/* / accordeon PinNav Left Navigation End ---------------------------------------------*/

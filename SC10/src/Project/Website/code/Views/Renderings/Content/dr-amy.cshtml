@@ -1,0 +1,53 @@
+@using Newtonsoft.Json
+@using System.Text.RegularExpressions;
+
+@if (Html.Sitecore().Field("PageVids").ToString().Length >= 1)
+{
+  <section class="gallery-block cards-gallery" id="ChartwellVideoGallery">
+    <div class="container">
+      <div class="row photoGallery">
+
+        @foreach (var item in (dynamic)JsonConvert.DeserializeObject(Regex.Replace(@Html.Sitecore().Field("PageVids").ToString(), "<.*?>", String.Empty)))
+        {
+          <div class="col-md-6 col-lg-4 videoItem" data-toggle="modal" data-src="https://www.youtube.com/embed/@item.id" data-target="#videoModal">
+            <div class="card border-0 transform-on-hover">
+              <div class="card-hero-img" style="background-image: url('https://i.ytimg.com/vi/@item.id/hqdefault.jpg');">
+                <!--<img src="https://i.ytimg.com/vi/@item.id/hqdefault.jpg" style="width: 100%; height: auto"/>-->
+                <!--<iframe style="position: absolute; top: 0" width="100%" height="100%" src="https://www.youtube.com/embed/@item.id" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                <i class="fab fa-youtube"></i>
+              </div>
+              <div class="card-body">
+                <h6><a href="#">@item.heading</a></h6>
+                <p class="text-muted card-text">@item.desc</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" tabindex="-1" role="dialog" id="videoModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="" id="gtmGenericVideo" allowscriptaccess="always" allow="autoplay"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" id="previous-button" aria-label="Previous" class="baguetteBox-button"><svg width="44" height="60"><polyline points="30 10 10 30 30 50" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="butt" fill="none" stroke-linejoin="round"></polyline></svg></button>
+    <button type="button" id="next-button" aria-label="Next" class="baguetteBox-button"><svg width="44" height="60"><polyline points="14 10 34 30 14 50" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="butt" fill="none" stroke-linejoin="round"></polyline></svg></button>
+    <button type="button" id="close-button" aria-label="Close" class="baguetteBox-button" data-dismiss="modal"><svg width="30" height="30"><g stroke="rgb(160,160,160)" stroke-width="4"><line x1="5" y1="5" x2="25" y2="25"></line><line x1="5" y1="25" x2="25" y2="5"></line></g></svg></button>
+
+  </div>
+
+  <script type="text/javascript">
+    $(function () {
+      $("#ChartwellVideoGallery").insertAfter("#gallery");
+    });
+
+  </script>
+
+}

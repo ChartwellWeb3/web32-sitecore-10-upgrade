@@ -1,0 +1,28 @@
+﻿$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100);
+
+@mixin generate($prefix, $property) {
+  // List of sizes to generate for each
+  $sizes: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+  $spacing: 5px;
+  // Loop through all of the sizes(we use @for rather than @each, as we want access to the index)
+  @for $i from 1 through length($sizes) {
+    // Get the size for the current index
+    $size: nth($sizes, $i);
+
+    // Create the rule
+    .#{$prefix}#{$spacing * $size} {
+      #{$property}: $spacing * $size;
+    }
+  }
+}
+
+@include generate(marginTop, margin-top);
+@include generate(marginBottom, margin-bottom);
+
+.absoluteHide, .hide {
+  display: none !important;
+}
+
+.cursor-hand {
+  cursor: pointer;
+}

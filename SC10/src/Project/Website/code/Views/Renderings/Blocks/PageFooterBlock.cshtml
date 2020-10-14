@@ -1,0 +1,275 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{
+  var footerItemName = string.Empty;
+
+}
+<div class="container-fluid">
+  <div class="row">
+    <!--Chartwell-->
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <h4>Chartwell</h4>
+      <ul>
+        <li>
+          @{
+            footerItemName = @Sitecore.Globalization.Translate.Text("About Us") +
+                                          "/" +
+                                          @Sitecore.Globalization.Translate.Text("Welcome");
+          }
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("About Us"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        <li>
+          @{
+            footerItemName = @Sitecore.Globalization.Translate.Text("About Us") +
+            "/" +
+            @Sitecore.Globalization.Translate.Text("Our Vision Mission and Values");
+          }
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Our Vision Mission and Values"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        <li>
+          @{
+            footerItemName = @Sitecore.Globalization.Translate.Text("About Us") +
+                                          "/" +
+                                          @Sitecore.Globalization.Translate.Text("Our Leadership Team");
+          }
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Our Leadership Team"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        <li>
+          @{
+            footerItemName = @Sitecore.Globalization.Translate.Text("Subscribe");
+          }
+
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Subscribe"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+      </ul>
+    </div>
+
+    <!--Living at Chartwell-->
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <h4>@Sitecore.Globalization.Translate.Text("Living at Chartwell")</h4>
+      <ul>
+        @{
+          footerItemName = @Sitecore.Globalization.Translate.Text("Getting Started") + "/" + @Sitecore.Globalization.Translate.Text("Searching for Self");
+        }
+        <li>
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Searching for Self"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        @{
+          footerItemName = @Sitecore.Globalization.Translate.Text("Getting Started") + "/" + @Sitecore.Globalization.Translate.Text("Searching for a Loved One");
+        }
+        <li>
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Searching for a Loved One"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        @{
+          footerItemName = @Sitecore.Globalization.Translate.Text("Help Me Choose") + "/" + @Sitecore.Globalization.Translate.Text("Exploring Your Options");
+        }
+        <li>
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Exploring Your Options"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        @{
+          footerItemName = @Sitecore.Globalization.Translate.Text("Our Services") + "/" + @Sitecore.Globalization.Translate.Text("Dining Experience");
+        }
+        <li>
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Dining Experience"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        @{
+          footerItemName = @Sitecore.Globalization.Translate.Text("Our Services") + "/" + @Sitecore.Globalization.Translate.Text("Active Living");
+        }
+        <li>
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Active Living"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        @{
+          footerItemName = @Sitecore.Globalization.Translate.Text("Our Services") + "/" + @Sitecore.Globalization.Translate.Text("Wellness and Support Services");
+        }
+        <li>
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Wellness and Support Services"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        @{
+          footerItemName = @Sitecore.Globalization.Translate.Text("Our Services") + "/" + @Sitecore.Globalization.Translate.Text("Suites Types and Amenities");
+        }
+        <li>
+          @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Suites Types and Amenities"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        </li>
+
+        @{
+          var BlogUrl = Request.Url.Scheme + "://" + Request.Url.Host + "/" + @Sitecore.Globalization.Translate.Text("Blog");
+        }
+        <li><a href=@BlogUrl.ToLower()>@Sitecore.Globalization.Translate.Text("Blog")</a></li>
+      </ul>
+    </div>
+
+    <!--Careers-->
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <h4>@Sitecore.Globalization.Translate.Text("Careers")</h4>
+      <ul>
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://careersatchartwell.com/about-us/our-mission-vision-and-values">@Sitecore.Globalization.Translate.Text("Our Mission Vision and Values")</a></li>
+        }
+        else
+        {
+          <li><a href="http://careersatchartwell.com/fr/%C3%A0-propos-de-nous/vision-mission-et-valeurs">@Sitecore.Globalization.Translate.Text("Our Mission Vision and Values")</a></li>
+        }
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://careersatchartwell.com/about-us/culture-at-chartwell">@Sitecore.Globalization.Translate.Text("Culture at Chartwell")</a></li>
+        }
+        else
+        {
+          <li><a href="http://careersatchartwell.com/fr/%C3%A0-propos-de-nous/notre-culture-dentreprise">@Sitecore.Globalization.Translate.Text("Culture at Chartwell")</a></li>
+        }
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://careersatchartwell.com/careers/your-career-at-chartwell">@Sitecore.Globalization.Translate.Text("Current Opportunities")</a></li>
+        }
+        else
+        {
+          <li><a href="http://careersatchartwell.com/fr/carri%C3%A8res/votre-carri%C3%A8re-chez-chartwell">@Sitecore.Globalization.Translate.Text("Current Opportunities")</a></li>
+        }
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://careersatchartwell.com/about-us/chartwell-recruitment-video">@Sitecore.Globalization.Translate.Text("Recruitment Video")</a></li>
+        }
+        else
+        {
+          <li><a href="http://careersatchartwell.com/fr/%C3%A0-propos-de-nous/vid%C3%A9o-de-recrutement">@Sitecore.Globalization.Translate.Text("Recruitment Video")</a></li>
+        }
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://careersatchartwell.com/rewards/recognition">@Sitecore.Globalization.Translate.Text("Recognition")</a></li>
+        }
+        else
+        {
+          <li><a href="http://careersatchartwell.com/fr/reconnaissance/reconnaissances">@Sitecore.Globalization.Translate.Text("Recognition")</a></li>
+        }
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://careersatchartwell.com/volunteer/volunteer-opportunities">@Sitecore.Globalization.Translate.Text("Volunteer Opportunities")</a></li>
+        }
+        else
+        {
+          <li><a href="http://careersatchartwell.com/fr/b%C3%A9n%C3%A9volat/opportunit%C3%A9s-de-b%C3%A9n%C3%A9voles">@Sitecore.Globalization.Translate.Text("Volunteer Opportunities")</a></li>
+        }
+
+      </ul>
+    </div>
+
+    <!--Investor Relations-->
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <h4>@Sitecore.Globalization.Translate.Text("InvestorRelations")</h4>
+      <ul>
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://investors.chartwell.com/company-profile/">@Sitecore.Globalization.Translate.Text("CorporateOverview")</a></li>
+        }
+        else
+        {
+          <li><a href="http://investors.chartwell.com/French/Profil-de-la-socit/default.aspx">@Sitecore.Globalization.Translate.Text("CorporateOverview")</a></li>
+        }
+
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://investors.chartwell.com/English/environmental-social-governance/esg-report-related-policies/default.aspx">@Sitecore.Globalization.Translate.Text("EnvironmentalSocialGovernance")</a></li>
+        }
+        else
+        {
+          <li><a href="http://investors.chartwell.com/French/crit-res-environnementaux-sociaux-et-de-gouvernance/Rapport-ESG-et-politiques-connexes/default.aspx">@Sitecore.Globalization.Translate.Text("EnvironmentalSocialGovernance")</a></li>
+        }
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://investors.chartwell.com/English/units-distributions/historic-unit-prices/default.aspx">@Sitecore.Globalization.Translate.Text("UnitDistribution")</a></li>
+        }
+        else
+        {
+          <li><a href="http://investors.chartwell.com/French/parts-et-distributions/Historique-des-prix/default.aspx">@Sitecore.Globalization.Translate.Text("UnitDistribution")</a></li>
+        }
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://investors.chartwell.com/English/press-market-information/press-releases/default.aspx">@Sitecore.Globalization.Translate.Text("PressMarketInformation")</a></li>
+        }
+        else
+        {
+          <li><a href="http://investors.chartwell.com/French/salle-de-presse/Communiqus-de-presse/default.aspx">@Sitecore.Globalization.Translate.Text("PressMarketInformation")</a></li>
+        }
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://investors.chartwell.com/English/financial-reports/quarterly-and-annual-reports/default.aspx">@Sitecore.Globalization.Translate.Text("FinancialReports")</a></li>
+        }
+        else
+        {
+          <li><a href="http://investors.chartwell.com/French/rapports-financiers/Documents-financiers/default.aspx">@Sitecore.Globalization.Translate.Text("FinancialReports")</a></li>
+        }
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="http://investors.chartwell.com/English/information-request/request-e-mail-notification/default.aspx">@Sitecore.Globalization.Translate.Text("InformationRequest")</a></li>
+        }
+        else
+        {
+          <li><a href="http://investors.chartwell.com/French/demande-de-renseignements/Demande-davis-par-courriel/default.aspx">@Sitecore.Globalization.Translate.Text("InformationRequest")</a></li>
+        }
+
+      </ul>
+    </div>
+  </div><!-- / row -->
+  <div class="row">
+    <hr />
+    <div class="col-xs-12 col-md-6">
+      <p>
+        Material Copyright © 2009-2020 | Chartwell Master Care LP<br>
+
+        @{
+          footerItemName = @Sitecore.Globalization.Translate.Text("Website Terms of Use");
+        }
+        @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Website Terms of Use"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+        |
+
+        @{
+          footerItemName = @Sitecore.Globalization.Translate.Text("Website Privacy Statement");
+        }
+        @Html.ActionLink(@Sitecore.Globalization.Translate.Text("Website Privacy Statement"), "Index", "StaticPages", new { PartialItemUrlText = footerItemName.ToString(), StaticLanguage = Model.Item.Language.ToString() }, null)
+
+
+
+        |  <a href="../../-/media/452EDF85EC134B6DBB3854C611B25E81.ashx">Accessibility</a>
+      </p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <ul class="socialBar">
+        <li><a href="https://www.instagram.com/chartwellretirementresidences/" id="iconInstagram" target="_blank"><img src="~/Assets/Images/Layout/social-instagram.png" alt="Chartwell Instagram" /></a></li>
+        <li><a href="https://www.google.ca/search?q=Chartwell+Retirement+Residences+Mississauga" id="iconGooglePlus" target="_blank"><img src="~/Assets/Images/Layout/social-google.png" alt="Chartwell Google PLus" /></a></li>
+        <li><a href="https://www.linkedin.com/company/chartwell-retirement-residences" id="iconLinkedIn" target="_blank"><img src="~/Assets/Images/Layout/social-linkedin.png" alt="Chartwell LinkedIn" /></a></li>
+        <li><a href="https://www.youtube.com/chartwellretirement" id="iconYoutube" target="_blank"><img src="~/Assets/Images/Layout/social-youtube.png" alt="Chartwell Youtube" /></a></li>
+
+        @if (Model.Item.Language.Name == "en")
+        {
+          <li><a href="https://www.facebook.com/chartwellretirement" id="iconFacebook" target="_blank"><img src="~/Assets/Images/Layout/social-facebook.png" alt="Chartwell Facebook" /></a></li>
+        }
+        else
+        {
+          <li><a href="https://www.facebook.com/residenceschartwell/" id="iconFacebook" target="_blank"><img src="~/Assets/Images/Layout/social-facebook.png" alt="Chartwell Facebook" /></a></li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

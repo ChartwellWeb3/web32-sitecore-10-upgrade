@@ -1,0 +1,78 @@
+﻿//UNITS
+$standardUnit: .5rem;
+$rootFontSize: 14px;
+$rootfontSizeRem: .975rem;
+$smallFontSizeRem: $rootfontSizeRem * .9;
+
+//COLORS
+$defaultFontColor: black;
+
+//GRAYS
+$lightestGray: #f4f4f4;
+$lighterGray: #efefef;
+$lightGray: #dfdfdf;
+$midGray: #999;
+$midGray2: #666;
+$darkGray: #57585b;
+$darkestGray: #383a3f;
+
+$blueGray: #405F76;
+
+//REDS for errors and such
+$lightRed: #ffcdd2;
+$mediumRed: #d50000;
+$darkRed: #9b0000;
+
+//yellow for the phone number
+$phoneNumberColor: #fc0;
+
+//CHARTWELL COLORS
+//blues
+$chartwellPrimary: #0072bb;
+$chartwellAccent: #69ACD7;
+$chartwellDarkPrimary: #003163;
+$chartwellLightPrimary: #a7ebff;
+$chartwellLightestPrimary: #e3f2fd;
+
+//magentas
+$chartwellSecondary: #8D1360;
+$chartwellSecondaryLight: #BC74A1;
+$chartwellSecondaryDark: #663E51;
+
+//green
+$chartwellGreen: #366263;
+
+//purple
+$chartwellPurple: #7a6085;
+
+//FONTS
+$primaryFontStack: 'Roboto','Open Sans', 'Montserrat', sans-serif;
+$headingFontStack: 'Roboto','Montserrat', sans-serif;
+
+$alternateFontStack: 'Helvetica Neue', 'Helvetica', arial, sans-serif;
+$blogBodyFontStack: $primaryFontStack;
+
+//BREAKPOINTS
+$xxxs-sm-BP: 421px;
+$xxs-sm-BP: 575px;
+$xs-sm-BP: 767px;
+$sm-BP: 991px;
+$lg-BP: 1199px;
+$xl-BP: 1350px;
+$xxl-BP: 1600px;
+
+//BORDERS
+$standardBorder: 1px solid $lightGray;
+$doubleBorder: double $lightGray;
+
+//SHADOWS
+$standardBoxShadow: 0 1px 2px rgba(0,0,0,0.2);
+$standardBoxShadowDark: 0 1px 2px rgba(0,0,0,0.5);
+$lowerBoxShadow: $standardUnit/5 $standardUnit/5 $standardUnit/5 rgba(0,0,0,0.1);
+$higherBoxShadow: $standardUnit/5 $standardUnit/2 $standardUnit/2.05 rgba(0,0,0,0.5);
+$highestBoxShadow: $standardUnit $standardUnit $standardUnit*2 rgba(0,0,0,0.25);
+$mobileSideMenuBoxShadow: 1px 0px 2px rgba(0,0,0,0.25);
+$footerBoxShadow: -0.2rem -0.2rem $standardUnit/4 rgba(0,0,0,0.15);
+$tabletFooterBoxShadow: -1px -1px 2px rgba(0,0,0,0.15);
+$insetBoxShadow: 0 1px 0 rgba(white,0.95);
+

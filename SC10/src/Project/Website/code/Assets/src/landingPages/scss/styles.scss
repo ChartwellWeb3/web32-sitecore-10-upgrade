@@ -1,0 +1,68 @@
+$defaultFont: 'Roboto', sans-serif;
+$headingFont: 'Roboto', sans-serif;
+$secondaryColor: #8d1360;
+$primaryColor: #0072bb;
+$chartwellGreen: #366263;
+$turquoise: #0daebe;
+$darkGray: #666;
+$blueGray: #a7c0cd;
+$red: #ff1744;
+$yellow: #fc0;
+$green: #2e7d32;
+$pink: #e91e63;
+$teal: #00afa6;
+$darkYellow: #f28431;
+$purple: #7a6085;
+
+$btn_green: #eb9316;
+
+$xs-bp: 420px;
+$sm-bp: 768px;
+$md-bp: 991px;
+$lg-bp: 1199px;
+$xl-bp: 1399px;
+
+$colorsArray: #fff #fff #fff #f9f9f9 #f3f3f3 #fcfcfc #fcfcfc $primaryColor $secondaryColor $pink $turquoise $red $yellow $green;
+$graysArray: #333 #111 #ccc #999 #666 #ddd #555 #ababab #777;
+$cheerfulColors: $primaryColor $secondaryColor $pink;
+
+@keyframes fadeInThenOut {
+  0% {
+    opacity: 0;
+    display: block;
+  }
+
+  25% {
+    opacity: 1
+  }
+
+  60% {
+    opacity: 1
+  }
+
+  85% {
+    opacity: 0.25
+  }
+
+  100% {
+    opacity: 0;
+    display: none
+  }
+}
+
+//@import "../../sass/vendor/jquery-ui.1.12.1.min.scss";
+@import "../../sass/vendor/bootstrap-3.3.7/bootstrap/variables";
+@import "../../sass/vendor/bootstrap-3.3.7/bootstrap/mixins";
+@import "../../sass/vendor/bootstrap-3.3.7/bootstrap/_forms.scss";
+
+@import "../../sass/vendor/fontawesome-5.7.2/fontawesome.scss";
+@import "../../sass/vendor/fontawesome-5.7.2/solid.scss";
+@import "../../sass/vendor/fontawesome-5.7.2/regular.scss";
+@import "../../sass/vendor/fontawesome-5.7.2/brands.scss";
+
+@import "../../../../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker";
+@import "../../../../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3";
+
+@import '../../sass/chartwell/forms.scss';
+@import './responsive.scss';
+@import './mobile.scss';

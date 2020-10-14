@@ -1,0 +1,51 @@
+{
+  "name": "Chartwell.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "async": "^1.5.2",
+    "baguettebox.js": "1.11.0",
+    "bootstrap": "4.3.1",
+    "bootstrap-datepicker": "1.9.0",
+    "glob": "^7.0.3",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^4.0.1",
+    "gulp-debug": "^2.1.2",
+    "gulp-exec": "^2.1.2",
+    "gulp-foreach": "^0.1.0",
+    "gulp-load-plugins": "^1.0.0",
+    "gulp-msbuild": "0.2.13",
+    "gulp-newer": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-uglify-es": "^1.0.4",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "isotope-layout": "3.0.6",
+    "jquery": "3.4.1",
+    "jquery-mask-plugin": "^1.14.16",
+    "jquery-validation": "1.19.1",
+    "merge-stream": "^1.0.0",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
+    "rimraf": "^2.4.3",
+    "run-sequence": "^1.1.4",
+    "typeahead.js": "^0.11.1",
+    "vinyl": "^1.1.0",
+    "xml2js": "^0.4.16",
+    "xmlpoke": "^0.1.12",
+    "yargs": "^6.4.0"
+  },
+  "devDependencies": {
+    "gulp-nuget-restore": "^0.4.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "$author$"
+}

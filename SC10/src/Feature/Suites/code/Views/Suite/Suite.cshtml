@@ -1,0 +1,206 @@
+﻿@model Chartwell.Foundation.Models.SuiteModel
+
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Extensions
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Data
+@{
+  var planType = "";
+  var DownloadPlanName = "";
+}
+
+
+<div id="PropertyDetailsContainer" class="d-sm-flex flex-sm-row">
+  <div id="PropertyNavigationContainerMobile" class="align-items-sm-stretch">@Html.Sitecore().Placeholder("Property.NavigationMobile")</div>
+  <div id="PropertyDetails">
+    <div id="PropertyHeader" style="text-align: center">
+      @Html.Sitecore().Placeholder("Property.ResidenceImageheader")
+      <h1 class="resName PropertyName">@Html.Sitecore().Field("Property Name", @Model.InnerItem)</h1>
+      <address class="PropertyAddress">
+        <span class="fas fa-map-marker-alt color-primary"></span> @Model.PropertyFormattedAddress
+      </address>
+    </div>
+    <div id="PropertyNavTop"><!-- do not delete. Used to calculate offset --></div>
+    <div id="PropertyNavigationContainer" class="sticky-top">@Html.Sitecore().Placeholder("Property.Navigation")</div>
+
+    <div class="d-flex propertyLayout" id="mainBlock">
+      <div class="row" id="mainRow">
+        <div class="col-sm-12 col-md-5 col-lg-8 tabletFullWidth">
+
+          <section class="section">
+
+            @*<h2 class="font-weight-bolder mt-0 pt-3 pb-3 mb-2 border-bottom text-center lead">@Model.PropertyTagLine</h2>*@
+
+            @if (!String.IsNullOrEmpty(@Model.SuitePlanTable.TableName))
+            {
+              <h3 class="text-center border-bottom suite-header">@Model.SuitePlanTable.TableName</h3>
+              <div class="container-fluid" id="suitePlans">
+                <div class="row">
+                  @foreach (System.Data.DataRow row in Model.SuitePlanTable.Rows)
+                  {
+                    <div class="col col-lg-6 col-sm-6 col-xs-12">
+                      <div class="suite-plan">
+                        @foreach (var cell in row.ItemArray)
+                        {
+                          if (@cell.ToString().ToLower().Contains("/media"))
+                          {
+                            <!--  @cell.ToString()  -->
+                            if (@cell.ToString().ToLower().Contains("/images/"))
+                            {
+                              <div class="suite-photo">
+                                <img src=@cell.ToString() />
+                              </div>
+                            }
+                            if (@cell.ToString().ToLower().Contains("/suite-plans/"))
+                            {
+                              if (Sitecore.Context.Language.ToString() != "en")
+                              {
+                                DownloadPlanName = "Les plans de planchers des " + @planType;
+
+                              }
+                              else
+                              { DownloadPlanName = @planType + " plans"; }
+                              <a href=@cell.ToString() target="_blank" class="btn btn-primary btn-download-suite-plan">
+                                <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>
+                                @DownloadPlanName
+                              </a>
+                            }
+                          }
+                          else
+                          {
+                            planType = @cell.ToString();
+                            <div class="default-suite-content">
+                              @cell.ToString()
+                            </div>
+                          }
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+
+            @if (!String.IsNullOrEmpty(@Model.SuitePrestigeTable.TableName))
+            {
+              <h3 class="text-center border-bottom suite-header">@Model.SuitePrestigeTable.TableName</h3>
+              <div class="container-fluid" id="prestigeSuitePlans">
+                <div class="row">
+                  @foreach (System.Data.DataRow row in Model.SuitePrestigeTable.Rows)
+                  {
+                    <div class="col col-lg-6 col-sm-6 col-xs-12">
+                      <div class="suite-plan">
+                        @foreach (var cell in row.ItemArray)
+                        {
+
+                          if (@cell.ToString().ToLower().Contains("/media"))
+                          {
+
+                            <!--  @cell.ToString()  -->
+
+                            if (@cell.ToString().ToLower().Contains("/images/"))
+                            {
+                              <div class="suite-photo">
+                                <img src=@cell.ToString() />
+                              </div>
+                            }
+
+                            if (@cell.ToString().ToLower().Contains("/suite-plans/"))
+                            {
+
+                              if (Sitecore.Context.Language.ToString() != "en")
+                              {
+                                DownloadPlanName = "Les plans de planchers des " + @planType;
+
+                              }
+                              else
+                              { DownloadPlanName = @planType + " plans"; }
+
+                              <a href=@cell.ToString() target="_blank" class="btn btn-primary btn-download-suite-plan">
+                                <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>
+                                @DownloadPlanName
+                              </a>
+                            }
+                          }
+                          else
+                          {
+                            planType = @cell.ToString();
+                            <div class="default-suite-content">
+                              @cell.ToString()
+                            </div>
+                          }
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+
+            @if (!String.IsNullOrEmpty(@Model.SuiteSpecialTable.TableName))
+            {
+              <h3 class="text-center border-bottom suite-header">@Model.SuiteSpecialTable.TableName</h3>
+              <div class="container-fluid" id="specialSuitePlans">
+                <div class="row">
+                  @foreach (System.Data.DataRow row in Model.SuiteSpecialTable.Rows)
+                  {
+                    <div class="col col-lg-6 col-sm-6 col-xs-12">
+                      <div class="suite-plan">
+                        @foreach (var cell in row.ItemArray)
+                        {
+
+                          if (@cell.ToString().ToLower().Contains("/media"))
+                          {
+
+                            <!--  @cell.ToString()  -->
+
+                            if (@cell.ToString().ToLower().Contains("/images/"))
+                            {
+                              <div class="suite-photo">
+                                <img src=@cell.ToString() />
+                              </div>
+                            }
+
+                            if (@cell.ToString().ToLower().Contains("/suite-plans/"))
+                            {
+
+                              if (Sitecore.Context.Language.ToString() != "en")
+                              {
+                                DownloadPlanName = "Les plans de planchers des " + @planType;
+
+                              }
+                              else
+                              { DownloadPlanName = @planType + " plans"; }
+
+                              <a href=@cell.ToString() target="_blank" class="btn btn-primary btn-download-suite-plan">
+                                <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>
+                                @DownloadPlanName
+                              </a>
+                            }
+                          }
+                          else
+                          {
+                            planType = @cell.ToString();
+                            <div class="default-suite-content">
+                              @cell.ToString()
+                            </div>
+                          }
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+          </section>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 rightContainer deviceAbsoluteHide">
+          @Html.Sitecore().Placeholder("Grid.Right")
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,33 @@
+@import "_variables.scss";
+
+body, html {
+  font-family: $primaryFontStack;
+  color: $defaultFontColor;
+  font-size: $rootFontSize;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+  font-family: $headingFontStack;
+  font-weight: 600;
+  color: black;
+}
+
+h1, h2 {
+  color: black;
+}
+
+p.intro {
+  line-height: 2;
+  font-weight: 100;
+  font-family: $headingFontStack;
+
+  em {
+    line-height: unset;
+    font-size: unset;
+    font-weight: 600;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

@@ -1,0 +1,11 @@
+﻿<Project ToolsVersion="4.0"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ExcludeFromPackageFolders Include="obj;App_Data;SAConfig;Libs;Assets;Assets/src;scripts;fonts;views">
+      <FromTarget>Chartwell.wpp.targets</FromTarget>
+    </ExcludeFromPackageFolders>
+    <!--<ExcludeFromPackageFiles Include="bin\Chartwell.Project.Website.dll;bin\Chartwell.Project.Website.pdb;bin\Chartwell.Project.Website.dll.config">
+      <FromTarget>Chartwell.wpp.targets</FromTarget>
+    </ExcludeFromPackageFiles>-->
+  </ItemGroup>
+</Project>

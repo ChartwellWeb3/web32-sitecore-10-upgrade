@@ -1,0 +1,198 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+
+@{
+  var homePageLinkUrl = Request.Url.Scheme + "://" + Request.Url.Host + "/" + Model.Item.Language.Name;
+  var imageSource = Model.Item.Language.Name == "en" ? "/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color.svg" : "/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color-fr.svg";
+}
+
+@Html.Sitecore().Field("css")
+  <div id="navBar">
+    <a href="@homePageLinkUrl" id="logoLink">
+      <img id="chartwellLogo" src=@imageSource alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+    </a>
+
+    @*@if (Model.Item.Language.Name == "en")
+    {
+      <a href="http://www.chartwell.com" id="logoLink">
+        <img id="chartwellLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+      </a>
+    }
+    else
+    {
+      <a href="http://www.chartwell.com/fr/" id="logoLink">
+        <img id="chartwellLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color-fr.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+      </a>
+    }*@
+    <div class="right">
+      <a class="emphasis" id="navBarCTA" href="@Html.Sitecore().Field("Navbar Link")">@Html.Sitecore().Field("Navbar Link Text")</a>
+      <a class="phonenumber" id="navBarPhone" href="tel:1-855-461-0685"><span>1-855-461-0685</span></a>
+      <a id="navBarContact" onclick="toggleContactForm()">@Sitecore.Globalization.Translate.Text("ContactUsButtonText")</a>
+    </div>
+  </div>
+<div id="slidesContainer" class="landing">
+  <div id="loadingIndicator">
+    <div class="lds-css ng-scope">
+      <div style="width:100%;height:100%" class="lds-wedges"><div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div></div></div>
+    </div>
+    <p>@Html.Sitecore().Field("Preloading Text")</p>
+  </div>
+  <div class="slide preLoading" id="slide1">
+    <video autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" id="homeVideo">
+      <source src="/-/media/Files/home-05.mp4?la=en" type="video/mp4">
+    </video>
+    <div class="slideContent fullhide">
+
+      @if (Model.Item.Language.Name == "en")
+      {
+        <img class="taglineLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+      }
+      else
+      {
+        <img class="taglineLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color-fr.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" />
+      }
+      @Html.Sitecore().Field("Introduction Slide Content")
+      <a class="hide btn nextBtn" data-scroll=data-scroll href="#statsSlide">
+        <span>@Html.Sitecore().Field("Intro Slide Button Text")</span>
+        <i class="material-icons">keyboard_arrow_down</i>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="slide" id="statsSlide">
+    <div class="slideContent">
+      <h2 class="slideTitle">@Html.Sitecore().Field("Stats Slide Title")</h2>
+      <div class="row">
+        <div class="column">
+          <h1 class="stats">
+            <span id="childCaregiver" data-value="@Html.Sitecore().Field("Stats Slide Stat 1 Value")"></span> <span class="percent">%</span>
+          </h1>
+          <h3 id="childCaregiverHeading" class="hide">@Html.Sitecore().Field("Stats Slide Stat 1 Description")</h3>
+        </div>
+        <div class="column">
+          <h1 class="stats">
+            <span id="spouseCaregiver" data-value="@Html.Sitecore().Field("Stats Slide Stat 2 Value")"></span> <span class="percent">%</span>
+          </h1>
+          <h3 id="spouseCaregiverHeading" class="hide">@Html.Sitecore().Field("Stats Slide Stat 2 Description")</h3>
+        </div>
+        <div class="column">
+          <h1 class="stats">
+            <span id="noChoice" data-value="@Html.Sitecore().Field("Stats Slide Stat 3 Value")"></span> <span class="percent">%</span>
+          </h1>
+          <h3 id="noChoiceHeading" class="hide">@Html.Sitecore().Field("Stats Slide Stat 3 Description")</h3>
+        </div>
+        <div class="column">
+          <h1 class="stats">
+            <span id="neglecting" data-value="@Html.Sitecore().Field("Stats Slide Stat 4 Value")"></span> <span class="percent">%</span>
+          </h1>
+          <h3 id="neglectingHeading" class="hide">@Html.Sitecore().Field("Stats Slide Stat 4 Description")</h3>
+        </div>
+      </div>
+      <p class="footNote">@Html.Sitecore().Field("Stats Slide footnote")</p>
+      <a class="hide btn nextBtn" data-scroll=data-scroll href="#solutionSlide">
+        <span>@Html.Sitecore().Field("Stats Slide button text")</span>
+        <i class="material-icons">keyboard_arrow_down</i>
+      </a>
+    </div>
+
+  </div>
+
+
+  <div class="slide" id="solutionSlide">
+    <div class="slideContent">
+      <h2 class="slideTitle">@Html.Sitecore().Field("Dr Amy Slide Title")</h2>
+      @*Html.Sitecore().Field("Dr Amy Slide emotions")*@
+      <h2 id="outtroText">@Html.Sitecore().Field("Dr Amy Slide lead out text")</h2>
+      <div class="card" id="slide2Solution">
+        <div class="content">
+          <h4>@Html.Sitecore().Field("Dr Amy Slide Quote 1")</h4>
+        </div>
+        <div class="bottom">
+          <div class="profile"><img src="~/Assets/Images/landingPages/scenarios-may-2019/dr-amy-daprix.png" /></div>
+          <div class="profileContent">
+            <h4>
+              @Html.Sitecore().Field("Dr Amy Name and Credentials")
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="card" id="slide2Solution2">
+        <div class="content">
+          <h4>
+            @Html.Sitecore().Field("Dr Amy Slide Quote 2")
+          </h4>
+        </div>
+      </div>
+      <div class="card" id="slide2Solution3">
+        <div class="content">
+          <h4>@Html.Sitecore().Field("Dr Amy Slide Quote 3")</h4>
+        </div>
+      </div>
+    </div>
+    <a class="hide btn nextBtn" data-scroll=data-scroll href="#retirementLivingSlide">
+      <span>@Html.Sitecore().Field("Dr Amy button text")</span>
+      <i class="material-icons">keyboard_arrow_down</i>
+    </a>
+  </div>
+
+  <div class="slide" id="retirementLivingSlide">
+    <div class="slideContent">
+      <h2 class="slideTitle">@Html.Sitecore().Field("Retirement Living Slide Title")</h2>
+      <div class="row">
+        <div class="column" id="retirementLivingVid">
+          <iframe width="560" height="315" src="@Html.Sitecore().Field("Retirement Living Video URL")" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=allowfullscreen></iframe>
+        </div>
+        <div class="column" id="retirementLivingContent">
+          @Html.Sitecore().Field("Retirement Living Content")
+        </div>
+      </div>
+      <a class="hide btn nextBtn" data-scroll=data-scroll href="#scenariosSlide" id="retirementLivingSlideButton">
+        <span>@Html.Sitecore().Field("Retirement Living button text")</span>
+        <i class="material-icons">keyboard_arrow_down</i>
+      </a>
+    </div>
+  </div>
+  <div class="slide" id="scenariosSlide">
+    <div class="slideContent">
+      <h2>
+        @Html.Sitecore().Field("Scenarios Slide Lead In")
+      </h2>
+
+      <div class="column">
+
+        <div class="scenario widowed" onclick="self.location.href='@Html.Sitecore().Field("scenario 1 link")'">
+          <h3><a href="@Html.Sitecore().Field("scenario 1 link")">@Html.Sitecore().Field("scenario 1 link text")</a></h3>
+        </div>
+
+        <div class="scenario faraway" onclick="self.location.href='@Html.Sitecore().Field("scenario 2 link")'">
+          <h3><a href="@Html.Sitecore().Field("scenario 2 link")">@Html.Sitecore().Field("scenario 2 link text")</a></h3>
+        </div>
+
+        <div class="scenario notready" onclick="self.location.href='@Html.Sitecore().Field("scenario 3 link")'">
+          <h3><a href="@Html.Sitecore().Field("scenario 3 link")">@Html.Sitecore().Field("scenario 3 link text")</a></h3>
+        </div>
+
+        <div class="scenario highcare" onclick="self.location.href='@Html.Sitecore().Field("scenario 4 link")'">
+          <h3><a href="@Html.Sitecore().Field("scenario 4 link")">@Html.Sitecore().Field("scenario 4 link text")</a></h3>
+        </div>
+      </div>
+
+      <h2 id="tagline">
+        <a href="@homePageLinkUrl"><img class="taglineLogo" src=@imageSource alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" /></a>
+        @*@if (Model.Item.Language.Name == "en")
+    {
+      <a href="http://www.chartwell.com"><img class="taglineLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" /></a>
+    }
+    else
+    {
+      <a href="http://www.chartwell.com/fr"><img class="taglineLogo" src="~/Assets/Images/landingPages/scenarios-may-2019/chart-hor-logo-color-fr.svg" alt="Chartwell: @Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")" /></a>
+    }*@
+        <span>@Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")</span>
+      </h2>
+    </div>
+  </div>
+</div>
+
+<script src="~/Assets/js/landingpages/scenarioslandingpage.js"></script>

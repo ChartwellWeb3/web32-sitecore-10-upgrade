@@ -1,0 +1,14 @@
+﻿@import "_variables.scss";
+
+body, html {
+  width: 100%;
+  font-weight: 400;
+}
+
+.hideOnLarge {
+  display: none;
+}
+
+.juicer-feed.loaded {
+  overflow: visible;
+}

@@ -1,0 +1,148 @@
+﻿@model Chartwell.Foundation.Models.GeneralContactModel
+@using Sitecore.Mvc.Analytics.Extensions
+
+@Html.Sitecore().VisitorIdentification()
+
+<style>
+  .readonlydatepicker .form-control[readonly] {
+    background-color: White;
+  }
+</style>
+
+@using (Ajax.BeginForm("Index", "GeneralContact", new AjaxOptions
+{
+  HttpMethod = "POST",
+  UpdateTargetId = "GeneralContactMsg",
+  LoadingElementId = "divLoading"
+  //OnBegin = "ClearResults"
+}, new { @id = "GeneralContactForm" }))
+{
+  @Html.ValidationSummary(true)
+  @Html.AntiForgeryToken()
+
+  @Html.HiddenFor(m => m.ItemLanguage)
+  @Html.HiddenFor(m => m.ContactItemID)
+
+
+
+  if (Sitecore.Context.Item.TemplateName != "customPage")
+  {
+    <h2 class="text-center deviceAbsoluteHide">@Sitecore.Globalization.Translate.Text("GeneralContactUSMessage")</h2>
+    <h3 class="text-center deviceAbsoluteHide">
+      <a class="btn btn-warning btn-lg mr-2 phoneNumber" id="ResponsiveContactFormPhoneNumber" href="tel:1-855-461-0685"><span class="fas fa-phone"></span><span id="phoneText">1-855-461-0685</span></a>
+    </h3>
+  }
+  else
+  {
+    @Html.Sitecore().Field("Call To Action Content")
+  }
+
+  <div class="hidden-print resForm mt-4 container-fluid" id="chartwellContactForm">
+    <div id="GeneralContactMsg">
+      <div class="row">
+        <div class="form-group col col-md-6 mb-3">
+          @Html.LabelFor(m => m.FirstName, @Sitecore.Globalization.Translate.Text("FirstName") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")", new { @class = "absoluteHide" })
+          @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control firstName", placeholder = @Sitecore.Globalization.Translate.Text("FirstName") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")" })
+          @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+          @*      @Html.ValidationMessageFor(m => m.FirstName, Sitecore.Globalization.Translate.Text("CharacterLimitFirstLastNameMsg") + "/" + Sitecore.Globalization.Translate.Text("SpecialCharValidationMsg"), new { @class = "text-danger" })*@
+        </div>
+        <div class="form-group col col-md-6 mb-3">
+          @Html.LabelFor(m => m.LastName, new { @class = "absoluteHide" })
+          @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = @Sitecore.Globalization.Translate.Text("LastName") })
+          @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+          @*      @Html.ValidationMessageFor(m => m.LastName, Sitecore.Globalization.Translate.Text("CharacterLimitFirstLastNameMsg") + "/" + Sitecore.Globalization.Translate.Text("SpecialCharValidationMsg"), new { @class = "text-danger" })*@
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col col-md-6 mb-3">
+          @Html.LabelFor(m => m.EmailAddress, @Sitecore.Globalization.Translate.Text("Email") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")", new { @class = "absoluteHide" })
+          @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control contactEmail", placeholder = @Sitecore.Globalization.Translate.Text("Email") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")" })
+          @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col col-md-6 mb-3">
+          @Html.LabelFor(m => m.ContactPhoneNo, new { @class = "absoluteHide" })
+          @Html.TextBoxFor(m => m.ContactPhoneNo, new { @class = "form-control phoneNumber", placeholder = "(999)999-9999" })
+          @*@Html.ValidationMessageFor(m => m.ContactPhoneNo, "", new { @class = "text-danger" })*@
+          @Html.ValidationMessageFor(m => m.ContactPhoneNo, Sitecore.Globalization.Translate.Text("PhoneNoError"), new { @class = "text-danger" })
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col col-md-12 mb-3">
+          @Html.LabelFor(m => m.ContactCity, @Sitecore.Globalization.Translate.Text("ContactCity") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")", new { @class = "absoluteHide" })
+          @Html.TextBoxFor(m => m.ContactCity, new { @class = "form-control", placeholder = @Sitecore.Globalization.Translate.Text("ContactCity") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")" })
+          @Html.ValidationMessageFor(m => m.ContactCity, "", new { @class = "text-danger" })
+          @*      @Html.ValidationMessageFor(m => m.ContactCity, Sitecore.Globalization.Translate.Text("CharacterLimitFirstLastNameMsg") + "/" + Sitecore.Globalization.Translate.Text("SpecialCharValidationMsg"), new { @class = "text-danger" })*@
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col col-md-12 mb-3">
+          @Html.Label("ValidateTextBox", @Sitecore.Globalization.Translate.Text("Questions"), new { @class = "absoluteHide" })
+          @Html.TextAreaFor(m => m.Question, new { @class = "form-control", @id = "ValidateTextBox", placeholder = @Sitecore.Globalization.Translate.Text("Questions"), @rows = 3 })
+          @Html.ValidationMessageFor(m => m.Question, "", new { @class = "text-danger" })
+          @*      @Html.ValidationMessageFor(m => m.Question, Sitecore.Globalization.Translate.Text("CharacterLimitQuestionMsg") + "/" + Sitecore.Globalization.Translate.Text("SpecialCharValidationMsg"), new { @class = "text-danger" })*@
+        </div>
+      </div>
+
+      <fieldset>
+        <div class="row">
+          <div class="col-sm-12">
+            <legend>
+              @Html.Label(@Sitecore.Globalization.Translate.Text("ConsentToConnect") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")")
+            </legend>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="radio">
+                    @Html.RadioButtonFor(m => m.ConsentToConnect, "true", new { id = "ConsentToConnectYes" })
+                    @Html.Label("ConsentToConnectYes", @Sitecore.Globalization.Translate.Text("OptionYes"))
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="radio">
+                    @Html.RadioButtonFor(m => m.ConsentToConnect, "false", new { id = "ConsentToConnectNo" })
+                    @Html.Label("ConsentToConnectNo", @Sitecore.Globalization.Translate.Text("OptionNo"))
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">@Html.ValidationMessageFor(m => m.ConsentToConnect, "", new { @class = "text-danger" })</div>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row readonlydatepicker">
+            <div class="col-sm-12">
+              @Html.Label(@Sitecore.Globalization.Translate.Text("virtualtour"), new { @id = "personalvisit" })
+            </div>
+            <div class="col-sm-6 form-group" id="dateContainer">
+              <div class="input-group date" style="min-height:20px;margin-bottom:0.5rem">
+                @Html.Label("visitdate", @Sitecore.Globalization.Translate.Text("PreferredDate"), new { @class = "absoluteHide" })
+                @Html.TextBoxFor(m => m.VisitDate, new { @class = "form-control visitdate-" + Sitecore.Context.Language.Name, @id = "visitdate", @placeholder = @Sitecore.Globalization.Translate.Text("PreferredDate") })
+                <div class="input-group-addon">
+                  <span class="far fa-calendar-alt"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 form-group">
+              @Html.LabelFor(m => m.TimeOfDayForVisit, new { @class = "absoluteHide" })
+              @Html.DropDownListFor(m => m.TimeOfDayForVisit, new SelectList(Model.TimeOfDayOfVisitList, "Value", "Text"), new { @class = "form-control" })
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <button type="submit" id="GeneralContactSubmit" value="Submit" class="btn btn-warning btn-lg" style='width:100px'>@Sitecore.Globalization.Translate.Text("ButtonText")</button>
+        </div>
+      </div>
+
+    </div>
+    <div id="divLoading" style="display:none;">
+      <img src="~/Assets/Images/loading.gif" style="position: relative; top: 50%;" alt="loading" />
+    </div>
+  </div>
+}

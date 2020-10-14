@@ -1,0 +1,124 @@
+﻿@using Sitecore.EmailCampaign.SampleNewsletter
+@using Sitecore.EmailCampaign.SampleNewsletter.Extensions
+@using Sitecore.Mvc
+@model Sitecore.EmailCampaign.SampleNewsletter.Models.SectionViewModel
+@if (Model == null)
+{
+  if (Sitecore.Context.PageMode.IsExperienceEditor)
+  {
+        <div>Datasource item not set</div>
+  }
+
+  return;
+}
+@{
+  var imageSource = Sitecore.Context.Language.Name == "en" ? "http://www.chartwell.com/Assets/Images/Layout/chart-logo-2014.png" : "http://www.chartwell.com/Assets/Images/Layout/chart-logo-2014-fr.png";
+}
+
+<!-- Footer @Model.SectionOptions.BackgroundColor @Model.SectionOptions.BackgroundColor-->
+<hr size="1" style="margin:10px;" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="white" style="background-color: white;">
+    <tbody>
+        <tr>
+            <td width="100%">
+
+
+                <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:300px; border-collapse:collapse" width="100%">
+                <tbody><tr>
+                        <td valign="top" style="padding:0px 18px 9px;font-size:16px; word-break:break-word;text-align:left">
+
+                    <p style="padding:5px;text-align:left;margin:10px 0;color:#000000;font-family:Helvetica;font-size:14px;line-height:150%; font-weight: bold">
+                        @Html.Sitecore().Field(Templates.Footer.Fields.LegalFooterText, Model.ContentItem)
+                    </p>
+
+                    <p style="padding:5px;text-align:left;margin:10px 0;color:#000000;font-family:Helvetica;font-size:14px;line-height:150%">
+                                        @{
+                                            var links = Model.ContentItem.Children.Where(c => c.IsDerived(Templates.Link.ID)).ToArray();
+                                            foreach (var item in links)
+                                            {
+                                                @Html.Sitecore().Field(Templates.Link.Fields.Link, item, new
+                     {
+                         style = string.Format("font-size: {0}; color: {1}; font-family: {2}; text-decoration: none", Model.NewsletterOptions.ContentFontSize, Model.SectionOptions.LinkColor, @Model.NewsletterOptions.FontFamily)
+                     })
+                                                if (links.Last() != item)
+                                                {
+                                                    @:&nbsp;|&nbsp;
+                        }
+                                            }
+                                        }
+
+                    </p>
+
+                        </td>
+                    </tr></tbody>
+                </table>	
+
+
+                <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:300px; border-collapse:collapse" width="100%">
+                <tbody><tr>
+                        <td valign="top" style="padding:0px 18px 9px;font-size:16px; word-break:break-word;text-align:left">
+
+
+
+
+                <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:300px;border-collapse:collapse" width="100%">
+                    <tbody><tr>
+
+                        <td valign="top" style="padding:0px 5px 9px;text-align:left;word-break:break-word;color:#000000;font-family:Helvetica;font-size:14px;line-height:150%">
+
+                            <p style="padding:5px;text-align:left;margin:10px 0;color:#000000;font-family:Helvetica;font-size:14px;line-height:150%"><strong>@Sitecore.Globalization.Translate.Text("ChartwellTitle")</strong></p>
+
+                            <p style="padding:5px;text-align:left;margin:10px 0;color:#000000;font-family:Helvetica;font-size:14px;line-height:150%"><a style="color: #0072bb" href="https://www.google.com/maps/search/7070+Derrycrest+Drive,+Mississauga,+ON+L5W?entry=gmail&amp;source=g">7070 Derrycrest Drive, Mississauga, ON L5W 0G5 Canada</a></p>
+
+                            <p style="padding:5px;text-align:left;margin:10px 0;color:#000000;font-family:Helvetica;font-size:14px;line-height:150%;">T: <a href="tel:18554610685" style="color:#0072bb;text-decoration:underline;font-weight:normal" target="_blank"><strong>855-461-0685</strong></a> 
+                            W: <a href="https://chartwell.com" style="color: #0072bb"><strong>chartwell.com</strong></a></p>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+
+
+
+
+
+
+
+
+
+                        </td>
+                    </tr></tbody>
+                </table>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center>
+                  <div style="text-align:center;padding:15px 0 10px 0">
+                    <a href="https://chartwell.com" target="_blank"><img src="@imageSource" alt="logo" width="175" height="auto" sc-part-of="field" class="scEnabledChrome"></a>
+                    <br clear="all"/>
+                    <span style="display:inline-block;padding:15px 20px;color:#8d1360;font-family:'Montserrat',helvetica,arial,sans-serif;font-weight:bold"><a href="https://chartwell.com" style="color:#8d1360;text-decoration:none" target="_blank">@Sitecore.Globalization.Translate.Text("MakingPeoplesLivesBetter")</a></span>
+                  </div>
+                </center>
+            </td>
+        </tr>
+        <tr>
+            <td height="15"></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,118 @@
+﻿
+@model Chartwell.Foundation.Models.CorporateContactModel
+@using Sitecore.Mvc.Analytics.Extensions
+
+@Html.Sitecore().VisitorIdentification()
+
+<div id="SubmitMsg">
+  @using (Ajax.BeginForm("Index", "CorporateContact", new AjaxOptions
+  {
+    HttpMethod = "POST",
+    UpdateTargetId = "SubmitMsg",
+    LoadingElementId = "divLoading"
+    //OnBegin = "ClearResults"
+  }, new { @id = "CorporateContactForm" }))
+  {
+
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.ItemLanguage)
+
+    <div class="container-fluid pl-0 pr-0">
+      <div class="row  d-flex flex-row">
+        <div class="col-sm-12">
+          @Html.LabelFor(m => m.Subject, new { @class = "contact-us-form-hdr" }) <br />
+          @Html.DropDownListFor(m => m.Subject, new SelectList(Model.SubjectList, "CorporateEnquirySubjectID", "CorporateEnquirySubjectName", Model.SubjectList[0].CorporateEnquirySubjectID),
+            new { @class = "form-control" })
+        </div><!-- / .col-sm-6 -->
+      </div><!-- / .row -->
+
+      <div class="row d-flex flex-row">
+        <div class="col-sm-12 col-md-6">
+          @Html.LabelFor(m => m.FirstName, @Sitecore.Globalization.Translate.Text("FirstName") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")", new { @class = "contact-us-form-hdr" }) <br />
+          @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control firstName" })
+          @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+        </div><!-- / .col-sm-6 -->
+        <div class="col-sm-12 col-md-6">
+          @Html.LabelFor(m => m.LastName, new { @class = "contact-us-form-hdr" }) <br />
+          @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+          @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        </div><!-- / .col-sm-6 -->
+      </div><!-- / .row -->
+      <div class="row d-flex flex-row">
+        <div class="col-sm-12 col-md-6">
+          @Html.LabelFor(m => m.PhoneNo, new { @class = "contact-us-form-hdr" }) <br />
+          @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control phoneNumber", placeholder = "(999)999-9999" })
+          @Html.ValidationMessageFor(m => m.PhoneNo, Sitecore.Globalization.Translate.Text("PhoneNoError"), new { @class = "text-danger" })
+
+        </div><!-- / .col-sm-6 -->
+        <div class="col-sm-12 col-md-6">
+          @Html.LabelFor(m => m.EMailAddress, @Sitecore.Globalization.Translate.Text("Email") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")", new { @class = "contact-us-form-hdr" })<br />
+          @Html.TextBoxFor(m => m.EMailAddress, new { @class = "form-control contactEmail" })
+          @Html.ValidationMessageFor(m => m.EMailAddress, "", new { @class = "text-danger" })
+        </div><!-- / .col-sm-6 -->
+      </div><!-- / .row -->
+
+      <div class="row d-flex flex-row">
+        <div class="col-sm-12">
+          @Html.LabelFor(m => m.ResidenceOfInterest, new { @class = "contact-us-form-hdr" }) <br />
+          @Html.DropDownListFor(m => m.ResidenceOfInterest, new SelectList(Model.PropertyList, "PropertyID", "ResidenceOfInterest", Model.PropertyID = "99999"),
+            new { @class = "form-control" })
+        </div><!-- / .col-xs-12 -->
+      </div><!-- / .row -->
+
+
+
+      <div class="row d-flex flex-row">
+        <div class="col-sm-12">
+          @Html.Label("ValidateTextBox", @Sitecore.Globalization.Translate.Text("Questions"))<br />
+          @*Html.LabelFor(m => m.Questions, new { @class = "contact-us-form-hdr", }) *@
+          @Html.TextAreaFor(m => m.Questions, 3, 10, new { @class = "form-control", @id = "ValidateTextBox" })
+          @Html.ValidationMessageFor(m => m.Questions, "", new { @class = "text-danger" })
+        </div><!-- / .col-xs-12 -->
+      </div><!-- / .row -->
+
+      <fieldset>
+        <div class="contactRadioButtonRequired">
+          <div class="row">
+            <div class="col-sm-12">
+              <legend>
+                @Html.Label(@Sitecore.Globalization.Translate.Text("ConsentToConnect") + " (" + Sitecore.Globalization.Translate.Text("Required") + ")")
+              </legend>
+            </div><!-- / .col-xs-12 -->
+          </div><!-- / .row -->
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <div class="radio">
+                  @Html.RadioButtonFor(m => m.ConsentToConnect, "true", new { id = "ConsentToConnectYes" })
+                  @Html.Label("ConsentToConnectYes", @Sitecore.Globalization.Translate.Text("OptionYes"))
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <div class="radio">
+                  @Html.RadioButtonFor(m => m.ConsentToConnect, "false", new { id = "ConsentToConnectNo" })
+                  @Html.Label("ConsentToConnectNo", @Sitecore.Globalization.Translate.Text("OptionNo"))
+                </div>
+              </div>
+            </div>
+          </div>
+          @Html.ValidationMessageFor(m => m.ConsentToConnect, "", new { @class = "text-danger" })
+        </div><!-- contactRadioButtonRequired-->
+      </fieldset>
+
+      <div class="row d-flex flex-row">
+        <div class="col-sm-12">
+          <button type="submit" id="CorporateContactSubmit" value="Submit" class="btn btn-warning btn-lg" style='min-width:90px'>@Sitecore.Globalization.Translate.Text("ButtonText")</button>
+        </div><!-- / .col-xs-12 -->
+      </div><!-- / .row -->
+
+      <div id="divLoading" style="display:none;">
+        <img src="~/Assets/Images/loading.gif" style="position: relative; top: 50%;" alt="loading" />
+      </div>
+    </div><!-- / .well.contact-well -->}
+</div>
+
